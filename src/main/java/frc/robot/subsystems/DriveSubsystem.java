@@ -156,7 +156,7 @@ public class DriveSubsystem extends SubsystemBase {
         SwerveModuleState[] states = DriveConstants.kinematics.toSwerveModuleStates(speeds);
 
         // make sure the wheels don't try to spin faster than the maximum speed possible
-        SwerveDriveKinematics.normalizeWheelSpeeds(states, DriveConstants.maxDriveSpeed);
+        //SwerveDriveKinematics.normalizeWheelSpeeds(states, DriveConstants.maxDriveSpeed);
 
         setModuleStates(states);
 

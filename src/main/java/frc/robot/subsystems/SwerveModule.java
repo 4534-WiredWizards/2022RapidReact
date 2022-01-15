@@ -2,18 +2,15 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.sensors.AbsoluteSensorRange;
 import com.ctre.phoenix.sensors.CANCoder;
-import com.revrobotics.CANEncoder;
-import com.revrobotics.CANPIDController;
+
+import com.revrobotics.RelativeEncoder;
+import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.CANSparkMax;
-// import net.thefletcher.revrobotics.CANSparkMax;
-// import net.thefletcher.revrobotics.CANEncoder;
-// import net.thefletcher.revrobotics.CANPIDController;
-import com.revrobotics.ControlType;
+
+import com.revrobotics.CANSparkMax.ControlType;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-// import net.thefletcher.revrobotics.enums.MotorType;
-// import net.thefletcher.revrobotics.enums.IdleMode;
-// import net.thefletcher.revrobotics.enums.ControlType;
+
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.math.util.Units;
@@ -36,16 +33,16 @@ public class SwerveModule extends SubsystemBase {
     private final CANSparkMax driveMotor;
     private final CANSparkMax rotationMotor;
 
-    private final CANEncoder driveEncoder;
-    private final CANEncoder rotationEncoder;
+    private final RelativeEncoder driveEncoder;
+    private final RelativeEncoder rotationEncoder;
 
     private final CANCoder canCoder;
 
     //absolute offset for the CANCoder so that the wheels can be aligned when the robot is turned on
     private final Rotation2d offset;
 
-    private final CANPIDController rotationController;
-    private final CANPIDController driveController;
+    private final SparkMaxPIDController rotationController;
+    private final SparkMaxPIDController driveController;
 
 
     public SwerveModule(

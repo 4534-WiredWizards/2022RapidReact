@@ -7,12 +7,13 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
 
 public class Solenoids extends SubsystemBase {
   /** Creates a new Solonoids. */
   private Solenoid piston;
   public Solenoids() {
-    piston = new Solenoid(0, 1);
+    piston = new Solenoid(0, PneumaticsModuleType.REVPH,  1);
     addChild("piston", piston);
   }
 
