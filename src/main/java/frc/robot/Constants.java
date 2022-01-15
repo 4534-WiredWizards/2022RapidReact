@@ -10,25 +10,25 @@ public class Constants {
 
     public static final class CANDevices {
 
-        public static final int frontLeftRotationMotorId = 12;
-        public static final int frontLeftDriveMotorId = 13;
+        public static final int frontLeftRotationMotorId = 11;
+        public static final int frontLeftDriveMotorId = 10;
 
-        public static final int frontRightRotationMotorId = 14;
-        public static final int frontRightDriveMotorId = 15;
+        public static final int frontRightRotationMotorId = 21;
+        public static final int frontRightDriveMotorId =20;
 
-        public static final int rearLeftRotationMotorId = 10;
-        public static final int rearLeftDriveMotorId = 11;
+        public static final int rearLeftRotationMotorId = 31;
+        public static final int rearLeftDriveMotorId = 30;
 
-        public static final int rearRightRotationMotorId = 16;
-        public static final int rearRightDriveMotorId = 17;
+        public static final int rearRightRotationMotorId = 41;
+        public static final int rearRightDriveMotorId = 40;
 
-        public static final int leftClimberMotorId = 20;
-        public static final int rightClimberMotorId = 21;
+        public static final int leftClimberMotorId = 19;
+        public static final int rightClimberMotorId = 29;
 
-        public static final int frontLeftRotationEncoderId = 39;
-        public static final int frontRightRotationEncoderId = 49;
-        public static final int rearLeftRotationEncoderId = 19;
-        public static final int rearRightRotationEncoderId = 29;
+        public static final int frontLeftRotationEncoderId = 13;
+        public static final int frontRightRotationEncoderId = 23;
+        public static final int rearLeftRotationEncoderId = 33;
+        public static final int rearRightRotationEncoderId = 43;
 
         public static final double frontLeftAngleOffset = Units.degreesToRadians(26.72);  //26.60    //26.71
         public static final double frontRightAngleOffset = Units.degreesToRadians(111.35);  //111.18   //111.44

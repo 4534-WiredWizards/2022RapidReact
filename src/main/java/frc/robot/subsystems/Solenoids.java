@@ -29,6 +29,3 @@ public class Solenoids extends SubsystemBase {
     return piston.get();
   }
 }
-
-
-//testing
