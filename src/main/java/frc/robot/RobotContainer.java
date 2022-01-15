@@ -18,10 +18,12 @@ import frc.robot.commands.drivetrain.OperatorControl;
 //import frc.robot.commands.superstructure.Indexing.Waiting;
 //import frc.robot.commands.superstructure.shooting.RampUpWithVision;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import frc.robot.commands.ChooseAuto;
+import frc.robot.commands.RunIntake;
 import frc.robot.commands.resetGyro;
 //import frc.robot.commands.simpleDrive;
 
@@ -34,6 +36,9 @@ public class RobotContainer {
  //   private final Joystick leftJoystick = new Joystick(InputDevices.leftJoystickPort);
  //   private final Joystick rightJoystick = new Joystick(InputDevices.rightJoystickPort);
 
+ 
+    public static Joystick m_joystick = new Joystick(1);
+
     private final XboxController GMDJoystick = new XboxController(InputDevices.leftJoystickPort);
     private final XboxController gamepad = new XboxController(InputDevices.gamepadPort);
 
@@ -42,6 +47,7 @@ public class RobotContainer {
     //chooser.simpleDrive("Simple Drive", simpleDrive)
 
     public DriveSubsystem drive = new DriveSubsystem();
+    public Intake t_intake = new Intake();
     
     public RobotContainer() {
         //callibrates joysticks
@@ -61,6 +67,8 @@ public class RobotContainer {
             new RunCommand(() -> shooter.runShooterPercent(gamepad.getRawAxis(3) / 5), shooter)
         );
         */
+
+        t_intake.setDefaultCommand(new RunIntake(t_intake));
 
 
         configureButtonBindings();
@@ -93,8 +101,8 @@ public class RobotContainer {
         new JoystickButton(gamepad, Button.kBumperRight.value)
             .whenPressed(new RampUpWithVision(shooter, limelight));
         */
-        new JoystickButton(GMDJoystick, 4) //XboxController.Button.kY
-            .whileHeld(new resetGyro(drive));
+        // new JoystickButton(GMDJoystick, 4) //XboxController.Button.kY
+        //     .whileHeld(new resetGyro(drive));
             //!!!!!!!!!!!!!!!!!!!!fix this !!!!!!!!!!!!!!!!!!!
             //joystick button does not like xbox controller!!!!!!!!!!!!!!!!!!!!!!!
     
@@ -119,7 +127,16 @@ public class RobotContainer {
         /*new JoystickButton(rightJoystick, Joystick.ButtonType.kTop.value)
             .whenPressed(new InstantCommand(shooter::toggleHood));
         */
+      final JoystickButton a = new JoystickButton(m_joystick, 1);
+      final JoystickButton b = new JoystickButton(m_joystick, 2);
+      final JoystickButton x = new JoystickButton(m_joystick, 3);
+      final JoystickButton leftBumper = new JoystickButton(m_joystick, 4);
+      final JoystickButton climbButtonUp = new JoystickButton(GMDJoystick, 8);
+      final JoystickButton climbButtonDown = new JoystickButton(GMDJoystick, 7);
 
+      //a.whenPressed(new GoToColor());
+      //b.whenPressed(new SpinTimes());
+      //x.whenPressed(new AutoTest());
 
     }
 
