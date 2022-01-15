@@ -25,10 +25,10 @@ public class Constants {
         public static final int leftClimberMotorId = 19;
         public static final int rightClimberMotorId = 29;
 
-        public static final int frontLeftRotationEncoderId = 13;
-        public static final int frontRightRotationEncoderId = 23;
-        public static final int rearLeftRotationEncoderId = 33;
-        public static final int rearRightRotationEncoderId = 43;
+        public static final int frontLeftRotationEncoderId = 12;
+        public static final int frontRightRotationEncoderId = 22;
+        public static final int rearLeftRotationEncoderId = 32;
+        public static final int rearRightRotationEncoderId = 42;
 
         public static final double frontLeftAngleOffset = Units.degreesToRadians(26.72);  //26.60    //26.71
         public static final double frontRightAngleOffset = Units.degreesToRadians(111.35);  //111.18   //111.44
