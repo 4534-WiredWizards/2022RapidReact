@@ -25,10 +25,10 @@ public class Constants {
         public static final int leftClimberMotorId = 19;
         public static final int rightClimberMotorId = 29;
 
-        public static final int frontLeftRotationEncoderId = 12;
-        public static final int frontRightRotationEncoderId = 22;
-        public static final int rearLeftRotationEncoderId = 32;
-        public static final int rearRightRotationEncoderId = 42;
+        public static final int frontLeftRotationEncoderId = 29;  //12;
+        public static final int frontRightRotationEncoderId = 19;  //22;
+        public static final int rearLeftRotationEncoderId = 49;  //32;
+        public static final int rearRightRotationEncoderId = 29;  //42;
 
         public static final double frontLeftAngleOffset = Units.degreesToRadians(26.72);  //26.60    //26.71
         public static final double frontRightAngleOffset = Units.degreesToRadians(111.35);  //111.18   //111.44
@@ -40,7 +40,8 @@ public class Constants {
         public static final int leftFlywheelMotorId = 11;
 
         public static final int kickerMotorId = 10;
-        public static final int intakeMotorId = 16; 
+        public static final int leftIntakeMotorId = 16; 
+        public static final int rightIntakeMotorId = 26;
         public static final int conveyorMotorId = 9;
 
         public static final int imuId = 18;

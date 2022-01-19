@@ -5,10 +5,15 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj.util.Color;
+import com.revrobotics.ColorSensorV3;
+import edu.wpi.first.wpilibj.I2C;
 
-public class SenseColor extends CommandBase {
+public class DetectColor extends CommandBase {
   /** Creates a new SenseColor. */
-  public SenseColor() {
+  
+
+  public DetectColor() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
