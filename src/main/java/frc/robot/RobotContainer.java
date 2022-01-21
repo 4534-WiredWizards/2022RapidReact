@@ -22,10 +22,7 @@ import frc.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
-import frc.robot.commands.ChooseAuto;
 import frc.robot.commands.RunIntake;
-import frc.robot.commands.resetGyro;
-//import frc.robot.commands.simpleDrive;
 
 public class RobotContainer {
 
@@ -33,14 +30,8 @@ public class RobotContainer {
      * Establishes the controls and subsystems of the robot
      */
 
- //   private final Joystick leftJoystick = new Joystick(InputDevices.leftJoystickPort);
- //   private final Joystick rightJoystick = new Joystick(InputDevices.rightJoystickPort);
-
  
-    public static Joystick m_joystick = new Joystick(1);
-
-    private final XboxController GMDJoystick = new XboxController(InputDevices.leftJoystickPort);
-    private final XboxController gamepad = new XboxController(InputDevices.gamepadPort);
+    public static XboxController m_joystick = new XboxController(0);
 
     SendableChooser<Command> chooser = new SendableChooser<>();
 
@@ -54,10 +45,10 @@ public class RobotContainer {
         drive.setDefaultCommand(
             new OperatorControl(
                 drive, 
-                () -> GMDJoystick.getLeftY(), 
-                () -> GMDJoystick.getLeftX(), 
+                () -> m_joystick.getLeftY(), 
+                () -> m_joystick.getLeftX(), 
         //NOTE: Greg's Right X controller is on Axis 2
-                () -> GMDJoystick.getRawAxis(4),
+                () -> m_joystick.getRawAxis(4),
                 true
             )
         );
@@ -79,10 +70,10 @@ public class RobotContainer {
 
         SwerveModuleState[] tempStates; 
 
-        SmartDashboard.putNumber("Left  Y Joy", GMDJoystick.getLeftY());
-        SmartDashboard.putNumber("Left  X Joy", GMDJoystick.getLeftX());
+        SmartDashboard.putNumber("Left  Y Joy", m_joystick.getLeftY());
+        SmartDashboard.putNumber("Left  X Joy", m_joystick.getLeftX());
         //NOTE: Greg's Right X controller is on Axis 2
-        SmartDashboard.putNumber("Right X Joy", GMDJoystick.getRawAxis(2));
+        SmartDashboard.putNumber("Right X Joy", m_joystick.getRawAxis(2));
 
         tempStates = drive.getModuleStates();
         SmartDashboard.putNumber("CANcoder S7 FL", tempStates[2].angle.getDegrees());
@@ -131,8 +122,6 @@ public class RobotContainer {
       final JoystickButton b = new JoystickButton(m_joystick, 2);
       final JoystickButton x = new JoystickButton(m_joystick, 3);
       final JoystickButton leftBumper = new JoystickButton(m_joystick, 4);
-      final JoystickButton climbButtonUp = new JoystickButton(GMDJoystick, 8);
-      final JoystickButton climbButtonDown = new JoystickButton(GMDJoystick, 7);
 
       //a.whenPressed(new GoToColor());
       //b.whenPressed(new SpinTimes());

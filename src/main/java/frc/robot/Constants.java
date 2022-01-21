@@ -22,18 +22,18 @@ public class Constants {
         public static final int rearRightRotationMotorId = 41;
         public static final int rearRightDriveMotorId = 40;
 
-        public static final int leftClimberMotorId = 19;
-        public static final int rightClimberMotorId = 29;
+        //public static final int leftClimberMotorId = 19;
+        //public static final int rightClimberMotorId = 29;
 
         public static final int frontLeftRotationEncoderId = 29;  //12;
         public static final int frontRightRotationEncoderId = 19;  //22;
         public static final int rearLeftRotationEncoderId = 49;  //32;
-        public static final int rearRightRotationEncoderId = 29;  //42;
+        public static final int rearRightRotationEncoderId = 39;  //42;
 
-        public static final double frontLeftAngleOffset = Units.degreesToRadians(26.72);  //26.60    //26.71
-        public static final double frontRightAngleOffset = Units.degreesToRadians(111.35);  //111.18   //111.44
-        public static final double rearLeftAngleOffset = Units.degreesToRadians(111.0);  //108.98    //109.60
-        public static final double rearRightAngleOffset = Units.degreesToRadians(37.09);  //37.00     //37.00
+        public static final double frontLeftAngleOffset = Units.degreesToRadians(307.1);  //26.60    //26.71
+        public static final double frontRightAngleOffset = Units.degreesToRadians(202.0);  //111.18   //111.44
+        public static final double rearLeftAngleOffset = Units.degreesToRadians(202.6);  //108.98    //109.60
+        public static final double rearRightAngleOffset = Units.degreesToRadians(294.0);  //37.00     //37.00
     
 
         public static final int rightFlywheelMotorId = 12;
@@ -76,8 +76,8 @@ public class Constants {
 
     public static final class DriveConstants {
 
-        public static final double trackWidth = Units.inchesToMeters(17.25);
-        public static final double wheelBase = Units.inchesToMeters(28.5);
+        public static final double trackWidth = Units.inchesToMeters(23.5); //17.25
+        public static final double wheelBase = Units.inchesToMeters(23.5); //28.5
 
         public static final SwerveDriveKinematics kinematics = 
             new SwerveDriveKinematics(
