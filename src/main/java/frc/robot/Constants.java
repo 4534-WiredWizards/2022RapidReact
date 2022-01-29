@@ -35,7 +35,7 @@ public class Constants {
         public static final double rearLeftAngleOffset = Units.degreesToRadians(202.6);  //108.98    //109.60
         public static final double rearRightAngleOffset = Units.degreesToRadians(294.0);  //37.00     //37.00
     
-
+        public static final int feederWheelMotorId = 35;
         public static final int rightFlywheelMotorId = 25;
         public static final int leftFlywheelMotorId = 15;
 
@@ -46,6 +46,8 @@ public class Constants {
         public static final int conveyorMotorId = 9;
 
         public static final int imuId = 18;
+
+        public static final double reductionFactor = 1/1;
 
     }
 
