@@ -5,7 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-
+import frc.robot.Constants.InputDevices;
 import frc.robot.subsystems.Intake;
 
 public class RunIntake extends CommandBase {
@@ -26,21 +26,62 @@ public class RunIntake extends CommandBase {
   @Override
   public void execute() {
     double intakespeed = 0.0;
+    if (frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_b)) {
+      m_intake.setCenterPiston(!m_intake.getCenterPiston());
+    }
 
-    if(frc.robot.RobotContainer.m_joystick.getRawButton(2)) {
-      intakespeed=-0.6;
-      m_intake.setLeftMotor(intakespeed); //-0.6
+    if (frc.robot.RobotContainer.m_joystick.getRawAxis(2) > 0.1 && frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_b)) {
+      m_intake.setLeftPiston(!m_intake.getLeftPiston());
     }
-    else {
-      if(frc.robot.RobotContainer.m_joystick.getRawButton(3)) {
+
+    if (frc.robot.RobotContainer.m_joystick.getRawAxis(3) > 0.1 && frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_b)) {
+      m_intake.setRightPiston(!m_intake.getLeftPiston());
+    } 
+
+
+    if(frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_a)) {
+        intakespeed=-0.4;
+        m_intake.setCenterMotor(intakespeed);
+    } else {
+      if(frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_y)) {
         intakespeed=0.4;
-        m_intake.setLeftMotor(intakespeed);
-      }
-      else {
+        m_intake.setCenterMotor(intakespeed);
+      } else {
         intakespeed=0;
-        m_intake.setLeftMotor(intakespeed);
+        m_intake.setCenterMotor(intakespeed);
       }
     }
+
+    if(frc.robot.RobotContainer.m_joystick.getRawAxis(InputDevices.btn_leftTrigger) > 0.1 && frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_a)) {
+      intakespeed=-0.4;
+      m_intake.setLeftMotor(intakespeed);
+  } else {
+    if(frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_y)) {
+      intakespeed=0.4;
+      m_intake.setLeftMotor(intakespeed);
+    } else {
+      intakespeed=0;
+      m_intake.setLeftMotor(intakespeed);
+    }
+  }
+
+  if(frc.robot.RobotContainer.m_joystick.getRawAxis(InputDevices.btn_rightTrigger) > 0.1 && frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_a)) {
+    intakespeed=-0.4;
+    m_intake.setRightMotor(intakespeed);
+} else {
+  if(frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_y)) {
+    intakespeed=0.4;
+    m_intake.setRightMotor(intakespeed);
+  } else {
+    intakespeed=0;
+    m_intake.setRightMotor(intakespeed);
+  }
+}
+
+
+
+
+
   }
 
   // Called once the command ends or is interrupted.

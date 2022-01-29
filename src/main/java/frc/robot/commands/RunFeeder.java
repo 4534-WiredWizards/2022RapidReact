@@ -5,17 +5,17 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants.InputDevices;
+import frc.robot.subsystems.FeederWheel;
 
-import frc.robot.subsystems.Shooter;
-
-public class RunShooter extends CommandBase {
+public class RunFeeder extends CommandBase {
   /** Creates a new RunShooter. */
-  private final Shooter m_shooter;
+  private final FeederWheel m_feeder;
 
-  public RunShooter(Shooter shooter) {
+  public RunFeeder(FeederWheel feeder) {
     // Use addRequirements() here to declare subsystem dependencies.
-    m_shooter = shooter;
-    addRequirements(m_shooter);
+    m_feeder = feeder;
+    addRequirements(m_feeder);
   }
 
   // Called when the command is initially scheduled.
@@ -25,15 +25,18 @@ public class RunShooter extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double shooterSpeed = 0.0;
+    double feederSpeed = 0.0;
 
-    if(frc.robot.RobotContainer.m_joystick.getRawButton(1)) {//button a
-      shooterSpeed=0.4;
-      m_shooter.setShooterMotor(shooterSpeed);
+    if(frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_rightBumper)) {//button a
+      feederSpeed=0.4;
+      m_feeder.setFeederMotor(feederSpeed);
     }
-    else {
-      shooterSpeed=0.0;
-      m_shooter.setShooterMotor(shooterSpeed);
+    else if (frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_leftBumper)) {
+      feederSpeed=-0.4;
+      m_feeder.setFeederMotor(feederSpeed);
+    } else {
+      feederSpeed = 0;
+      m_feeder.setFeederMotor(feederSpeed);
     }
   }
 

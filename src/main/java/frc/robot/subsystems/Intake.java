@@ -4,6 +4,8 @@
 
 package frc.robot.subsystems;
 
+import javax.print.CancelablePrintJob;
+
 import com.ctre.phoenix.sensors.AbsoluteSensorRange;
 import com.ctre.phoenix.sensors.CANCoder;
 
@@ -16,17 +18,41 @@ import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj.CAN;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants.CANDevices;;
+import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
+
+import frc.robot.Constants.CANDevices;
+import frc.robot.Constants.PneumaticChannels;;
 
 public class Intake extends SubsystemBase {
   /** Creates a new Intake. */
   private final CANSparkMax leftmotor;
   private final CANSparkMax rightmotor;
+  private final CANSparkMax centermotor;
+
+  private final Solenoid leftPiston;
+  private final Solenoid rightPiston;
+  private final Solenoid centerPiston;
+
+  private final DigitalInput leftProxSensor = new DigitalInput(0);
+  private final DigitalInput centerProxSensor = new DigitalInput(1);
+  private final DigitalInput rightProxSensor = new DigitalInput(2);
 
   public Intake() {
     leftmotor = new CANSparkMax(CANDevices.leftIntakeMotorId, MotorType.kBrushless);
     rightmotor = new CANSparkMax(CANDevices.rightIntakeMotorId, MotorType.kBrushless);
+    centermotor = new CANSparkMax(CANDevices.centerIntakeMotorId, MotorType.kBrushless);
+
+    leftPiston = new Solenoid(PneumaticChannels.PCMId, PneumaticsModuleType.REVPH, PneumaticChannels.intakeSolenoidChannels[0]);
+    rightPiston = new Solenoid(PneumaticChannels.PCMId, PneumaticsModuleType.REVPH, PneumaticChannels.intakeSolenoidChannels[1]);
+    centerPiston = new Solenoid(PneumaticChannels.PCMId, PneumaticsModuleType.REVPH, PneumaticChannels.intakeSolenoidChannels[2]);
+
+    addChild("LIPiston", leftPiston);
+    addChild("RIPiston", rightPiston);
+    addChild("CIPiston", centerPiston);
   }
 
   @Override
@@ -35,10 +61,50 @@ public class Intake extends SubsystemBase {
   }
 
   public void setLeftMotor(double speed) {
-    leftmotor.set(-speed/2);
+    if (leftProxSensor.get()) {
+      leftmotor.set(0);
+    }
+    else {
+      leftmotor.set(speed*CANDevices.reductionFactor);
+    }
   }
 
   public void setRightMotor(double speed) {
-    rightmotor.set(-speed/2);
+    if (rightProxSensor.get()) {
+      rightmotor.set(0);
+    }
+    else {
+      rightmotor.set(speed*CANDevices.reductionFactor);
+    }
+  }
+
+  public void setCenterMotor(double speed) {
+    if (centerProxSensor.get()) {
+      centermotor.set(0);
+    }
+    else {
+      centermotor.set(speed*CANDevices.reductionFactor);
+    }
+  }
+
+  public void setLeftPiston(boolean state){
+    leftPiston.set(state);
+  }
+  public boolean getLeftPiston(){
+    return leftPiston.get();
+  } 
+
+  public void setRightPiston(boolean state){
+    rightPiston.set(state);
+  }
+  public boolean getRightPiston(){
+    return rightPiston.get();
+  }
+
+  public void setCenterPiston(boolean state){
+    centerPiston.set(state);
+  }
+  public boolean getCenterPiston(){
+    return centerPiston.get();
   }
 }

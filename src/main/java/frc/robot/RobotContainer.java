@@ -19,10 +19,13 @@ import frc.robot.commands.drivetrain.OperatorControl;
 //import frc.robot.commands.superstructure.shooting.RampUpWithVision;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Shooter;
+
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import frc.robot.commands.RunIntake;
+import frc.robot.commands.RunShooter;
 
 public class RobotContainer {
 
@@ -31,7 +34,7 @@ public class RobotContainer {
      */
 
  
-    public static XboxController m_joystick = new XboxController(0);
+    public static XboxController m_joystick = new XboxController(1);
 
     SendableChooser<Command> chooser = new SendableChooser<>();
 
@@ -39,6 +42,7 @@ public class RobotContainer {
 
     public DriveSubsystem drive = new DriveSubsystem();
     public Intake t_intake = new Intake();
+    public Shooter t_shooter = new Shooter();
     
     public RobotContainer() {
         //callibrates joysticks
@@ -60,6 +64,7 @@ public class RobotContainer {
         */
 
         t_intake.setDefaultCommand(new RunIntake(t_intake));
+        t_shooter.setDefaultCommand(new RunShooter(t_shooter));
 
 
         configureButtonBindings();

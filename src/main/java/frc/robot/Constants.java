@@ -36,12 +36,13 @@ public class Constants {
         public static final double rearRightAngleOffset = Units.degreesToRadians(294.0);  //37.00     //37.00
     
 
-        public static final int rightFlywheelMotorId = 12;
-        public static final int leftFlywheelMotorId = 11;
+        public static final int rightFlywheelMotorId = 25;
+        public static final int leftFlywheelMotorId = 15;
 
         public static final int kickerMotorId = 10;
         public static final int leftIntakeMotorId = 16; 
         public static final int rightIntakeMotorId = 26;
+        public static final int centerIntakeMotorId = 36;
         public static final int conveyorMotorId = 9;
 
         public static final int imuId = 18;
@@ -62,13 +63,21 @@ public class Constants {
 
         public static final int gamepadPort = 2;
 
+        public static final int btn_a = 1;
+        public static final int btn_b = 2;
+        public static final int btn_x = 3;
+        public static final int btn_y = 4;
+        public static final int btn_leftBumper = 5;
+        public static final int btn_rightBumper = 6;
+        public static final int btn_leftTrigger = 2;
+        public static final int btn_rightTrigger = 3;
     }
 
     public static final class PneumaticChannels {
 
-        public  static final int PCMId = 19;
+        public  static final int PCMId = 1;
 
-        public static final int[] intakeSolenoidChannels = {0, 1};
+        public static final int[] intakeSolenoidChannels = {0, 1, 2};
         public static final int[] hoodSolenoidChannels = {2, 3};
         public static final int[] climberSolenoidChannels = {4, 5};
 

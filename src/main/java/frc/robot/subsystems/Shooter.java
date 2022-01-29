@@ -4,14 +4,31 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonFX;
+
+import edu.wpi.first.wpilibj.motorcontrol.Talon;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.CANDevices;
 
 public class Shooter extends SubsystemBase {
   /** Creates a new Shooter. */
-  public Shooter() {}
+  private final TalonFX leftMotor;
+  private final TalonFX rightMotor;
+
+  public Shooter() {
+    leftMotor = new TalonFX(CANDevices.leftFlywheelMotorId);
+    rightMotor = new TalonFX(CANDevices.rightFlywheelMotorId);
+    leftMotor.follow(rightMotor);
+    leftMotor.setInverted(true);
+  }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+  }
+
+  public void setShooterMotor(double speed) {
+    rightMotor.set(TalonFXControlMode.PercentOutput, speed);
   }
 }
