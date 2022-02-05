@@ -15,6 +15,8 @@ public class FeederWheel extends SubsystemBase {
   /** Creates a new FeederWheel. */
   private CANSparkMax feedMotor;
   public FeederWheel() {
+    // initializes motor for feeder wheel
+    // motorid is in constants
     feedMotor = new CANSparkMax(CANDevices.feederWheelMotorId, MotorType.kBrushless);
   }
 
@@ -24,6 +26,8 @@ public class FeederWheel extends SubsystemBase {
   }
 
   public void setFeederMotor(double speed) {
+    // sets speed of feeder motor
+    // reduction factor is in constants
       feedMotor.set(speed*CANDevices.reductionFactor);
   }
 }

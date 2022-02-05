@@ -18,14 +18,18 @@ import frc.robot.commands.drivetrain.OperatorControl;
 //import frc.robot.commands.superstructure.Indexing.Waiting;
 //import frc.robot.commands.superstructure.shooting.RampUpWithVision;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.FeederWheel;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import frc.robot.commands.ActuateIntake;
+import frc.robot.commands.RunFeeder;
 import frc.robot.commands.RunIntake;
 import frc.robot.commands.RunShooter;
+import frc.robot.Constants.InputDevices;
 
 public class RobotContainer {
 
@@ -43,6 +47,7 @@ public class RobotContainer {
     public DriveSubsystem drive = new DriveSubsystem();
     public Intake t_intake = new Intake();
     public Shooter t_shooter = new Shooter();
+    public FeederWheel t_feeder = new FeederWheel();
     
     public RobotContainer() {
         //callibrates joysticks
@@ -62,9 +67,6 @@ public class RobotContainer {
             new RunCommand(() -> shooter.runShooterPercent(gamepad.getRawAxis(3) / 5), shooter)
         );
         */
-
-        t_intake.setDefaultCommand(new RunIntake(t_intake));
-        t_shooter.setDefaultCommand(new RunShooter(t_shooter));
 
 
         configureButtonBindings();
@@ -92,6 +94,19 @@ public class RobotContainer {
     }
 
     public void configureButtonBindings() {
+
+        new JoystickButton(m_joystick, InputDevices.btn_a).whileHeld(new RunIntake(t_intake, false));
+        new JoystickButton(m_joystick, InputDevices.btn_y).whileHeld(new RunIntake(t_intake, true));
+
+        new JoystickButton(m_joystick, InputDevices.btn_b).whenPressed(new ActuateIntake(t_intake));
+
+        new JoystickButton(m_joystick, InputDevices.btn_leftTrigger).whileHeld(new RunFeeder(t_feeder, false));
+        new JoystickButton(m_joystick, InputDevices.btn_rightTrigger).whileHeld(new RunFeeder(t_feeder, true));
+
+        new JoystickButton(m_joystick, InputDevices.btn_x).whileHeld(new RunShooter(t_shooter));
+        
+
+
         /*
         // ramp up shooter using vision
         new JoystickButton(gamepad, Button.kBumperRight.value)
@@ -123,14 +138,12 @@ public class RobotContainer {
         /*new JoystickButton(rightJoystick, Joystick.ButtonType.kTop.value)
             .whenPressed(new InstantCommand(shooter::toggleHood));
         */
-      final JoystickButton a = new JoystickButton(m_joystick, 1);
-      final JoystickButton b = new JoystickButton(m_joystick, 2);
-      final JoystickButton x = new JoystickButton(m_joystick, 3);
-      final JoystickButton leftBumper = new JoystickButton(m_joystick, 4);
+    
 
       //a.whenPressed(new GoToColor());
       //b.whenPressed(new SpinTimes());
       //x.whenPressed(new AutoTest());
+
 
     }
 

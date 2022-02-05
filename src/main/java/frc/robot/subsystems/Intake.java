@@ -42,6 +42,8 @@ public class Intake extends SubsystemBase {
   private final DigitalInput rightProxSensor = new DigitalInput(2);
 
   public Intake() {
+    // initializes all 3 motors and pistons
+    // motor ids and channel ids are in constants
     leftmotor = new CANSparkMax(CANDevices.leftIntakeMotorId, MotorType.kBrushless);
     rightmotor = new CANSparkMax(CANDevices.rightIntakeMotorId, MotorType.kBrushless);
     centermotor = new CANSparkMax(CANDevices.centerIntakeMotorId, MotorType.kBrushless);
@@ -61,6 +63,8 @@ public class Intake extends SubsystemBase {
   }
 
   public void setLeftMotor(double speed) {
+    // sets speed of left motor (-1.0 to 1.0) and disables motor if past prox sensor
+    // reduction factor is in constants
     if (leftProxSensor.get()) {
       leftmotor.set(0);
     }
@@ -70,6 +74,8 @@ public class Intake extends SubsystemBase {
   }
 
   public void setRightMotor(double speed) {
+    // sets speed of right motor (-1.0 to 1.0) and disables motor if past prox sensor
+    // reduction factor is in constants
     if (rightProxSensor.get()) {
       rightmotor.set(0);
     }
@@ -79,6 +85,8 @@ public class Intake extends SubsystemBase {
   }
 
   public void setCenterMotor(double speed) {
+    // sets speed of center motor (-1.0 to 1.0) and disables motor if past prox sensor
+    // reduction factor is in constants
     if (centerProxSensor.get()) {
       centermotor.set(0);
     }
@@ -88,23 +96,31 @@ public class Intake extends SubsystemBase {
   }
 
   public void setLeftPiston(boolean state){
+    // sets the left piston based on state
     leftPiston.set(state);
   }
+
   public boolean getLeftPiston(){
+    // gets left piston state
     return leftPiston.get();
   } 
 
   public void setRightPiston(boolean state){
+    // sets the right piston based on state
     rightPiston.set(state);
   }
+
   public boolean getRightPiston(){
+    // gets the right piston state
     return rightPiston.get();
   }
 
   public void setCenterPiston(boolean state){
+    // sets the center piston based on state
     centerPiston.set(state);
   }
   public boolean getCenterPiston(){
+    // gets the center piston state
     return centerPiston.get();
   }
 }

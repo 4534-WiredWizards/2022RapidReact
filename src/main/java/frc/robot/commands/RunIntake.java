@@ -5,6 +5,8 @@
 package frc.robot.commands;
 
 import java.util.Map;
+
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.InputDevices;
 import frc.robot.subsystems.Intake;
@@ -15,31 +17,34 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class RunIntake extends CommandBase {
   /** Creates a new RunIntake. */
   private final Intake m_intake;
+  private final boolean m_runForward;
   private double leftIntakeSpeed;
   private double rightIntakeSpeed;
   private double centerIntakeSpeed;
 
-  public RunIntake(Intake intake) {
+  public RunIntake(Intake intake, boolean runForward) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_intake = intake;
+    m_runForward = runForward;
     addRequirements(m_intake);
 
+    // adds left, right, and center intake speed as sliders to shuffleboard
     Shuffleboard.getTab("Intake")
     .add("LeftIntakeSpeed", 0)
     .withWidget(BuiltInWidgets.kNumberSlider)
-    .withProperties(Map.of("min", -1, "max", 1))
+    .withProperties(Map.of("min", 0, "max", 1))
     .getEntry();
 
     Shuffleboard.getTab("Intake")
     .add("RightIntakeSpeed", 0)
     .withWidget(BuiltInWidgets.kNumberSlider)
-    .withProperties(Map.of("min", -1, "max", 1))
+    .withProperties(Map.of("min", 0, "max", 1))
     .getEntry();
 
     Shuffleboard.getTab("Intake")
     .add("CenterIntakeSpeed", 0)
     .withWidget(BuiltInWidgets.kNumberSlider)
-    .withProperties(Map.of("min", -1, "max", 1))
+    .withProperties(Map.of("min", 0, "max", 1))
     .getEntry();
   }
 
@@ -50,75 +55,51 @@ public class RunIntake extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    leftIntakeSpeed = SmartDashboard.getNumber("LeftIntakeSpeed", 0);
-    rightIntakeSpeed = SmartDashboard.getNumber("RightIntakeSpeed", 0);
-    centerIntakeSpeed = SmartDashboard.getNumber("CenterIntakeSpeed", 0);
+    // grabs speed from shuffleboard with 0.5 as default
+    leftIntakeSpeed = SmartDashboard.getNumber("LeftIntakeSpeed", 0.5);
+    rightIntakeSpeed = SmartDashboard.getNumber("RightIntakeSpeed", 0.5);
+    centerIntakeSpeed = SmartDashboard.getNumber("CenterIntakeSpeed", 0.5);
 
-    if (frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_b)) {
-      m_intake.setCenterPiston(!m_intake.getCenterPiston());
-    }
-
-    if (frc.robot.RobotContainer.m_joystick.getRawAxis(2) > 0.1 && frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_b)) {
-      m_intake.setLeftPiston(!m_intake.getLeftPiston());
-    }
-
-    if (frc.robot.RobotContainer.m_joystick.getRawAxis(3) > 0.1 && frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_b)) {
-      m_intake.setRightPiston(!m_intake.getLeftPiston());
-    } 
-
-
-    if(frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_a)) {
-        //intakespeed=-0.4;
-        m_intake.setCenterMotor(centerIntakeSpeed);
-    } else {
-      if(frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_y)) {
-        //intakespeed=0.4;
-        m_intake.setCenterMotor(centerIntakeSpeed);
+    // if runfoward is true, run intake based on left or right trigger
+    if (m_runForward) {
+      if (frc.robot.RobotContainer.m_joystick.getRawAxis(InputDevices.btn_leftTrigger) > 0.1) {
+        m_intake.setLeftMotor(leftIntakeSpeed);
+      } else if (frc.robot.RobotContainer.m_joystick.getRawAxis(InputDevices.btn_rightTrigger) > 0.1) {
+        m_intake.setRightMotor(rightIntakeSpeed);
       } else {
-        //intakespeed=0;
         m_intake.setCenterMotor(centerIntakeSpeed);
       }
+    } 
+    
+    else {
+      // runfoward is false so run intake in reverse
+      if (frc.robot.RobotContainer.m_joystick.getRawAxis(InputDevices.btn_leftTrigger) > 0.1) {
+        m_intake.setLeftMotor(-leftIntakeSpeed);
+      } else if (frc.robot.RobotContainer.m_joystick.getRawAxis(InputDevices.btn_rightTrigger) > 0.1) {
+        m_intake.setRightMotor(-rightIntakeSpeed);
+      } else {
+        m_intake.setCenterMotor(-centerIntakeSpeed);
+      }
     }
-
-    if(frc.robot.RobotContainer.m_joystick.getRawAxis(InputDevices.btn_leftTrigger) > 0.1 && frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_a)) {
-      //intakespeed=-0.4;
-      m_intake.setLeftMotor(leftIntakeSpeed);
-  } else {
-    if(frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_y)) {
-      //intakespeed=0.4;
-      m_intake.setLeftMotor(leftIntakeSpeed);
-    } else {
-      //intakespeed=0;
-      m_intake.setLeftMotor(leftIntakeSpeed);
-    }
-  }
-
-  if(frc.robot.RobotContainer.m_joystick.getRawAxis(InputDevices.btn_rightTrigger) > 0.1 && frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_a)) {
-    //intakespeed=-0.4;
-    m_intake.setRightMotor(rightIntakeSpeed);
-} else {
-  if(frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_y)) {
-    //intakespeed=0.4;
-    m_intake.setRightMotor(rightIntakeSpeed);
-  } else {
-    //intakespeed=0;
-    m_intake.setRightMotor(rightIntakeSpeed);
-  }
-}
-
-
-
-
-
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    // if finished or interrupted, set all intakes speed to 0
+    m_intake.setLeftMotor(0);
+    m_intake.setRightMotor(0);
+    m_intake.setCenterMotor(0);
+  }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    // return true if y and a are not held
+    if (!frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_y) && !frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_a)) {
+      return true;
+    }
+    
     return false;
   }
 }

@@ -17,8 +17,12 @@ public class Shooter extends SubsystemBase {
   private final TalonFX rightMotor;
 
   public Shooter() {
+    // initalizes left and right motor of flywheel
+    // flywheel motor ids are in constants
     leftMotor = new TalonFX(CANDevices.leftFlywheelMotorId);
     rightMotor = new TalonFX(CANDevices.rightFlywheelMotorId);
+
+    // makes left motor dependent on right motor but reversed
     leftMotor.follow(rightMotor);
     leftMotor.setInverted(true);
   }
@@ -29,6 +33,7 @@ public class Shooter extends SubsystemBase {
   }
 
   public void setShooterMotor(double speed) {
-    rightMotor.set(TalonFXControlMode.PercentOutput, speed);
+    // sets the speed of the shooter so both mtors(=1.0 to 1.0)
+    rightMotor.set(TalonFXControlMode.PercentOutput, speed*CANDevices.reductionFactor);
   }
 }

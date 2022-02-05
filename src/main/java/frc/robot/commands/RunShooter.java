@@ -5,17 +5,30 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-
+import frc.robot.Constants.InputDevices;
 import frc.robot.subsystems.Shooter;
+
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import java.util.Map;
 
 public class RunShooter extends CommandBase {
   /** Creates a new RunShooter. */
   private final Shooter m_shooter;
+  private double shooterSpeed;
 
   public RunShooter(Shooter shooter) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_shooter = shooter;
     addRequirements(m_shooter);
+
+    // adds slider to control speed to shuffleboard
+    Shuffleboard.getTab("Shooter")
+    .add("ShooterSpeed", 0)
+    .withWidget(BuiltInWidgets.kNumberSlider)
+    .withProperties(Map.of("min", 0, "max", 1))
+    .getEntry();
   }
 
   // Called when the command is initially scheduled.
@@ -25,25 +38,26 @@ public class RunShooter extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double shooterSpeed = 0.0;
+    // grabs speed from shuffleboard with 0.5 as default
+    shooterSpeed = SmartDashboard.getNumber("LeftIntakeSpeed", 0.5);
 
-    if(frc.robot.RobotContainer.m_joystick.getRawButton(1)) {//button a
-      shooterSpeed=0.4;
-      m_shooter.setShooterMotor(shooterSpeed);
-    }
-    else {
-      shooterSpeed=0.0;
-      m_shooter.setShooterMotor(shooterSpeed);
-    }
+    m_shooter.setShooterMotor(shooterSpeed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    // if finished or interrupted, set speed to 0
+    m_shooter.setShooterMotor(0);
+  }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    // if x is no longer being pressed, return true
+    if (!frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_x)) {
+      return true;
+    }
     return false;
   }
 }

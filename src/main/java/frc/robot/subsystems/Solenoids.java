@@ -13,6 +13,7 @@ public class Solenoids extends SubsystemBase {
   /** Creates a new Solonoids. */
   private Solenoid piston;
   public Solenoids() {
+    // initializes new solenoid object
     piston = new Solenoid(0, PneumaticsModuleType.REVPH,  1);
     addChild("piston", piston);
   }
@@ -23,9 +24,11 @@ public class Solenoids extends SubsystemBase {
   }
 
   public void setPiston(boolean state){
+    // changes the state of the piston (in or out)
     piston.set(state);
   }
   public boolean getPiston(){
+    // returns the state of the piston
     return piston.get();
   }
 }
