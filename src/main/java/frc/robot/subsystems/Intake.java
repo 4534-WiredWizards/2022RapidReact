@@ -45,15 +45,15 @@ public class Intake extends SubsystemBase {
   private final DigitalInput centerProxSensor = new DigitalInput(1);
   private final DigitalInput rightProxSensor = new DigitalInput(2);
 private ShuffleboardTab Tab=Shuffleboard.getTab("Intake");
-private NetworkTableEntry leftSpeed=Tab.add("LeftIntakeSpeed", 0)
+private NetworkTableEntry leftSpeed=Tab.add("LeftIntakeSpeed", 0.5)
         .withWidget(BuiltInWidgets.kNumberSlider)
         .withProperties(Map.of("min", 0, "max", 1))
         .getEntry();
-private NetworkTableEntry rightSpeed=Tab.add("RightIntakeSpeed", 0)
+private NetworkTableEntry rightSpeed=Tab.add("RightIntakeSpeed", 0.5)
         .withWidget(BuiltInWidgets.kNumberSlider)
         .withProperties(Map.of("min", 0, "max", 1))
         .getEntry();
-private NetworkTableEntry centerSpeed=Tab.add("CenterIntakeSpeed", 0)
+private NetworkTableEntry centerSpeed=Tab.add("CenterIntakeSpeed", 0.5)
         .withWidget(BuiltInWidgets.kNumberSlider)
         .withProperties(Map.of("min", 0, "max", 1))
         .getEntry();
