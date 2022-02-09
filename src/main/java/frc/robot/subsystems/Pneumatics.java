@@ -13,6 +13,7 @@ public class Pneumatics extends SubsystemBase {
   private Compressor compressor;
   /** Creates a new Pneumatics. */
   public Pneumatics() {
+    // initializes compressor object
     compressor = new Compressor(0, PneumaticsModuleType.REVPH);
     addChild("Compression", compressor);
   }

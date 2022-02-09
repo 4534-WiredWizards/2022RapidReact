@@ -1,5 +1,8 @@
 package frc.robot;
 
+import java.util.Map;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
@@ -67,7 +70,13 @@ public class RobotContainer {
             new RunCommand(() -> shooter.runShooterPercent(gamepad.getRawAxis(3) / 5), shooter)
         );
         */
+        
 
+        Shuffleboard.getTab("Shooter")
+    .add("FeederSpeed", 0)
+    .withWidget(BuiltInWidgets.kNumberSlider)
+    .withProperties(Map.of("min", 0, "max", 1))
+    .getEntry();
 
         configureButtonBindings();
 
@@ -100,8 +109,8 @@ public class RobotContainer {
 
         new JoystickButton(m_joystick, InputDevices.btn_b).whenPressed(new ActuateIntake(t_intake));
 
-        new JoystickButton(m_joystick, InputDevices.btn_leftTrigger).whileHeld(new RunFeeder(t_feeder, false));
-        new JoystickButton(m_joystick, InputDevices.btn_rightTrigger).whileHeld(new RunFeeder(t_feeder, true));
+        new JoystickButton(m_joystick, InputDevices.btn_leftBumper).whileHeld(new RunFeeder(t_feeder, false));
+        new JoystickButton(m_joystick, InputDevices.btn_rightBumper).whileHeld(new RunFeeder(t_feeder, true));
 
         new JoystickButton(m_joystick, InputDevices.btn_x).whileHeld(new RunShooter(t_shooter));
         

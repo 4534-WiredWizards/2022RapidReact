@@ -27,16 +27,14 @@ public class RunFeeder extends CommandBase {
     addRequirements(m_feeder);
 
     // adds feeder wheel speed as a slider to shuffleboard
-    Shuffleboard.getTab("Shooter")
-    .add("FeederSpeed", 0)
-    .withWidget(BuiltInWidgets.kNumberSlider)
-    .withProperties(Map.of("min", 0, "max", 1))
-    .getEntry();
+    
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    System.out.println("RunFeeder init");
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
@@ -58,6 +56,7 @@ public class RunFeeder extends CommandBase {
   public void end(boolean interrupted) {
     // if finished or interrupted, set feeder wheel speed to 0
     m_feeder.setFeederMotor(0);
+    System.out.println("RunFeeder end");
   }
 
   // Returns true when the command should end.

@@ -19,11 +19,8 @@ public class ActuateIntake extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
-
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
+  public void initialize() {
+    System.out.println("ActuateIntake init");
     if(frc.robot.RobotContainer.m_joystick.getRawAxis(InputDevices.btn_leftTrigger) > 0.1) {
       m_intake.setLeftPiston(!m_intake.getLeftPiston());
     } else if(frc.robot.RobotContainer.m_joystick.getRawAxis(InputDevices.btn_rightTrigger) > 0.1) {
@@ -33,13 +30,21 @@ public class ActuateIntake extends CommandBase {
     }
   }
 
+  // Called every time the scheduler runs while the command is scheduled.
+  @Override
+  public void execute() {
+  
+  }
+
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    System.out.println("ActuateIntake end");
+  }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return true;
   }
 }

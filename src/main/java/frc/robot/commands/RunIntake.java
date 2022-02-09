@@ -4,23 +4,22 @@
 
 package frc.robot.commands;
 
-import java.util.Map;
+
 
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.InputDevices;
 import frc.robot.subsystems.Intake;
-import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class RunIntake extends CommandBase {
   /** Creates a new RunIntake. */
   private final Intake m_intake;
   private final boolean m_runForward;
-  private double leftIntakeSpeed;
-  private double rightIntakeSpeed;
-  private double centerIntakeSpeed;
+  private double leftIntakeSpeed=1.0;
+  private double rightIntakeSpeed=1.0;
+  private double centerIntakeSpeed=1.0;
 
   public RunIntake(Intake intake, boolean runForward) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -29,37 +28,20 @@ public class RunIntake extends CommandBase {
     addRequirements(m_intake);
 
     // adds left, right, and center intake speed as sliders to shuffleboard
-    Shuffleboard.getTab("Intake")
-    .add("LeftIntakeSpeed", 0)
-    .withWidget(BuiltInWidgets.kNumberSlider)
-    .withProperties(Map.of("min", 0, "max", 1))
-    .getEntry();
-
-    Shuffleboard.getTab("Intake")
-    .add("RightIntakeSpeed", 0)
-    .withWidget(BuiltInWidgets.kNumberSlider)
-    .withProperties(Map.of("min", 0, "max", 1))
-    .getEntry();
-
-    Shuffleboard.getTab("Intake")
-    .add("CenterIntakeSpeed", 0)
-    .withWidget(BuiltInWidgets.kNumberSlider)
-    .withProperties(Map.of("min", 0, "max", 1))
-    .getEntry();
+   
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    System.out.println("RunIntake init");
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     // grabs speed from shuffleboard with 0.5 as default
-    leftIntakeSpeed = SmartDashboard.getNumber("LeftIntakeSpeed", 0.5);
-    rightIntakeSpeed = SmartDashboard.getNumber("RightIntakeSpeed", 0.5);
-    centerIntakeSpeed = SmartDashboard.getNumber("CenterIntakeSpeed", 0.5);
-
+  
     // if runfoward is true, run intake based on left or right trigger
     if (m_runForward) {
       if (frc.robot.RobotContainer.m_joystick.getRawAxis(InputDevices.btn_leftTrigger) > 0.1) {
@@ -90,6 +72,7 @@ public class RunIntake extends CommandBase {
     m_intake.setLeftMotor(0);
     m_intake.setRightMotor(0);
     m_intake.setCenterMotor(0);
+    System.out.println("RunIntake end "+centerIntakeSpeed);
   }
 
   // Returns true when the command should end.

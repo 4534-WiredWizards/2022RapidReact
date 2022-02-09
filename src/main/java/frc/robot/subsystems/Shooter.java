@@ -34,6 +34,7 @@ public class Shooter extends SubsystemBase {
 
   public void setShooterMotor(double speed) {
     // sets the speed of the shooter so both mtors(=1.0 to 1.0)
+    // reduction factor is in constants
     rightMotor.set(TalonFXControlMode.PercentOutput, speed*CANDevices.reductionFactor);
   }
 }

@@ -3,9 +3,12 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.subsystems;
+import java.util.Map;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 
 import javax.print.CancelablePrintJob;
-
 import com.ctre.phoenix.sensors.AbsoluteSensorRange;
 import com.ctre.phoenix.sensors.CANCoder;
 
@@ -18,6 +21,7 @@ import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.CAN;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -40,6 +44,19 @@ public class Intake extends SubsystemBase {
   private final DigitalInput leftProxSensor = new DigitalInput(0);
   private final DigitalInput centerProxSensor = new DigitalInput(1);
   private final DigitalInput rightProxSensor = new DigitalInput(2);
+private ShuffleboardTab Tab=Shuffleboard.getTab("Intake");
+private NetworkTableEntry leftSpeed=Tab.add("LeftIntakeSpeed", 0)
+        .withWidget(BuiltInWidgets.kNumberSlider)
+        .withProperties(Map.of("min", 0, "max", 1))
+        .getEntry();
+private NetworkTableEntry rightSpeed=Tab.add("RightIntakeSpeed", 0)
+        .withWidget(BuiltInWidgets.kNumberSlider)
+        .withProperties(Map.of("min", 0, "max", 1))
+        .getEntry();
+private NetworkTableEntry centerSpeed=Tab.add("CenterIntakeSpeed", 0)
+        .withWidget(BuiltInWidgets.kNumberSlider)
+        .withProperties(Map.of("min", 0, "max", 1))
+        .getEntry();
 
   public Intake() {
     // initializes all 3 motors and pistons
@@ -65,33 +82,62 @@ public class Intake extends SubsystemBase {
   public void setLeftMotor(double speed) {
     // sets speed of left motor (-1.0 to 1.0) and disables motor if past prox sensor
     // reduction factor is in constants
-    if (leftProxSensor.get()) {
+    double max=leftSpeed.getDouble(0.6);
+    System.out.println("leftmax= "+max);
+
+    /*if (leftProxSensor.get()) {
       leftmotor.set(0);
     }
-    else {
-      leftmotor.set(speed*CANDevices.reductionFactor);
+    else */{
+      if (speed>max){
+        leftmotor.set(max*CANDevices.reductionFactor); 
+      }
+      else {
+        leftmotor.set(speed*CANDevices.reductionFactor);
+      }
     }
   }
 
   public void setRightMotor(double speed) {
     // sets speed of right motor (-1.0 to 1.0) and disables motor if past prox sensor
     // reduction factor is in constants
-    if (rightProxSensor.get()) {
+    
+
+    double max=rightSpeed.getDouble(0.6);
+    System.out.println("rightmax= "+max);
+
+    /*if (rightProxSensor.get()) {
       rightmotor.set(0);
     }
-    else {
-      rightmotor.set(speed*CANDevices.reductionFactor);
+    else */{
+      if (speed>max){
+        rightmotor.set(max*CANDevices.reductionFactor); 
+      }
+      else {
+        rightmotor.set(speed*CANDevices.reductionFactor);
+      }
     }
   }
 
   public void setCenterMotor(double speed) {
     // sets speed of center motor (-1.0 to 1.0) and disables motor if past prox sensor
     // reduction factor is in constants
-    if (centerProxSensor.get()) {
+    double max=centerSpeed.getDouble(0.6);
+
+    /*if (centerProxSensor.get()) {
       centermotor.set(0);
+      System.out.println("Sam was hear");
     }
-    else {
-      centermotor.set(speed*CANDevices.reductionFactor);
+    else */{  
+
+      System.out.println("centermax= "+max);
+
+      if (speed>max){
+        centermotor.set(max*CANDevices.reductionFactor); 
+      }
+      else {
+        centermotor.set(speed*CANDevices.reductionFactor);
+      }
     }
   }
 
