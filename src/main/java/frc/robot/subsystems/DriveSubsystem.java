@@ -10,13 +10,14 @@ import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.math.util.Units;
 import frc.robot.Constants.CANDevices;
 import frc.robot.Constants.DriveConstants;
 import com.kauailabs.navx.frc.AHRS;
 import com.kauailabs.navx.frc.AHRS.SerialDataType;
-
 
 public class DriveSubsystem extends SubsystemBase {
 
@@ -83,8 +84,8 @@ public class DriveSubsystem extends SubsystemBase {
     private boolean isCommandedFieldRelative = true;
 
     //private final PigeonIMU imu = new PigeonIMU(CANDevices.imuId);
-
-    public AHRS ahrs = new AHRS();
+  
+    public AHRS ahrs = new AHRS(edu.wpi.first.wpilibj.I2C.Port.kOnboard);
 
     /**
      * odometry for the robot, measured in meters for linear motion and radians for rotational motion
