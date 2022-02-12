@@ -45,22 +45,30 @@ public class RunIntake extends CommandBase {
     // if runfoward is true, run intake based on left or right trigger
     if (m_runForward) {
       if (frc.robot.RobotContainer.m_joystick.getRawAxis(InputDevices.btn_leftTrigger) > 0.1) {
-        m_intake.setLeftMotor(leftIntakeSpeed);
+        m_intake.setLeftMotor(-leftIntakeSpeed);
+        System.out.println("Running forward left");
       } else if (frc.robot.RobotContainer.m_joystick.getRawAxis(InputDevices.btn_rightTrigger) > 0.1) {
         m_intake.setRightMotor(rightIntakeSpeed);
+        System.out.println("Running forward right");
       } else {
-        m_intake.setCenterMotor(centerIntakeSpeed);
+        m_intake.setCenterMotor(-centerIntakeSpeed);
+        System.out.println("Running forward center");
       }
     } 
     
     else {
       // runfoward is false so run intake in reverse
       if (frc.robot.RobotContainer.m_joystick.getRawAxis(InputDevices.btn_leftTrigger) > 0.1) {
-        m_intake.setLeftMotor(-leftIntakeSpeed);
+        m_intake.setLeftMotor(leftIntakeSpeed);
+        System.out.println("Running backward left");
       } else if (frc.robot.RobotContainer.m_joystick.getRawAxis(InputDevices.btn_rightTrigger) > 0.1) {
         m_intake.setRightMotor(-rightIntakeSpeed);
+        System.out.println("Running backward right");
+
       } else {
-        m_intake.setCenterMotor(-centerIntakeSpeed);
+        m_intake.setCenterMotor(centerIntakeSpeed);
+        System.out.println("Running backward center");
+
       }
     }
   }

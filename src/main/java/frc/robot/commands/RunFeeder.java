@@ -45,9 +45,9 @@ public class RunFeeder extends CommandBase {
     // if runfoward is true, run feeder forward at feeder speed
     // else run feeder backwards at feeder speed
     if(m_runForward) {
-      m_feeder.setFeederMotor(feederSpeed);
-    } else {
       m_feeder.setFeederMotor(-feederSpeed);
+    } else {
+      m_feeder.setFeederMotor(feederSpeed);
     }
   }
 

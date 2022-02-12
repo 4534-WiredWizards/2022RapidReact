@@ -24,12 +24,13 @@ public class RunShooter extends CommandBase {
     addRequirements(m_shooter);
 
     // adds slider to control speed to shuffleboard
-    Shuffleboard.getTab("Shooter")
+   /* Shuffleboard.getTab("Shooter")
     .add("ShooterSpeed", 0)
     .withWidget(BuiltInWidgets.kNumberSlider)
     .withProperties(Map.of("min", 0, "max", 1))
     .getEntry();
-  }
+  }*/
+}
 
   // Called when the command is initially scheduled.
   @Override
@@ -41,9 +42,9 @@ public class RunShooter extends CommandBase {
   @Override
   public void execute() {
     // grabs speed from shuffleboard with 0.5 as default
-    shooterSpeed = SmartDashboard.getNumber("LeftIntakeSpeed", 0.5);
+    //shooterSpeed = SmartDashboard.getNumber("LeftIntakeSpeed", 0.5);
 
-    m_shooter.setShooterMotor(shooterSpeed);
+    m_shooter.setShooterMotor(0.2);
   }
 
   // Called once the command ends or is interrupted.

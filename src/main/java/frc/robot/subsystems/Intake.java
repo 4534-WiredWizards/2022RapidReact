@@ -57,6 +57,7 @@ private NetworkTableEntry centerSpeed=Tab.add("CenterIntakeSpeed", 0.5)
         .withWidget(BuiltInWidgets.kNumberSlider)
         .withProperties(Map.of("min", 0, "max", 1))
         .getEntry();
+      
 
   public Intake() {
     // initializes all 3 motors and pistons
@@ -112,9 +113,11 @@ private NetworkTableEntry centerSpeed=Tab.add("CenterIntakeSpeed", 0.5)
     else */{
       if (speed>max){
         rightmotor.set(max*CANDevices.reductionFactor); 
+        System.out.println("RightMotor set max");
       }
       else {
         rightmotor.set(speed*CANDevices.reductionFactor);
+        System.out.println("RightMotor set speed");
       }
     }
   }
@@ -128,7 +131,7 @@ private NetworkTableEntry centerSpeed=Tab.add("CenterIntakeSpeed", 0.5)
       centermotor.set(0);
       System.out.println("Sam was hear");
     }
-    else */{  
+    else */  
 
       System.out.println("centermax= "+max);
 
@@ -138,7 +141,7 @@ private NetworkTableEntry centerSpeed=Tab.add("CenterIntakeSpeed", 0.5)
       else {
         centermotor.set(speed*CANDevices.reductionFactor);
       }
-    }
+    
   }
 
   public void setLeftPiston(boolean state){

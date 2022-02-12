@@ -30,10 +30,10 @@ public class Constants {
         public static final int rearLeftRotationEncoderId = 32;
         public static final int rearRightRotationEncoderId = 42;
 
-        public static final double frontLeftAngleOffset = Units.degreesToRadians(307.1);  //26.60    //26.71
-        public static final double frontRightAngleOffset = Units.degreesToRadians(202.0);  //111.18   //111.44
-        public static final double rearLeftAngleOffset = Units.degreesToRadians(202.6);  //108.98    //109.60
-        public static final double rearRightAngleOffset = Units.degreesToRadians(294.0);  //37.00     //37.00
+        public static final double frontLeftAngleOffset = Units.degreesToRadians(201.4); //307.1  //26.60    //26.71
+        public static final double frontRightAngleOffset = Units.degreesToRadians(116.3); //202.0 //111.18   //111.44
+        public static final double rearLeftAngleOffset = Units.degreesToRadians(291.6); //202.6  //108.98    //109.60
+        public static final double rearRightAngleOffset = Units.degreesToRadians(36.4); //294.0 //37.00     //37.00
     
         public static final int feederWheelMotorId = 35;
         public static final int rightFlywheelMotorId = 25;
@@ -87,8 +87,8 @@ public class Constants {
 
     public static final class DriveConstants {
 
-        public static final double trackWidth = Units.inchesToMeters(23.5); //17.25
-        public static final double wheelBase = Units.inchesToMeters(23.5); //28.5
+        public static final double trackWidth = Units.inchesToMeters(22); //23.5 //17.25
+        public static final double wheelBase = Units.inchesToMeters(22); //23.5 //28.5
 
         public static final SwerveDriveKinematics kinematics = 
             new SwerveDriveKinematics(
