@@ -4,16 +4,30 @@
 
 package frc.robot.subsystems;
 
+import java.util.Map;
+
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.CANDevices;
 
 public class FeederWheel extends SubsystemBase {
   /** Creates a new FeederWheel. */
   private CANSparkMax feedMotor;
+  private ShuffleboardTab Tab=Shuffleboard.getTab("FeederWheel");
+  private NetworkTableEntry feederSpeed=Tab.add("FeederSpeed", 0.5)
+        .withWidget(BuiltInWidgets.kNumberSlider)
+        .withProperties(Map.of("min", 0, "max", 1))
+        .getEntry();
+
+  private double directionConstant;
+
   public FeederWheel() {
     // initializes motor for feeder wheel
     // motorid is in constants
@@ -25,9 +39,31 @@ public class FeederWheel extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  public void setFeederMotor(double speed) {
+  public void setFeederMotor(double speed, boolean forward) {
     // sets speed of feeder motor
     // reduction factor is in constants
-      feedMotor.set(speed*CANDevices.reductionFactor);
+    // when forward is true, the wheels pull the ball into the shooter
+    // when forward is false, the wheels, move the balls away from the shooter
+
+    double slideSpeed = feederSpeed.getDouble(0.5);
+    //if direction is -1, feeder wheels run forward
+    //if direction is 1, feeder wheels run backward
+    if (forward) {
+      directionConstant = -1;
+    }
+    else {
+      directionConstant = 1;
+    }
+
+    if (speed > slideSpeed) {
+      feedMotor.set(directionConstant*slideSpeed*CANDevices.reductionFactor);
+    }
+    else {
+      feedMotor.set(directionConstant*speed*CANDevices.reductionFactor);
+    }
+      
+  
   }
 }
+
+

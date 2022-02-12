@@ -18,7 +18,7 @@ public class RunFeeder extends CommandBase {
   /** Creates a new RunShooter. */
   private final FeederWheel m_feeder;
   private final boolean m_runForward;
-  private double feederSpeed;
+  private double feederSpeed = 1.0;
 
   public RunFeeder(FeederWheel feeder, boolean runFoward) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -40,14 +40,13 @@ public class RunFeeder extends CommandBase {
   @Override
   public void execute() {
     // grabs feeder wheel speed from shuffleboard with 0.4 as default
-    feederSpeed = SmartDashboard.getNumber("FeederSpeed", 0.4);
 
     // if runfoward is true, run feeder forward at feeder speed
     // else run feeder backwards at feeder speed
     if(m_runForward) {
-      m_feeder.setFeederMotor(-feederSpeed);
+      m_feeder.setFeederMotor(feederSpeed, true);
     } else {
-      m_feeder.setFeederMotor(feederSpeed);
+      m_feeder.setFeederMotor(feederSpeed, false);
     }
   }
 
@@ -55,7 +54,7 @@ public class RunFeeder extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     // if finished or interrupted, set feeder wheel speed to 0
-    m_feeder.setFeederMotor(0);
+    m_feeder.setFeederMotor(0, true);
     System.out.println("RunFeeder end");
   }
 

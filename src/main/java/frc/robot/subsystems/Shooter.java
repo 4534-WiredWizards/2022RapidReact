@@ -4,10 +4,16 @@
 
 package frc.robot.subsystems;
 
+import java.util.Map;
+
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
+import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.motorcontrol.Talon;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.CANDevices;
 
@@ -15,6 +21,14 @@ public class Shooter extends SubsystemBase {
   /** Creates a new Shooter. */
   private final TalonFX leftMotor;
   private final TalonFX rightMotor;
+
+  public static final double directionConstant = -1;
+
+  private ShuffleboardTab Tab=Shuffleboard.getTab("Shooter");
+  private NetworkTableEntry shooterSpeed=Tab.add("ShooterSpeed", 0.5)
+        .withWidget(BuiltInWidgets.kNumberSlider)
+        .withProperties(Map.of("min", 0, "max", 1))
+        .getEntry();
 
   public Shooter() {
     // initalizes left and right motor of flywheel
@@ -35,6 +49,13 @@ public class Shooter extends SubsystemBase {
   public void setShooterMotor(double speed) {
     // sets the speed of the shooter so both mtors(=1.0 to 1.0)
     // reduction factor is in constants
-    rightMotor.set(TalonFXControlMode.PercentOutput, speed*CANDevices.reductionFactor);
+    // the shooter shoots the balls when direction constant is -1
+    double max = shooterSpeed.getDouble(0.5);
+    System.out.println("Max: " + max);
+    if (speed > max) {
+      rightMotor.set(TalonFXControlMode.PercentOutput, directionConstant*max*CANDevices.reductionFactor);
+    } else {
+      rightMotor.set(TalonFXControlMode.PercentOutput, directionConstant*speed*CANDevices.reductionFactor);
+    }
   }
 }

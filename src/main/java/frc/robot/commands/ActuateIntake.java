@@ -24,7 +24,7 @@ public class ActuateIntake extends CommandBase {
     if(frc.robot.RobotContainer.m_joystick.getRawAxis(InputDevices.btn_leftTrigger) > 0.1) {
       m_intake.setLeftPiston(!m_intake.getLeftPiston());
     } else if(frc.robot.RobotContainer.m_joystick.getRawAxis(InputDevices.btn_rightTrigger) > 0.1) {
-      m_intake.setLeftPiston(!m_intake.getRightPiston());
+      m_intake.setRightPiston(!m_intake.getRightPiston());
     } else {
       m_intake.setCenterPiston(!m_intake.getCenterPiston());
     }
