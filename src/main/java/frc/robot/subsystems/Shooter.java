@@ -9,7 +9,9 @@ import java.util.Map;
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.motorcontrol.Talon;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
@@ -21,6 +23,9 @@ public class Shooter extends SubsystemBase {
   /** Creates a new Shooter. */
   private final TalonFX leftMotor;
   private final TalonFX rightMotor;
+
+  Servo Hood = new Servo(7);
+
 
   public static final double directionConstant = -1;
 
@@ -39,6 +44,14 @@ public class Shooter extends SubsystemBase {
     // makes left motor dependent on right motor but reversed
     leftMotor.follow(rightMotor);
     leftMotor.setInverted(true);
+    Hood.setBounds(2.0, 1.8, 1.5, 1.2, 1.0);
+  }
+  public void setHood(double value){
+    Hood.set(MathUtil.clamp(value, 0, 0.61));
+  }
+
+  public double getHood(){
+    return Hood.get();
   }
 
   @Override
