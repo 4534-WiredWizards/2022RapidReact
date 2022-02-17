@@ -130,7 +130,7 @@ public class AutoTrajectories {
             config
     );
 
-    public static Trajectory practicTrajectory =
+    public static Trajectory practiceTrajectory =
         TrajectoryGenerator.generateTrajectory(
             new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), new Rotation2d(32)),
             List.of(

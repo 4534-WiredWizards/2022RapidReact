@@ -16,6 +16,7 @@ import java.util.Map;
 public class RunShooter extends CommandBase {
   /** Creates a new RunShooter. */
   private final Shooter m_shooter;
+  private boolean m_isAuto=false;
   private double shooterSpeed = 1.0;
 
   public RunShooter(Shooter shooter) {
@@ -24,7 +25,13 @@ public class RunShooter extends CommandBase {
     addRequirements(m_shooter);
 
   }
+  public RunShooter(Shooter shooter, boolean isAuto) {
+    // Use addRequirements() here to declare subsystem dependencies.
+    m_shooter = shooter;
+    m_isAuto = isAuto;
+    addRequirements(m_shooter);
 
+  }
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
@@ -51,7 +58,7 @@ public class RunShooter extends CommandBase {
   @Override
   public boolean isFinished() {
     // if x is no longer being pressed, return true
-    if (!frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_x)) {
+    if ((!frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_x)) || m_isAuto ){
       return true;
     }
     return false;

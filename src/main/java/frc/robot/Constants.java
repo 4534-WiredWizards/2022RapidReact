@@ -156,6 +156,7 @@ public class Constants {
 
         public static final double maxVelMetersPerSec = 4.5;
         public static final double maxAccelMetersPerSecondSq = 1.95;
+        public static final double positionOneShootingAngle = 32;
         
     }
 
@@ -164,5 +165,6 @@ public class Constants {
         public static final double targetHeightInches = 89.5;
 
     }
+    
     
 }
