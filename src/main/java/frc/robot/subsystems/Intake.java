@@ -45,9 +45,10 @@ public class Intake extends SubsystemBase {
   private double rightDirectionConstant;
   private double centerDirectionConstant;
 
-  private final DigitalInput leftProxSensor = new DigitalInput(0);
-  private final DigitalInput centerProxSensor = new DigitalInput(1);
-  private final DigitalInput rightProxSensor = new DigitalInput(2);
+  private final DigitalInput proxSensor = new DigitalInput(0);
+  // private final DigitalInput leftProxSensor = new DigitalInput(0);
+  // private final DigitalInput centerProxSensor = new DigitalInput(1);
+  // private final DigitalInput rightProxSensor = new DigitalInput(2);
 private ShuffleboardTab Tab=Shuffleboard.getTab("Intake");
 private NetworkTableEntry leftSpeed=Tab.add("LeftIntakeSpeed", 0.5)
         .withWidget(BuiltInWidgets.kNumberSlider)
