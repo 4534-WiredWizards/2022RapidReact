@@ -7,23 +7,11 @@ import java.util.Map;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
-
-import javax.print.CancelablePrintJob;
-import com.ctre.phoenix.sensors.AbsoluteSensorRange;
-import com.ctre.phoenix.sensors.CANCoder;
-
-import com.revrobotics.RelativeEncoder;
-import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.CANSparkMax;
 
-import com.revrobotics.CANSparkMax.ControlType;
-import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import edu.wpi.first.math.util.Units;
 import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.wpilibj.CAN;
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
@@ -45,23 +33,21 @@ public class Intake extends SubsystemBase {
   private double rightDirectionConstant;
   private double centerDirectionConstant;
 
-  private final DigitalInput proxSensor = new DigitalInput(0);
-  // private final DigitalInput leftProxSensor = new DigitalInput(0);
-  // private final DigitalInput centerProxSensor = new DigitalInput(1);
-  // private final DigitalInput rightProxSensor = new DigitalInput(2);
-private ShuffleboardTab Tab=Shuffleboard.getTab("Intake");
-private NetworkTableEntry leftSpeed=Tab.add("LeftIntakeSpeed", 0.5)
-        .withWidget(BuiltInWidgets.kNumberSlider)
-        .withProperties(Map.of("min", 0, "max", 1))
-        .getEntry();
-private NetworkTableEntry rightSpeed=Tab.add("RightIntakeSpeed", 0.5)
-        .withWidget(BuiltInWidgets.kNumberSlider)
-        .withProperties(Map.of("min", 0, "max", 1))
-        .getEntry();
-private NetworkTableEntry centerSpeed=Tab.add("CenterIntakeSpeed", 0.5)
-        .withWidget(BuiltInWidgets.kNumberSlider)
-        .withProperties(Map.of("min", 0, "max", 1))
-        .getEntry();
+
+
+  private ShuffleboardTab Tab=Shuffleboard.getTab("Intake");
+  private NetworkTableEntry leftSpeed=Tab.add("LeftIntakeSpeed", 0.5)
+          .withWidget(BuiltInWidgets.kNumberSlider)
+          .withProperties(Map.of("min", 0, "max", 1))
+          .getEntry();
+  private NetworkTableEntry rightSpeed=Tab.add("RightIntakeSpeed", 0.5)
+          .withWidget(BuiltInWidgets.kNumberSlider)
+          .withProperties(Map.of("min", 0, "max", 1))
+          .getEntry();
+  private NetworkTableEntry centerSpeed=Tab.add("CenterIntakeSpeed", 0.5)
+          .withWidget(BuiltInWidgets.kNumberSlider)
+          .withProperties(Map.of("min", 0, "max", 1))
+          .getEntry();
       
 
   public Intake() {

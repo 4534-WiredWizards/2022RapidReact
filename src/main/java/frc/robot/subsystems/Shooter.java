@@ -12,17 +12,21 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.Servo;
-import edu.wpi.first.wpilibj.motorcontrol.Talon;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.CANDevices;
 
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.RelativeEncoder;
+
 public class Shooter extends SubsystemBase {
   /** Creates a new Shooter. */
   private final TalonFX leftMotor;
   private final TalonFX rightMotor;
+  private double currentSpeed = 0;
+  private final double HOODADJUSTRATE=0.1;
 
   Servo Hood = new Servo(7);
 
@@ -48,11 +52,20 @@ public class Shooter extends SubsystemBase {
   }
   public void setHood(double value){
     Hood.set(MathUtil.clamp(value, 0, 0.61));
+    System.out.println("sethood "+value);
   }
 
   public double getHood(){
     return Hood.get();
   }
+
+  public void raiseHood(){
+    setHood(getHood()+HOODADJUSTRATE);
+    }
+  
+  public void lowerHood(){
+    setHood(getHood()-HOODADJUSTRATE);
+    }
 
   @Override
   public void periodic() {
@@ -67,8 +80,12 @@ public class Shooter extends SubsystemBase {
     System.out.println("Max: " + max);
     if (speed > max) {
       rightMotor.set(TalonFXControlMode.PercentOutput, directionConstant*max*CANDevices.reductionFactor);
+      currentSpeed = max;
     } else {
       rightMotor.set(TalonFXControlMode.PercentOutput, directionConstant*speed*CANDevices.reductionFactor);
+      currentSpeed = speed;
     }
   }
+
+  public double getShooterMotor() {return currentSpeed;}
 }

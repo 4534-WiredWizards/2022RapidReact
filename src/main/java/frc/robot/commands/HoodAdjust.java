@@ -5,15 +5,18 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj.util.Color;
-import com.revrobotics.ColorSensorV3;
-import edu.wpi.first.wpilibj.I2C;
+import frc.robot.subsystems.Shooter;
 
-public class DetectColor extends CommandBase {
-  /** Creates a new SenseColor. */
+public class HoodAdjust extends CommandBase {
+
+  double hoodOutput = 0.0;
+  Shooter m_shooter;
+  boolean m_isUp = true;
   
-
-  public DetectColor() {
+  /** Creates a new HoodAdjust. */
+  public HoodAdjust(Shooter shooter, boolean isUp) {
+    m_shooter = shooter;
+    m_isUp = isUp;
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -23,7 +26,16 @@ public class DetectColor extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    m_shooter.raiseHood();
+    if (m_isUp == true){
+      m_shooter.raiseHood();
+    }
+    else {
+      m_shooter.lowerHood();
+    }
+
+  }
 
   // Called once the command ends or is interrupted.
   @Override

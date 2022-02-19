@@ -7,12 +7,6 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.InputDevices;
 import frc.robot.subsystems.FeederWheel;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import java.util.Map;
-
-import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 
 public class RunFeeder extends CommandBase {
   /** Creates a new RunShooter. */
@@ -43,10 +37,15 @@ public class RunFeeder extends CommandBase {
 
     // if runfoward is true, run feeder forward at feeder speed
     // else run feeder backwards at feeder speed
-    if(m_runForward) {
-      m_feeder.setFeederMotor(feederSpeed, true);
-    } else {
-      m_feeder.setFeederMotor(feederSpeed, false);
+    /*if (!m_feeder.getProx()) {
+      m_feeder.setFeederMotor(0, true);
+    }
+    else */{
+      if(m_runForward) {
+        m_feeder.setFeederMotor(feederSpeed, true);
+      } else {
+        m_feeder.setFeederMotor(feederSpeed, false);
+      }
     }
   }
 

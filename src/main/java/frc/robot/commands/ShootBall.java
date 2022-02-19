@@ -33,6 +33,10 @@ public class ShootBall extends CommandBase {
     m_shooter.setShooterMotor(shooterSpeed);
     m_feeder.setFeederMotor(feederSpeed, true);
 
+    if (m_shooter.getShooterMotor() < 0.1) {
+
+    }
+
   }
 
   // Called once the command ends or is interrupted.

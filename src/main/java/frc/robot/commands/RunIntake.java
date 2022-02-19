@@ -11,8 +11,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.InputDevices;
 import frc.robot.subsystems.Intake;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 public class RunIntake extends CommandBase {
   /** Creates a new RunIntake. */
   private final Intake m_intake;

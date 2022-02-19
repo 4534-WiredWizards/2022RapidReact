@@ -14,7 +14,6 @@ public class Robot extends TimedRobot {
     private RobotContainer robotContainer;
 
     private Command autonomousCommand;
-    private PressureSensor sensor;
 
     @Override
     public void robotInit() {
@@ -24,6 +23,8 @@ public class Robot extends TimedRobot {
         //Added to speed up auto running
         new AutoTrajectories();
         CameraServer.startAutomaticCapture();
+        robotContainer.t_pneumatics.setCompressor(true);
+
     }
 
     @Override
@@ -31,8 +32,7 @@ public class Robot extends TimedRobot {
 
         CommandScheduler.getInstance().run();
         robotContainer.drive.updateSmartDashboard();
-        SmartDashboard.putNumber("Pressure", sensor.getPressure());
-
+        robotContainer.t_pneumatics.updatePressurSensor();
     }
 
     @Override

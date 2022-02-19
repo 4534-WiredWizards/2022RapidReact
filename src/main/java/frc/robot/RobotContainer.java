@@ -24,11 +24,13 @@ import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.FeederWheel;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Pneumatics;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import frc.robot.commands.ActuateIntake;
+import frc.robot.commands.HoodAdjust;
 import frc.robot.commands.RunFeeder;
 import frc.robot.commands.RunIntake;
 import frc.robot.commands.RunShooter;
@@ -51,6 +53,7 @@ public class RobotContainer {
     public Intake t_intake = new Intake();
     public Shooter t_shooter = new Shooter();
     public FeederWheel t_feeder = new FeederWheel();
+    public Pneumatics t_pneumatics = new Pneumatics();
     
     public RobotContainer() {
         //callibrates joysticks
@@ -113,6 +116,11 @@ public class RobotContainer {
         new JoystickButton(m_joystick, InputDevices.btn_rightBumper).whileHeld(new RunFeeder(t_feeder, true));
 
         new JoystickButton(m_joystick, InputDevices.btn_x).whileHeld(new RunShooter(t_shooter));
+        
+        new POVButton(m_joystick, 0).whileHeld(new HoodAdjust(t_shooter, true));  //POV up
+        new POVButton(m_joystick, 180).whileHeld(new HoodAdjust(t_shooter, false));  //POV down
+
+
         
 
 

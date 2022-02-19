@@ -6,11 +6,11 @@ package frc.robot.subsystems;
 
 import java.util.Map;
 
-import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
@@ -19,6 +19,9 @@ import frc.robot.Constants.CANDevices;
 
 public class FeederWheel extends SubsystemBase {
   /** Creates a new FeederWheel. */
+
+  private final DigitalInput proxSensor = new DigitalInput(0);
+  
   private CANSparkMax feedMotor;
   private ShuffleboardTab Tab=Shuffleboard.getTab("FeederWheel");
   private NetworkTableEntry feederSpeed=Tab.add("FeederSpeed", 0.5)
@@ -48,21 +51,25 @@ public class FeederWheel extends SubsystemBase {
     double slideSpeed = feederSpeed.getDouble(0.5);
     //if direction is -1, feeder wheels run forward
     //if direction is 1, feeder wheels run backward
-    if (forward) {
+    if (forward && proxSensor.get()) {
       directionConstant = -1;
-    }
-    else {
+      if (speed > slideSpeed) {
+        feedMotor.set(directionConstant*slideSpeed*CANDevices.reductionFactor);
+      }
+      else {
+        feedMotor.set(directionConstant*speed*CANDevices.reductionFactor);
+      }
+    } else if (!forward) {
       directionConstant = 1;
+      if (speed > slideSpeed) {
+        feedMotor.set(directionConstant*slideSpeed*CANDevices.reductionFactor);
+      }
+      else {
+        feedMotor.set(directionConstant*speed*CANDevices.reductionFactor);
+      }
+    } else {
+      feedMotor.set(0);
     }
-
-    if (speed > slideSpeed) {
-      feedMotor.set(directionConstant*slideSpeed*CANDevices.reductionFactor);
-    }
-    else {
-      feedMotor.set(directionConstant*speed*CANDevices.reductionFactor);
-    }
-      
-  
   }
 }
 
