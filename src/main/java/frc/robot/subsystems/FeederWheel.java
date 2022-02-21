@@ -42,7 +42,7 @@ public class FeederWheel extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  public void setFeederMotor(double speed, boolean forward) {
+  public void setFeederMotor(double speed, boolean forward, boolean ignoreProx) {
     // sets speed of feeder motor
     // reduction factor is in constants
     // when forward is true, the wheels pull the ball into the shooter
@@ -51,24 +51,48 @@ public class FeederWheel extends SubsystemBase {
     double slideSpeed = feederSpeed.getDouble(0.5);
     //if direction is -1, feeder wheels run forward
     //if direction is 1, feeder wheels run backward
-    if (forward && proxSensor.get()) {
-      directionConstant = -1;
-      if (speed > slideSpeed) {
-        feedMotor.set(directionConstant*slideSpeed*CANDevices.reductionFactor);
+    if (!ignoreProx) {
+      if (forward && proxSensor.get()) {
+        directionConstant = -1;
+        if (speed > slideSpeed) {
+          feedMotor.set(directionConstant*slideSpeed*CANDevices.reductionFactor);
+        }
+        else {
+          feedMotor.set(directionConstant*speed*CANDevices.reductionFactor);
+        }
+      } else if (!forward) {
+        directionConstant = 1;
+        if (speed > slideSpeed) {
+          feedMotor.set(directionConstant*slideSpeed*CANDevices.reductionFactor);
+        }
+        else {
+          feedMotor.set(directionConstant*speed*CANDevices.reductionFactor);
+        }
+      } else {
+        feedMotor.set(0);
       }
-      else {
-        feedMotor.set(directionConstant*speed*CANDevices.reductionFactor);
+    } 
+    
+    else {
+      if (forward) {
+        directionConstant = -1;
+        if (speed > slideSpeed) {
+          feedMotor.set(directionConstant*slideSpeed*CANDevices.reductionFactor);
+        }
+        else {
+          feedMotor.set(directionConstant*speed*CANDevices.reductionFactor);
+        }
+      } else if (!forward) {
+        directionConstant = 1;
+        if (speed > slideSpeed) {
+          feedMotor.set(directionConstant*slideSpeed*CANDevices.reductionFactor);
+        }
+        else {
+          feedMotor.set(directionConstant*speed*CANDevices.reductionFactor);
+        }
+      } else {
+        feedMotor.set(0);
       }
-    } else if (!forward) {
-      directionConstant = 1;
-      if (speed > slideSpeed) {
-        feedMotor.set(directionConstant*slideSpeed*CANDevices.reductionFactor);
-      }
-      else {
-        feedMotor.set(directionConstant*speed*CANDevices.reductionFactor);
-      }
-    } else {
-      feedMotor.set(0);
     }
   }
 }

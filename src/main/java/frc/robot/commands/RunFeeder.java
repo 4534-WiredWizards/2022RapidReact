@@ -37,14 +37,17 @@ public class RunFeeder extends CommandBase {
 
     // if runfoward is true, run feeder forward at feeder speed
     // else run feeder backwards at feeder speed
-    /*if (!m_feeder.getProx()) {
-      m_feeder.setFeederMotor(0, true);
-    }
-    else */{
+    if (frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_x)) {
       if(m_runForward) {
-        m_feeder.setFeederMotor(feederSpeed, true);
+        m_feeder.setFeederMotor(feederSpeed, true, true);
       } else {
-        m_feeder.setFeederMotor(feederSpeed, false);
+        m_feeder.setFeederMotor(feederSpeed, false, true);
+      }
+    } else {
+      if(m_runForward) {
+        m_feeder.setFeederMotor(feederSpeed, true, false);
+      } else {
+        m_feeder.setFeederMotor(feederSpeed, false, false);
       }
     }
   }
@@ -53,7 +56,7 @@ public class RunFeeder extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     // if finished or interrupted, set feeder wheel speed to 0
-    m_feeder.setFeederMotor(0, true);
+    m_feeder.setFeederMotor(0, true, false);
     System.out.println("RunFeeder end");
   }
 

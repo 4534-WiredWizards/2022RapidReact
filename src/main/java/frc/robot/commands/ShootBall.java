@@ -31,7 +31,7 @@ public class ShootBall extends CommandBase {
   @Override
   public void execute() {
     m_shooter.setShooterMotor(shooterSpeed);
-    m_feeder.setFeederMotor(feederSpeed, true);
+    m_feeder.setFeederMotor(feederSpeed, true, true);
 
     if (m_shooter.getShooterMotor() < 0.1) {
 
@@ -44,7 +44,7 @@ public class ShootBall extends CommandBase {
   public void end(boolean interrupted) {
     m_shooter.setShooterMotor(0);
     System.out.println("ShootBall end");
-    m_feeder.setFeederMotor(0, true);
+    m_feeder.setFeederMotor(0, true, true);
   }
 
   // Returns true when the command should end.
