@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.CANDevices;
 
@@ -26,7 +27,9 @@ public class Shooter extends SubsystemBase {
   private final TalonFX leftMotor;
   private final TalonFX rightMotor;
   private double currentSpeed = 0;
-  private final double HOODADJUSTRATE=0.1;
+  private final double HOODADJUSTRATE=0.01;
+  private double currentPosition = 0.5;
+  
 
   Servo Hood = new Servo(7);
 
@@ -51,7 +54,7 @@ public class Shooter extends SubsystemBase {
     Hood.setBounds(2.0, 1.8, 1.5, 1.2, 1.0);
   }
   public void setHood(double value){
-    Hood.set(MathUtil.clamp(value, 0, 0.61));
+    Hood.set(MathUtil.clamp(value, 0, 1.0)); //formerly 0.61
     System.out.println("sethood "+value);
   }
 
@@ -60,12 +63,22 @@ public class Shooter extends SubsystemBase {
   }
 
   public void raiseHood(){
-    setHood(getHood()+HOODADJUSTRATE);
+  if (currentPosition < 1-HOODADJUSTRATE) {
+    currentPosition += HOODADJUSTRATE;
+    setHood(currentPosition);
     }
+  }
   
   public void lowerHood(){
-    setHood(getHood()-HOODADJUSTRATE);
+    if (currentPosition > HOODADJUSTRATE) {
+    currentPosition -= HOODADJUSTRATE;
+    setHood(currentPosition);
     }
+    }
+
+  public void updateHood() {
+    SmartDashboard.putNumber("HoodPosition", currentPosition);
+  }
 
   @Override
   public void periodic() {

@@ -27,7 +27,7 @@ public class HoodAdjust extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_shooter.raiseHood();
+    //m_shooter.raiseHood();
     if (m_isUp == true){
       m_shooter.raiseHood();
     }
@@ -39,7 +39,9 @@ public class HoodAdjust extends CommandBase {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    System.out.println("HoodAdjust end");
+  }
 
   // Returns true when the command should end.
   @Override

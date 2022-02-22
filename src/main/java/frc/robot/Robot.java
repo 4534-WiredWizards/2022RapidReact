@@ -33,6 +33,7 @@ public class Robot extends TimedRobot {
         CommandScheduler.getInstance().run();
         robotContainer.drive.updateSmartDashboard();
         robotContainer.t_pneumatics.updatePressurSensor();
+        robotContainer.t_shooter.updateHood();
     }
 
     @Override
