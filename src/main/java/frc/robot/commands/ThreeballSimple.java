@@ -31,20 +31,22 @@ public class ThreeballSimple extends SequentialCommandGroup {
       //drive.resetPose(AutoTrajectories.testTrajectory.getInitialPose()),
       new ParallelCommandGroup(
         //new drive.drive(0,0,0.5,true),
-        new QuickTurn(drive,Math.toRadians(shootingAngle)),
-        new RunShooter(shooter,true).withTimeout(0.5)
+        new QuickTurn(drive,Math.toRadians(shootingAngle))
+        //new RunShooter(shooter,true).withTimeout(0.5)
       ),
-      new ShootBall(shooter,feeder)
-    //   new ParallelCommandGroup(
+      new ShootBall(shooter,feeder).withTimeout(1)
+    //  new ParallelCommandGroup(
+    //     new ActuateLeftIntake(),  //command still needs to be added
     //     new FollowTrajectory(drive, AutoTrajectories.point_S),
-    //     new runIntakeLeft()
+    //     new RunLeftIntake()
     //   ),
     //   new ParallelCommandGroup(
+    //     new ActuateRightIntake(), //command still needs to be added
     //     new FollowTrajectory(drive, AutoTrajectories.point_3),
-    //     new runIntakeRight()
+    //     new RunRightIntake()
     //   ),
     //   new FollowTrajectory(drive, AutoTrajectories.point_X),
-    //   new shootBall(),
+    //   new ShootBall(shooter, feeder).withTimeout(1),
     //   );
     );
   }

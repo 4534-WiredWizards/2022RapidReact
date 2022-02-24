@@ -53,7 +53,7 @@ public class FeederWheel extends SubsystemBase {
     //if direction is 1, feeder wheels run backward
     if (!ignoreProx) {
       if (forward && proxSensor.get()) {
-        directionConstant = -1;
+        directionConstant = 1;
         if (speed > slideSpeed) {
           feedMotor.set(directionConstant*slideSpeed*CANDevices.reductionFactor);
         }
@@ -61,7 +61,7 @@ public class FeederWheel extends SubsystemBase {
           feedMotor.set(directionConstant*speed*CANDevices.reductionFactor);
         }
       } else if (!forward) {
-        directionConstant = 1;
+        directionConstant = -1;
         if (speed > slideSpeed) {
           feedMotor.set(directionConstant*slideSpeed*CANDevices.reductionFactor);
         }
@@ -75,7 +75,7 @@ public class FeederWheel extends SubsystemBase {
     
     else {
       if (forward) {
-        directionConstant = -1;
+        directionConstant = 1;
         if (speed > slideSpeed) {
           feedMotor.set(directionConstant*slideSpeed*CANDevices.reductionFactor);
         }
@@ -83,7 +83,7 @@ public class FeederWheel extends SubsystemBase {
           feedMotor.set(directionConstant*speed*CANDevices.reductionFactor);
         }
       } else if (!forward) {
-        directionConstant = 1;
+        directionConstant = -1;
         if (speed > slideSpeed) {
           feedMotor.set(directionConstant*slideSpeed*CANDevices.reductionFactor);
         }
