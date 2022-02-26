@@ -77,11 +77,16 @@ public class Intake extends SubsystemBase {
     double leftIntakeSlider=leftSpeed.getDouble(0.6);
     System.out.println("LeftIntakeSpeed= "+leftIntakeSlider);
 
-    if (forward) {
-      leftDirectionConstant = -1;
+    if (!getLeftPiston()) {
+      leftmotor.set(0);
     }
     else {
-      leftDirectionConstant = 1;
+      if (forward) {
+        leftDirectionConstant = -1;
+      }
+      else {
+        leftDirectionConstant = 1;
+      }
     }
 
     /*if (leftProxSensor.get()) {
@@ -105,11 +110,16 @@ public class Intake extends SubsystemBase {
     double rightIntakeSlider=rightSpeed.getDouble(0.6);
     System.out.println("RightIntakeSpeed= "+ rightIntakeSlider);
 
-    if (forward) {
-      rightDirectionConstant = 1;
+    if (!getRightPiston()) {
+      rightmotor.set(0);
     }
     else {
-      rightDirectionConstant = -1;
+      if (forward) {
+        rightDirectionConstant = 1;
+      }
+      else {
+        rightDirectionConstant = -1;
+      }
     }
 
 
@@ -147,14 +157,17 @@ public class Intake extends SubsystemBase {
     else */  
 
       System.out.println("CenterIntakeSpeed= "+centerIntakeSlider);
-
+    if (!getCenterPiston()) {
+      centermotor.set(0);
+    }
+    else {
       if (speed>centerIntakeSlider){
         centermotor.set(centerDirectionConstant*centerIntakeSlider*CANDevices.reductionFactor); 
       }
       else {
         centermotor.set(centerDirectionConstant*speed*CANDevices.reductionFactor);
       }
-    
+    }  
   }
 
   public void setLeftPiston(boolean state){
