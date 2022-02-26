@@ -6,7 +6,10 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
+import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
 import frc.robot.Constants.AutoConstants;
+import frc.robot.Constants.HoodConstants;
 import frc.robot.autonomous.AutoTrajectories;
 import frc.robot.commands.drivetrain.FollowTrajectory;
 import frc.robot.commands.drivetrain.QuickTurn;
@@ -35,7 +38,13 @@ public class ThreeballSimple extends SequentialCommandGroup {
         new QuickTurn(drive,Math.toRadians(shootingAngle))
         //new RunShooter(shooter,true).withTimeout(0.5)
       ),
-      new ShootBall(shooter,feeder).withTimeout(1),
+      new HoodAdjust(shooter, HoodConstants.high), 
+    new ParallelCommandGroup(
+      new RunShooter(shooter).withTimeout(1.5),
+      new WaitCommand(1),
+      new RunFeeder(feeder, true)
+    ),
+     //new ShootBall(shooter,feeder).withTimeout(1),
      new ParallelCommandGroup(
         new ActuateIntake(intake, AutoConstants.leftIntake),
         new FollowTrajectory(drive, AutoTrajectories.point_S),
@@ -49,7 +58,10 @@ public class ThreeballSimple extends SequentialCommandGroup {
       ),
       new ActuateIntake(intake, AutoConstants.rightIntake), 
       new FollowTrajectory(drive, AutoTrajectories.point_3),
-      new ShootBall(shooter, feeder).withTimeout(1)
+      new HoodAdjust(shooter, HoodConstants.far),
+      new RunShooter(shooter),
+      new RunFeeder(feeder, true)
+      //new ShootBall(shooter, feeder).withTimeout(1)
       );
   }
 }

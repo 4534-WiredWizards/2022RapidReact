@@ -132,12 +132,12 @@ public class Constants {
 
         public static final double wheelDiameterMeters = 0.050686 * 2;
 
-        public static final double rotationMotorMaxSpeedRadPerSec = .25; //1.0;
+        public static final double rotationMotorMaxSpeedRadPerSec = .5; //1.0;
         public static final double rotationMotorMaxAccelRadPerSecSq = 0.5; //1.0
 
         public static final SimpleMotorFeedforward driveFF = new SimpleMotorFeedforward(0.254, 0.137);
 
-        public static final double maxDriveSpeed = 4; //14.4;  4   6
+        public static final double maxDriveSpeed = 14; //14.4;  4   6
         public static final double teleopTurnRateDegPerSec = 120; //360.0;  was at 90 but we lowered because it was very bumpy
                                                                  // 45 worked but was too slow :(    //Rate the robot will spin with full rotation command
 
@@ -168,6 +168,18 @@ public class Constants {
 
         public static final double desiredClimberSpeedInchesPerSecond = 1;
 
+    }
+
+    public static final class HoodConstants {
+        public static final double low = 1;
+        public static final double high = 2;
+        public static final double far = 3;
+        public static final double lowPosition = 0.5;
+        public static final double highPosition = 0.35;
+        public static final double farPosition = 0.85;
+        public static final double lowShooterSpeed = 0.35;
+        public static final double highShooterSpeed = 0.65;
+        public static final double farShooterSpeed = 0.8;
     }
 
     public static final class VisionConstants {

@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants.HoodConstants;
 import frc.robot.subsystems.Shooter;
 
 public class HoodAdjust extends CommandBase {
@@ -12,28 +13,33 @@ public class HoodAdjust extends CommandBase {
   double hoodOutput = 0.0;
   Shooter m_shooter;
   boolean m_isUp = true;
+  double position;
   
   /** Creates a new HoodAdjust. */
-  public HoodAdjust(Shooter shooter, boolean isUp) {
+  public HoodAdjust(Shooter shooter, double pos) {
     m_shooter = shooter;
-    m_isUp = isUp;
+    position = pos;
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    if (position == HoodConstants.low){
+      m_shooter.setLowPosition();
+    }
+    else if (position == HoodConstants.high) {
+      m_shooter.setHighPosition();
+    }
+    else if (position == HoodConstants.far) {
+      m_shooter.setFarPosition();
+    }
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     //m_shooter.raiseHood();
-    if (m_isUp == true){
-      m_shooter.raiseHood();
-    }
-    else {
-      m_shooter.lowerHood();
-    }
 
   }
 

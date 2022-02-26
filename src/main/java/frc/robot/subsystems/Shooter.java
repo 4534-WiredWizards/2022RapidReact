@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.CANDevices;
+import frc.robot.Constants.HoodConstants;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
@@ -76,6 +77,21 @@ public class Shooter extends SubsystemBase {
     }
     }
 
+  public void setLowPosition() {
+    setHood(HoodConstants.lowPosition);
+    currentPosition = HoodConstants.lowPosition;
+  }
+
+  public void setHighPosition() {
+    setHood(HoodConstants.highPosition);
+    currentPosition = HoodConstants.highPosition;
+  }
+
+  public void setFarPosition() {
+    setHood(HoodConstants.farPosition);
+    currentPosition = HoodConstants.farPosition;
+  }
+
   public void updateHood() {
     SmartDashboard.putNumber("HoodPosition", currentPosition);
   }
@@ -91,14 +107,34 @@ public class Shooter extends SubsystemBase {
     // the shooter shoots the balls when direction constant is -1
     double max = shooterSpeed.getDouble(0.5);
     System.out.println("Max: " + max);
-    if (speed > max) {
-      rightMotor.set(TalonFXControlMode.PercentOutput, directionConstant*max*CANDevices.reductionFactor);
-      currentSpeed = max;
-    } else {
-      rightMotor.set(TalonFXControlMode.PercentOutput, directionConstant*speed*CANDevices.reductionFactor);
-      currentSpeed = speed;
+    /*
+    if (getHoodPosition() == HoodConstants.lowPosition) {
+      rightMotor.set(TalonFXControlMode.PercentOutput, directionConstant*HoodConstants.lowShooterSpeed);
+      currentSpeed = HoodConstants.lowShooterSpeed;
     }
-  }
+    else if (getHoodPosition() == HoodConstants.highPosition) {
+      rightMotor.set(TalonFXControlMode.PercentOutput, directionConstant*HoodConstants.highShooterSpeed);
+      currentSpeed = HoodConstants.highShooterSpeed;
+    }
+    else if (getHoodPosition() == HoodConstants.farPosition) {
+      rightMotor.set(TalonFXControlMode.PercentOutput, directionConstant*HoodConstants.farShooterSpeed);
+      currentSpeed = HoodConstants.farShooterSpeed;
+    }
+    else {
+      */
+      if (speed > max) {
+        rightMotor.set(TalonFXControlMode.PercentOutput, directionConstant*max*CANDevices.reductionFactor);
+        currentSpeed = max;
+      } else {
+        rightMotor.set(TalonFXControlMode.PercentOutput, directionConstant*speed*CANDevices.reductionFactor);
+        currentSpeed = speed;
+      }
+    }
+   
+
+  
 
   public double getShooterMotor() {return currentSpeed;}
+
+  public double getHoodPosition() {return currentPosition;}
 }

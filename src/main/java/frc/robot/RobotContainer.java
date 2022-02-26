@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
+import frc.robot.Constants.HoodConstants;
 import frc.robot.Constants.InputDevices;
 import frc.robot.autonomous.AutoTrajectories;
 //import frc.robot.commands.drivetrain.QuickTurn
@@ -115,13 +116,11 @@ public class RobotContainer {
         new JoystickButton(m_joystick, InputDevices.btn_leftBumper).whileHeld(new RunFeeder(t_feeder, false));
         new JoystickButton(m_joystick, InputDevices.btn_rightBumper).whileHeld(new RunFeeder(t_feeder, true));
 
-        new JoystickButton(m_joystick, InputDevices.btn_x).whileHeld(new RunShooter(t_shooter));
+        new JoystickButton(m_joystick, InputDevices.btn_x).whileHeld(new RunShooter(t_shooter, false));
         
-        new POVButton(m_joystick, 0).whileHeld(new HoodAdjust(t_shooter, true));  //POV up
-        new POVButton(m_joystick, 180).whileHeld(new HoodAdjust(t_shooter, false));  //POV down
-
-
-        
+        new POVButton(m_joystick, 0).whenPressed(new HoodAdjust(t_shooter, HoodConstants.high));  //POV up
+        new POVButton(m_joystick, 90).whenPressed(new HoodAdjust(t_shooter, HoodConstants.far));  //POV right
+        new POVButton(m_joystick, 180).whenPressed(new HoodAdjust(t_shooter, HoodConstants.low)); //POV down
 
 
         /*
