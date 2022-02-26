@@ -39,15 +39,15 @@ public class ThreeballSimple extends SequentialCommandGroup {
      new ParallelCommandGroup(
         new ActuateIntake(intake, AutoConstants.leftIntake),
         new FollowTrajectory(drive, AutoTrajectories.point_S),
-        new RunLeftIntake(intake).withTimeout(1.5),
-        new ActuateIntake(intake, AutoConstants.leftIntake)
+        new RunLeftIntake(intake).withTimeout(1.5)
       ),
+      new ActuateIntake(intake, AutoConstants.leftIntake), 
       new ParallelCommandGroup(
         new ActuateIntake(intake, AutoConstants.rightIntake),
         new FollowTrajectory(drive, AutoTrajectories.point_X),
-        new RunRightIntake(intake).withTimeout(1.5),
-        new ActuateIntake(intake, AutoConstants.rightIntake)
+        new RunRightIntake(intake).withTimeout(1.5)
       ),
+      new ActuateIntake(intake, AutoConstants.rightIntake), 
       new FollowTrajectory(drive, AutoTrajectories.point_3),
       new ShootBall(shooter, feeder).withTimeout(1)
       );
