@@ -75,6 +75,31 @@ public class Constants {
         public static final int btn_rightTrigger = 3;
     }
 
+    public static final class fancyJoystick {
+
+        public static final int leftJoystickPort = 0;
+        public static final int rightJoystickPort = 1;
+
+        public static final int r1 = 1; 
+        public static final int l1 = 2; 
+        public static final int r3 = 3;
+        public static final int l3 = 4; 
+        public static final int square = 5;
+        public static final int cross = 6;
+        public static final int circle = 7;
+        public static final int triangle = 8;
+        public static final int r2 = 9;
+        public static final int l2 = 10;
+
+        public static final int seesaw = 4;
+        public static final int leftControl = 2;
+        public static final int rightY = 1;
+        public static final int rightX = 0;
+        public static final int rotate = 3;
+
+
+    }
+
     public static final class PneumaticChannels {
 
         public  static final int PCMId = 1;
@@ -157,6 +182,10 @@ public class Constants {
         public static final double maxVelMetersPerSec = 4.5;
         public static final double maxAccelMetersPerSecondSq = 1.95;
         public static final double positionOneShootingAngle = 32;
+
+        public static final int leftIntake = 0;
+        public static final int centerIntake = 1;
+        public static final int rightIntake = 2;
         
     }
 

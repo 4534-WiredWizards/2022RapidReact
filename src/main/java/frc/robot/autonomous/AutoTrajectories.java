@@ -147,7 +147,7 @@ public class AutoTrajectories {
 
     public static Trajectory point_S = //starting position 0
         TrajectoryGenerator.generateTrajectory(
-            new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), new Rotation2d(32)),
+            new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), new Rotation2d(Math.toRadians(0))),
             List.of(
                 //new Translation2d(Units.inchesToMeters(60), new Rotation2d(0)),
                 //new Translation2d(Units.inchesToMeters(10), new Rotation2d(-90)),
@@ -156,13 +156,13 @@ public class AutoTrajectories {
                 //new Translation2d(Units.inchesToMeters(60), Units.inchesToMeters(60)),
                 //new Translation2d(Units.inchesToMeters(60), Units.inchesToMeters(0)),
             ),
-            new Pose2d(Units.inchesToMeters(-10), Units.inchesToMeters(40), new Rotation2d(20)),
+            new Pose2d(Units.inchesToMeters(-5), Units.inchesToMeters(10), new Rotation2d(Math.toRadians(-10))),
             config
     );
 
     public static Trajectory point_X = //starting position 1
         TrajectoryGenerator.generateTrajectory(
-            new Pose2d(Units.inchesToMeters(-10), Units.inchesToMeters(40), new Rotation2d(20)),
+            new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), new Rotation2d(Math.toRadians(0))),
             List.of(
                 //new Translation2d(Units.inchesToMeters(60), new Rotation2d(0)),
                 //new Translation2d(Units.inchesToMeters(10), new Rotation2d(-90)),
@@ -171,13 +171,13 @@ public class AutoTrajectories {
                 //new Translation2d(Units.inchesToMeters(60), Units.inchesToMeters(60)),
                 //new Translation2d(Units.inchesToMeters(60), Units.inchesToMeters(0)),
             ),
-            new Pose2d(Units.inchesToMeters(-50), Units.inchesToMeters(0), new Rotation2d(-40)),
+            new Pose2d(Units.inchesToMeters(-5), Units.inchesToMeters(-10), new Rotation2d(Math.toRadians(-10))),
             config
     );
 
     public static Trajectory point_3 = //starting position 2
         TrajectoryGenerator.generateTrajectory(
-            new Pose2d(Units.inchesToMeters(-50), Units.inchesToMeters(0), new Rotation2d(-40)),
+            new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), new Rotation2d(Math.toRadians(0))),
             List.of(
                 //new Translation2d(Units.inchesToMeters(60), new Rotation2d(0)),
                 //new Translation2d(Units.inchesToMeters(10), new Rotation2d(-90)),
@@ -186,7 +186,7 @@ public class AutoTrajectories {
                 //new Translation2d(Units.inchesToMeters(60), Units.inchesToMeters(60)),
                 //new Translation2d(Units.inchesToMeters(60), Units.inchesToMeters(0)),
             ),
-            new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), new Rotation2d(32)),
+            new Pose2d(Units.inchesToMeters(10), Units.inchesToMeters(0), new Rotation2d(Math.toRadians(20))),
             config
     );
 

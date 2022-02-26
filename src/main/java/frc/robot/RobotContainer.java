@@ -34,6 +34,7 @@ import frc.robot.commands.HoodAdjust;
 import frc.robot.commands.RunFeeder;
 import frc.robot.commands.RunIntake;
 import frc.robot.commands.RunShooter;
+import frc.robot.commands.ThreeballSimple;
 import frc.robot.Constants.InputDevices;
 
 public class RobotContainer {
@@ -62,7 +63,6 @@ public class RobotContainer {
                 drive, 
                 () -> m_joystick.getLeftY(), 
                 () -> m_joystick.getLeftX(), 
-        //NOTE: Greg's Right X controller is on Axis 2
                 () -> m_joystick.getRawAxis(4),
                 true
             )
@@ -110,7 +110,7 @@ public class RobotContainer {
         new JoystickButton(m_joystick, InputDevices.btn_a).whileHeld(new RunIntake(t_intake, false));
         new JoystickButton(m_joystick, InputDevices.btn_y).whileHeld(new RunIntake(t_intake, true));
 
-        new JoystickButton(m_joystick, InputDevices.btn_b).whenPressed(new ActuateIntake(t_intake));
+        new JoystickButton(m_joystick, InputDevices.btn_b).whenPressed(new ActuateIntake(t_intake, -1));
 
         new JoystickButton(m_joystick, InputDevices.btn_leftBumper).whileHeld(new RunFeeder(t_feeder, false));
         new JoystickButton(m_joystick, InputDevices.btn_rightBumper).whileHeld(new RunFeeder(t_feeder, true));
@@ -168,7 +168,7 @@ public class RobotContainer {
 
         SmartDashboard.putNumber("Initialized", 1);
         drive.resetPose(AutoTrajectories.testTrajectory.getInitialPose());
-        return new FollowTrajectory(drive, AutoTrajectories.testTrajectory);
+        return new ThreeballSimple(drive, t_shooter, t_intake, t_feeder); //FollowTrajectory(drive, AutoTrajectories.testTrajectory);
         //return new simpleDrive(); //ChooseAuto().autoChooser.getSelected(); 
 
     }

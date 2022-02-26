@@ -14,6 +14,7 @@ import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.FeederWheel;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
+import frc.robot.commands.RunLeftIntake;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -34,20 +35,21 @@ public class ThreeballSimple extends SequentialCommandGroup {
         new QuickTurn(drive,Math.toRadians(shootingAngle))
         //new RunShooter(shooter,true).withTimeout(0.5)
       ),
-      new ShootBall(shooter,feeder).withTimeout(1)
-    //  new ParallelCommandGroup(
-    //     new ActuateLeftIntake(),  //command still needs to be added
-    //     new FollowTrajectory(drive, AutoTrajectories.point_S),
-    //     new RunLeftIntake()
-    //   ),
-    //   new ParallelCommandGroup(
-    //     new ActuateRightIntake(), //command still needs to be added
-    //     new FollowTrajectory(drive, AutoTrajectories.point_3),
-    //     new RunRightIntake()
-    //   ),
-    //   new FollowTrajectory(drive, AutoTrajectories.point_X),
-    //   new ShootBall(shooter, feeder).withTimeout(1),
-    //   );
-    );
+      new ShootBall(shooter,feeder).withTimeout(1),
+     new ParallelCommandGroup(
+        new ActuateIntake(intake, AutoConstants.leftIntake),
+        new FollowTrajectory(drive, AutoTrajectories.point_S),
+        new RunLeftIntake(intake).withTimeout(1.5),
+        new ActuateIntake(intake, AutoConstants.leftIntake)
+      ),
+      new ParallelCommandGroup(
+        new ActuateIntake(intake, AutoConstants.rightIntake),
+        new FollowTrajectory(drive, AutoTrajectories.point_X),
+        new RunRightIntake(intake).withTimeout(1.5),
+        new ActuateIntake(intake, AutoConstants.rightIntake)
+      ),
+      new FollowTrajectory(drive, AutoTrajectories.point_3),
+      new ShootBall(shooter, feeder).withTimeout(1)
+      );
   }
 }

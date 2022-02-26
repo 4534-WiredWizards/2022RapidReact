@@ -5,15 +5,19 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.InputDevices;
 import frc.robot.subsystems.Intake;
 
 public class ActuateIntake extends CommandBase {
   /** Creates a new ActuateIntake. */
   private final Intake m_intake;
-  public ActuateIntake(Intake intake) {
+  private final int m_autoIntake;
+
+  public ActuateIntake(Intake intake, int autoIntake) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_intake = intake;
+    m_autoIntake = autoIntake;
     addRequirements(m_intake);
   }
 
@@ -21,9 +25,9 @@ public class ActuateIntake extends CommandBase {
   @Override
   public void initialize() {
     System.out.println("ActuateIntake init");
-    if(frc.robot.RobotContainer.m_joystick.getRawAxis(InputDevices.btn_leftTrigger) > 0.1) {
+    if(frc.robot.RobotContainer.m_joystick.getRawAxis(InputDevices.btn_leftTrigger) > 0.1 || m_autoIntake == AutoConstants.leftIntake) {
       m_intake.setLeftPiston(!m_intake.getLeftPiston());
-    } else if(frc.robot.RobotContainer.m_joystick.getRawAxis(InputDevices.btn_rightTrigger) > 0.1) {
+    } else if(frc.robot.RobotContainer.m_joystick.getRawAxis(InputDevices.btn_rightTrigger) > 0.1 || m_autoIntake == AutoConstants.rightIntake) {
       m_intake.setRightPiston(!m_intake.getRightPiston());
     } else {
       m_intake.setCenterPiston(!m_intake.getCenterPiston());
