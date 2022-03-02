@@ -137,9 +137,11 @@ public class Constants {
 
         public static final SimpleMotorFeedforward driveFF = new SimpleMotorFeedforward(0.254, 0.137);
 
-        public static final double maxDriveSpeed = 14; //14.4;  4   6
+        public static final double maxDriveSpeed = 10; //14.4;  4   6
         public static final double teleopTurnRateDegPerSec = 120; //360.0;  was at 90 but we lowered because it was very bumpy
                                                                  // 45 worked but was too slow :(    //Rate the robot will spin with full rotation command
+        public static final double speedScaleSlope = (-0.25);
+        public static final double speedScaleOffset = (0.75);
 
     }
 
@@ -179,7 +181,7 @@ public class Constants {
         public static final double farPosition = 0.85;
         public static final double lowShooterSpeed = 0.35;
         public static final double highShooterSpeed = 0.65;
-        public static final double farShooterSpeed = 0.8;
+        public static final double farShooterSpeed = 0.9;
     }
 
     public static final class VisionConstants {

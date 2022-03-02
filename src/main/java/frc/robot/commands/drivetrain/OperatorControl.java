@@ -24,6 +24,7 @@ public class OperatorControl extends CommandBase {
     private final DoubleSupplier forwardX;
     private final DoubleSupplier forwardY;
     private final DoubleSupplier rotation;
+    private final DoubleSupplier speedAdjust;
     
     private final boolean isFieldRelative;
 
@@ -32,6 +33,7 @@ public class OperatorControl extends CommandBase {
         DoubleSupplier fwdX, 
         DoubleSupplier fwdY, 
         DoubleSupplier rot,
+        DoubleSupplier throttle,
         boolean fieldRelative
     ) {
 
@@ -39,9 +41,11 @@ public class OperatorControl extends CommandBase {
         forwardX = fwdX;
         forwardY = fwdY;
         rotation = rot;
+        speedAdjust = throttle;
 
         isFieldRelative = fieldRelative;
 
+        
         addRequirements(subsystem);
 
     }
@@ -54,18 +58,20 @@ public class OperatorControl extends CommandBase {
          * Since joysticks give output from -1 to 1, we multiply the outputs by the max speed
          * Otherwise, our max speed would be 1 meter per second and 1 radian per second
          */
+        double speedScale = speedAdjust.getAsDouble()*DriveConstants.speedScaleSlope+DriveConstants.speedScaleOffset;
 
         double fwdX = forwardX.getAsDouble();
         fwdX = Math.copySign(fwdX, fwdX);
-        fwdX = deadbandInputs(fwdX) * Units.feetToMeters(DriveConstants.maxDriveSpeed);
+        fwdX = deadbandInputs(fwdX) * Units.feetToMeters(DriveConstants.maxDriveSpeed) * speedScale;
 
         double fwdY = forwardY.getAsDouble();
         fwdY = Math.copySign(fwdY, fwdY);
-        fwdY = deadbandInputs(fwdY) * Units.feetToMeters(DriveConstants.maxDriveSpeed);
+        fwdY = deadbandInputs(fwdY) * Units.feetToMeters(DriveConstants.maxDriveSpeed) * speedScale;
 
         double rot = rotation.getAsDouble();
         rot = Math.copySign(rot * rot, rot);
         rot = deadbandInputs(rot) * Units.degreesToRadians(DriveConstants.teleopTurnRateDegPerSec);
+
 
         drive.drive(
             -fwdX,

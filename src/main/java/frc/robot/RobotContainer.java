@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.robot.Constants.HoodConstants;
 import frc.robot.Constants.InputDevices;
+import frc.robot.Constants.fancyJoystick;
 import frc.robot.autonomous.AutoTrajectories;
 //import frc.robot.commands.drivetrain.QuickTurn
 import frc.robot.commands.drivetrain.FollowTrajectory;
@@ -46,6 +47,7 @@ public class RobotContainer {
 
  
     public static XboxController m_joystick = new XboxController(1);
+    public static XboxController fancyJoystick = new XboxController(0);
 
     SendableChooser<Command> chooser = new SendableChooser<>();
 
@@ -62,9 +64,10 @@ public class RobotContainer {
         drive.setDefaultCommand(
             new OperatorControl(
                 drive, 
-                () -> m_joystick.getLeftY(), 
-                () -> m_joystick.getLeftX(), 
-                () -> m_joystick.getRawAxis(4),
+                () -> fancyJoystick.getLeftY(), 
+                () -> fancyJoystick.getLeftX(), 
+                () -> fancyJoystick.getRawAxis(3), //4
+                () -> fancyJoystick.getRawAxis(2),
                 true
             )
         );
@@ -121,6 +124,9 @@ public class RobotContainer {
         new POVButton(m_joystick, 0).whenPressed(new HoodAdjust(t_shooter, HoodConstants.high));  //POV up
         new POVButton(m_joystick, 90).whenPressed(new HoodAdjust(t_shooter, HoodConstants.far));  //POV right
         new POVButton(m_joystick, 180).whenPressed(new HoodAdjust(t_shooter, HoodConstants.low)); //POV down
+
+        //new POVButton(m_joystick, 0).whileHeld(new HoodAdjust(t_shooter, HoodConstants.high));  //POV up
+        //new POVButton(m_joystick, 180).whileHeld(new HoodAdjust(t_shooter, HoodConstants.low)); //POV down
 
 
         /*

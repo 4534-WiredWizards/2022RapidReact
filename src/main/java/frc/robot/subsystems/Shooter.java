@@ -107,21 +107,20 @@ public class Shooter extends SubsystemBase {
     // the shooter shoots the balls when direction constant is -1
     double max = shooterSpeed.getDouble(0.5);
     System.out.println("Max: " + max);
-    /*
+    
     if (getHoodPosition() == HoodConstants.lowPosition) {
-      rightMotor.set(TalonFXControlMode.PercentOutput, directionConstant*HoodConstants.lowShooterSpeed);
+      rightMotor.set(TalonFXControlMode.PercentOutput, speed*directionConstant*HoodConstants.lowShooterSpeed);
       currentSpeed = HoodConstants.lowShooterSpeed;
     }
     else if (getHoodPosition() == HoodConstants.highPosition) {
-      rightMotor.set(TalonFXControlMode.PercentOutput, directionConstant*HoodConstants.highShooterSpeed);
+      rightMotor.set(TalonFXControlMode.PercentOutput, speed*directionConstant*HoodConstants.highShooterSpeed);
       currentSpeed = HoodConstants.highShooterSpeed;
     }
     else if (getHoodPosition() == HoodConstants.farPosition) {
-      rightMotor.set(TalonFXControlMode.PercentOutput, directionConstant*HoodConstants.farShooterSpeed);
+      rightMotor.set(TalonFXControlMode.PercentOutput, speed*directionConstant*HoodConstants.farShooterSpeed);
       currentSpeed = HoodConstants.farShooterSpeed;
     }
     else {
-      */
       if (speed > max) {
         rightMotor.set(TalonFXControlMode.PercentOutput, directionConstant*max*CANDevices.reductionFactor);
         currentSpeed = max;
@@ -129,6 +128,7 @@ public class Shooter extends SubsystemBase {
         rightMotor.set(TalonFXControlMode.PercentOutput, directionConstant*speed*CANDevices.reductionFactor);
         currentSpeed = speed;
       }
+    }
     }
    
 
