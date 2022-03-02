@@ -22,8 +22,8 @@ public class Constants {
         public static final int rearRightRotationMotorId = 41;
         public static final int rearRightDriveMotorId = 40;
 
-        //public static final int leftClimberMotorId = 19;
-        //public static final int rightClimberMotorId = 29;
+        public static final int leftClimberMotorId = 19;
+        public static final int rightClimberMotorId = 29;
 
         public static final int frontLeftRotationEncoderId = 12;
         public static final int frontRightRotationEncoderId = 22;
@@ -107,6 +107,11 @@ public class Constants {
         public static final int leftIntakeSolenoidChannel = 0;
         public static final int rightIntakeSolenoidChannel = 1;
         public static final int centerIntakeSolenoidChannel = 2;
+
+        public static final int leftPowerSolenoidChannel = 5;
+        public static final int leftDirectionSolenoidChannel = 6;
+        public static final int deploySolenoidChannel = 7;
+        public static final int retractSolenoidChannel = 8;
 
         //public static final int[] intakeSolenoidChannels = {0, 1, 2};
         //public static final int[] hoodSolenoidChannels = {2, 3};

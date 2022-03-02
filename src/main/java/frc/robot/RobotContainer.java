@@ -27,6 +27,8 @@ import frc.robot.subsystems.FeederWheel;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Pneumatics;
+import frc.robot.subsystems.ClimbMotor;
+import frc.robot.subsystems.ClimbPiston;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -37,6 +39,10 @@ import frc.robot.commands.RunFeeder;
 import frc.robot.commands.RunIntake;
 import frc.robot.commands.RunShooter;
 import frc.robot.commands.ThreeballSimple;
+import frc.robot.commands.ControlArmMotor;
+import frc.robot.commands.ControlArmPiston;
+
+import frc.robot.Constants.fancyJoystick;
 import frc.robot.Constants.InputDevices;
 
 public class RobotContainer {
@@ -47,7 +53,7 @@ public class RobotContainer {
 
  
     public static XboxController m_joystick = new XboxController(1);
-    public static XboxController fancyJoystick = new XboxController(0);
+    public static XboxController m_fancyJoystick = new XboxController(0);
 
     SendableChooser<Command> chooser = new SendableChooser<>();
 
@@ -58,16 +64,18 @@ public class RobotContainer {
     public Shooter t_shooter = new Shooter();
     public FeederWheel t_feeder = new FeederWheel();
     public Pneumatics t_pneumatics = new Pneumatics();
+    public ClimbMotor t_climbMotor = new ClimbMotor();
+    public ClimbPiston t_ClimbPiston = new ClimbPiston();
     
     public RobotContainer() {
         //callibrates joysticks
         drive.setDefaultCommand(
             new OperatorControl(
                 drive, 
-                () -> fancyJoystick.getLeftY(), 
-                () -> fancyJoystick.getLeftX(), 
-                () -> fancyJoystick.getRawAxis(3), //4
-                () -> fancyJoystick.getRawAxis(2),
+                () -> m_fancyJoystick.getLeftY(), 
+                () -> m_fancyJoystick.getLeftX(), 
+                () -> m_fancyJoystick.getRawAxis(3), //4
+                () -> m_fancyJoystick.getRawAxis(2),
                 true
             )
         );
@@ -127,6 +135,13 @@ public class RobotContainer {
 
         //new POVButton(m_joystick, 0).whileHeld(new HoodAdjust(t_shooter, HoodConstants.high));  //POV up
         //new POVButton(m_joystick, 180).whileHeld(new HoodAdjust(t_shooter, HoodConstants.low)); //POV down
+
+        //CLIMB
+        new JoystickButton(m_fancyJoystick, fancyJoystick.r2).whileHeld(new ControlArmMotor(t_climbMotor));
+        new JoystickButton(m_fancyJoystick, fancyJoystick.square).whileHeld(new ControlArmMotor(t_climbMotor));
+
+        new JoystickButton(m_fancyJoystick, InputDevices.btn_rightBumper).whenPressed(new ControlArmPiston(t_ClimbPiston));
+        new JoystickButton(m_fancyJoystick, InputDevices.btn_leftBumper).whenPressed(new ControlArmPiston(t_ClimbPiston));
 
 
         /*
