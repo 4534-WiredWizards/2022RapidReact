@@ -137,9 +137,12 @@ public class Constants {
 
         public static final SimpleMotorFeedforward driveFF = new SimpleMotorFeedforward(0.254, 0.137);
 
-        public static final double maxDriveSpeed = 10; //14.4;  4   6
+        public static final double maxDriveSpeed = 12; //12.0;
         public static final double teleopTurnRateDegPerSec = 120; //360.0;  was at 90 but we lowered because it was very bumpy
                                                                  // 45 worked but was too slow :(    //Rate the robot will spin with full rotation command
+        
+        //speedScaleSlope is the m section of y=mx+b, speedScaleOffset is b
+                                                                 
         public static final double speedScaleSlope = (-0.25);
         public static final double speedScaleOffset = (0.75);
 
