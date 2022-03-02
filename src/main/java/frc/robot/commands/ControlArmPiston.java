@@ -22,7 +22,6 @@ public class ControlArmPiston extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    System.out.println("ControlArmPiston init");
     if (frc.robot.RobotContainer.m_fancyJoystick.getRawButton(fancyJoystick.se)) {
       m_climbPiston.setDeployPiston(!m_climbPiston.getDeployPiston());
     } else if (frc.robot.RobotContainer.m_fancyJoystick.getRawButton(fancyJoystick.st)) {

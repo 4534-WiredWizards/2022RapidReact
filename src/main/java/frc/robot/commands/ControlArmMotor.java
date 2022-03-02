@@ -24,7 +24,6 @@ public class ControlArmMotor extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    System.out.println("ControlArmMotor init");
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -33,24 +32,19 @@ public class ControlArmMotor extends CommandBase {
     if (frc.robot.RobotContainer.m_fancyJoystick.getRawButton(fancyJoystick.r2)) {
        isForward = true;
         m_climbMotor.setLeftClimbMotor(leftClimbSpeed, isForward);
-        System.out.println("Changing speed of left arm");
     }
 
 
     if (frc.robot.RobotContainer.m_fancyJoystick.getRawButton(fancyJoystick.square)) {
         isForward = false;
         m_climbMotor.setLeftClimbMotor(leftClimbSpeed, isForward);
-        System.out.println("Reversing speed of left arm");
     }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    // m_rightArm.setRightClimbMotor(0, true);
-    // System.out.println("ControlRightMotor end");
     m_climbMotor.setLeftClimbMotor(0, true);
-    System.out.println("ControlLeftMotor end");
   }
 
   // Returns true when the command should end.

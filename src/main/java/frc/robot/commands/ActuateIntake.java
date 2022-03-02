@@ -24,7 +24,6 @@ public class ActuateIntake extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    System.out.println("ActuateIntake init");
     if(frc.robot.RobotContainer.m_joystick.getRawAxis(InputDevices.btn_leftTrigger) > 0.1 || m_autoIntake == AutoConstants.leftIntake) {
       m_intake.setLeftPiston(!m_intake.getLeftPiston());
     } else if(frc.robot.RobotContainer.m_joystick.getRawAxis(InputDevices.btn_rightTrigger) > 0.1 || m_autoIntake == AutoConstants.rightIntake) {
@@ -43,7 +42,6 @@ public class ActuateIntake extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    System.out.println("ActuateIntake end");
   }
 
   // Returns true when the command should end.

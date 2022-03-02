@@ -31,9 +31,7 @@ public class RunIntake extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-    System.out.println("RunIntake init");
-  }
+  public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
@@ -44,13 +42,10 @@ public class RunIntake extends CommandBase {
     if (m_runForward) {
       if (frc.robot.RobotContainer.m_joystick.getRawAxis(InputDevices.btn_leftTrigger) > 0.1) {
         m_intake.setLeftMotor(leftIntakeSpeed, true); //-1
-        System.out.println("Running forward left");
       } else if (frc.robot.RobotContainer.m_joystick.getRawAxis(InputDevices.btn_rightTrigger) > 0.1) {
         m_intake.setRightMotor(rightIntakeSpeed, true); //1 
-        System.out.println("Running forward right");
       } else {
         m_intake.setCenterMotor(centerIntakeSpeed, true); //-1
-        System.out.println("Running forward center");
       }
     } 
     
@@ -58,15 +53,10 @@ public class RunIntake extends CommandBase {
       // runfoward is false so run intake in reverse
       if (frc.robot.RobotContainer.m_joystick.getRawAxis(InputDevices.btn_leftTrigger) > 0.1) {
         m_intake.setLeftMotor(leftIntakeSpeed, false);
-        System.out.println("Running backward left");
       } else if (frc.robot.RobotContainer.m_joystick.getRawAxis(InputDevices.btn_rightTrigger) > 0.1) {
         m_intake.setRightMotor(rightIntakeSpeed, false);
-        System.out.println("Running backward right");
-
       } else {
         m_intake.setCenterMotor(centerIntakeSpeed, false);
-        System.out.println("Running backward center");
-
       }
     }
   }
@@ -78,7 +68,6 @@ public class RunIntake extends CommandBase {
     m_intake.setLeftMotor(0, true);
     m_intake.setRightMotor(0, true);
     m_intake.setCenterMotor(0, true);
-    System.out.println("RunIntake end "+centerIntakeSpeed);
   }
 
   // Returns true when the command should end.

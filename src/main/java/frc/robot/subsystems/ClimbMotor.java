@@ -63,10 +63,6 @@ public class ClimbMotor extends SubsystemBase {
 
     if (forward) {
       directionConstant = 1;
-      // if (enableMax &&(climbEncoder.getPosition() >= maxRotation)) {
-      //   leftMotor.set(0);
-      // }
-      // else {
         if (speed > leftClimbUpSlider) {
           leftMotor.set(directionConstant*leftClimbUpSlider);
           System.out.println("forward at speed: " + leftClimbUpSlider);
@@ -81,11 +77,6 @@ public class ClimbMotor extends SubsystemBase {
 
     else {
       directionConstant = -1;
-      // if (climbEncoder.getPosition() <= minRotation) {
-      //   leftMotor.set(0);
-      // }
-
-      // else {
         if (speed > leftClimbDownSlider) {
           leftMotor.set(directionConstant*leftClimbDownSlider);
           System.out.println("backward at speed: " + leftClimbDownSlider);

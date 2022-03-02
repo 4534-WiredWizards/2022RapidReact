@@ -75,7 +75,6 @@ public class Intake extends SubsystemBase {
     // sets speed of left motor (-1.0 to 1.0) and disables motor if past prox sensor
     // reduction factor is in constants
     double leftIntakeSlider=leftSpeed.getDouble(0.6);
-    System.out.println("LeftIntakeSpeed= "+leftIntakeSlider);
 
     if (!getLeftPiston()) {
       leftmotor.set(0);
@@ -89,10 +88,7 @@ public class Intake extends SubsystemBase {
       }
     }
 
-    /*if (leftProxSensor.get()) {
-      leftmotor.set(0);
-    }
-    else */{
+    {
       if (speed>leftIntakeSlider){
         leftmotor.set(leftDirectionConstant*leftIntakeSlider*CANDevices.reductionFactor); 
       }
@@ -108,7 +104,6 @@ public class Intake extends SubsystemBase {
     
 
     double rightIntakeSlider=rightSpeed.getDouble(0.6);
-    System.out.println("RightIntakeSpeed= "+ rightIntakeSlider);
 
     if (!getRightPiston()) {
       rightmotor.set(0);
@@ -121,19 +116,12 @@ public class Intake extends SubsystemBase {
         rightDirectionConstant = -1;
       }
     }
-
-
-    /*if (rightProxSensor.get()) {
-      rightmotor.set(0);
-    }
-    else */{
+    {
       if (speed>rightIntakeSlider){
         rightmotor.set(rightDirectionConstant*rightIntakeSlider*CANDevices.reductionFactor); 
-        System.out.println("RightMotor set max");
       }
       else {
         rightmotor.set(rightDirectionConstant*speed*CANDevices.reductionFactor);
-        System.out.println("RightMotor set speed");
       }
     }
   }
@@ -150,13 +138,6 @@ public class Intake extends SubsystemBase {
       centerDirectionConstant = 1;
     }
 
-    /*if (centerProxSensor.get()) {
-      centermotor.set(0);
-      System.out.println("Sam was hear");
-    }
-    else */  
-
-      System.out.println("CenterIntakeSpeed= "+centerIntakeSlider);
     if (!getCenterPiston()) {
       centermotor.set(0);
     }
