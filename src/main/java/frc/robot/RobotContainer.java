@@ -120,7 +120,7 @@ public class RobotContainer {
 
     public void configureButtonBindings() {
 
-        new JoystickButton(m_fancyJoystick, fancyJoystick.l1).whenPressed(new ResetGyro());
+        new JoystickButton(m_fancyJoystick, fancyJoystick.l1).whenPressed(new ResetGyro(drive));
 
         new JoystickButton(m_joystick, InputDevices.btn_a).whileHeld(new RunIntake(t_intake, false));
         new JoystickButton(m_joystick, InputDevices.btn_y).whileHeld(new RunIntake(t_intake, true));
