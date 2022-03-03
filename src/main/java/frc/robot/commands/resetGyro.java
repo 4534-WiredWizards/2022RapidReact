@@ -10,16 +10,18 @@ import frc.robot.subsystems.DriveSubsystem;
 public class ResetGyro extends CommandBase {
   /** Creates a new ResetGyro. */
 
-  private DriveSubsystem subsystem;
+  private DriveSubsystem m_driveSubsystem;
   
-  public ResetGyro() {
+  public ResetGyro(DriveSubsystem driveSubsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
+    m_driveSubsystem = driveSubsystem;
+    addRequirements(m_driveSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    subsystem.resetImu();
+    m_driveSubsystem.resetImu();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
