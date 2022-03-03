@@ -39,10 +39,10 @@ import frc.robot.commands.ResetGyro;
 import frc.robot.commands.RunFeeder;
 import frc.robot.commands.RunIntake;
 import frc.robot.commands.RunShooter;
-import frc.robot.commands.ThreeballSimple;
+import frc.robot.commands.ThreeBallSimple;
 import frc.robot.commands.ControlArmMotor;
 import frc.robot.commands.ControlArmPiston;
-
+import frc.robot.commands.DisconnectGyro;
 import frc.robot.Constants.fancyJoystick;
 import frc.robot.Constants.InputDevices;
 
@@ -121,6 +121,7 @@ public class RobotContainer {
     public void configureButtonBindings() {
 
         new JoystickButton(m_fancyJoystick, fancyJoystick.l1).whenPressed(new ResetGyro(drive));
+        //new JoystickButton(m_fancyJoystick, fancyJoystick.r1).whenPressed(new DisconnectGyro(drive));
 
         new JoystickButton(m_joystick, InputDevices.btn_a).whileHeld(new RunIntake(t_intake, false));
         new JoystickButton(m_joystick, InputDevices.btn_y).whileHeld(new RunIntake(t_intake, true));
@@ -191,7 +192,7 @@ public class RobotContainer {
 
         SmartDashboard.putNumber("Initialized", 1);
         drive.resetPose(AutoTrajectories.testTrajectory.getInitialPose());
-        return new ThreeballSimple(drive, t_shooter, t_intake, t_feeder); //FollowTrajectory(drive, AutoTrajectories.testTrajectory);
+        return new ThreeBallSimple(drive, t_shooter, t_intake, t_feeder); //FollowTrajectory(drive, AutoTrajectories.testTrajectory);
         //return new simpleDrive(); //ChooseAuto().autoChooser.getSelected(); 
 
     }

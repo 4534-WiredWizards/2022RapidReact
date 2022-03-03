@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import frc.robot.Constants.CANDevices;
+import frc.robot.Constants.SpeedConstants;
 
 
 public class ClimbMotor extends SubsystemBase {
@@ -32,12 +33,12 @@ public class ClimbMotor extends SubsystemBase {
   
   
   private ShuffleboardTab Tab=Shuffleboard.getTab("ClimbMotors");
-  private NetworkTableEntry leftUpSpeed=Tab.add("LeftArmUpSpeed", 0.5)
+  private NetworkTableEntry leftUpSpeed=Tab.add("MotorUpSpeed", SpeedConstants.climbUpSpeed)
   .withWidget(BuiltInWidgets.kNumberSlider)
   .withProperties(Map.of("min", 0, "max", 1))
   .getEntry();
 
-  private NetworkTableEntry leftDownSpeed=Tab.add("LeftArmDownSpeed", 0.5)
+  private NetworkTableEntry leftDownSpeed=Tab.add("MotorDownSpeed", SpeedConstants.climbDownSpeed)
   .withWidget(BuiltInWidgets.kNumberSlider)
   .withProperties(Map.of("min", 0, "max", 1))
   .getEntry();
@@ -56,8 +57,8 @@ public class ClimbMotor extends SubsystemBase {
   }
 
   public void setLeftClimbMotor(double speed, boolean forward) {
-    double leftClimbUpSlider = leftUpSpeed.getDouble(1.0);
-    double leftClimbDownSlider = leftDownSpeed.getDouble(0.3);
+    double leftClimbUpSlider = leftUpSpeed.getDouble(SpeedConstants.climbUpSpeed);
+    double leftClimbDownSlider = leftDownSpeed.getDouble(SpeedConstants.climbDownSpeed);
 
     //boolean enableMax = false;
 

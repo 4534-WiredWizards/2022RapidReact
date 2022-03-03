@@ -265,6 +265,10 @@ public class DriveSubsystem extends SubsystemBase {
 
     }
 
+    public double getGyro() {
+        return ahrs.getAngle();
+    }
+
     public void resetImu() {
 
         ahrs.zeroYaw();

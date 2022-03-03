@@ -22,10 +22,10 @@ import frc.robot.commands.RunLeftIntake;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class ThreeballSimple extends SequentialCommandGroup {
+public class ThreeBallSimple extends SequentialCommandGroup {
 
   /** Creates a new ThreeballSimple. */
-  public ThreeballSimple(DriveSubsystem drive,Shooter shooter,Intake intake,FeederWheel feeder) {
+  public ThreeBallSimple(DriveSubsystem drive,Shooter shooter,Intake intake,FeederWheel feeder) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
       double shootingAngle = AutoConstants.positionOneShootingAngle;

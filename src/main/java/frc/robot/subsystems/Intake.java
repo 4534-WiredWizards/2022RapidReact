@@ -17,7 +17,8 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 
 import frc.robot.Constants.CANDevices;
-import frc.robot.Constants.PneumaticChannels;;
+import frc.robot.Constants.PneumaticChannels;
+import frc.robot.Constants.SpeedConstants;
 
 public class Intake extends SubsystemBase {
   /** Creates a new Intake. */
@@ -36,15 +37,15 @@ public class Intake extends SubsystemBase {
 
 
   private ShuffleboardTab Tab=Shuffleboard.getTab("Intake");
-  private NetworkTableEntry leftSpeed=Tab.add("LeftIntakeSpeed", 0.5)
+  private NetworkTableEntry leftSpeed=Tab.add("LeftIntakeSpeed", SpeedConstants.intakeSpeed)
           .withWidget(BuiltInWidgets.kNumberSlider)
           .withProperties(Map.of("min", 0, "max", 1))
           .getEntry();
-  private NetworkTableEntry rightSpeed=Tab.add("RightIntakeSpeed", 0.5)
+  private NetworkTableEntry rightSpeed=Tab.add("RightIntakeSpeed", SpeedConstants.intakeSpeed)
           .withWidget(BuiltInWidgets.kNumberSlider)
           .withProperties(Map.of("min", 0, "max", 1))
           .getEntry();
-  private NetworkTableEntry centerSpeed=Tab.add("CenterIntakeSpeed", 0.5)
+  private NetworkTableEntry centerSpeed=Tab.add("CenterIntakeSpeed", SpeedConstants.intakeSpeed)
           .withWidget(BuiltInWidgets.kNumberSlider)
           .withProperties(Map.of("min", 0, "max", 1))
           .getEntry();
@@ -74,7 +75,7 @@ public class Intake extends SubsystemBase {
   public void setLeftMotor(double speed, boolean forward) {
     // sets speed of left motor (-1.0 to 1.0) and disables motor if past prox sensor
     // reduction factor is in constants
-    double leftIntakeSlider=leftSpeed.getDouble(0.6);
+    double leftIntakeSlider=leftSpeed.getDouble(SpeedConstants.intakeSpeed);
 
     if (!getLeftPiston()) {
       leftmotor.set(0);
@@ -103,7 +104,7 @@ public class Intake extends SubsystemBase {
     // reduction factor is in constants
     
 
-    double rightIntakeSlider=rightSpeed.getDouble(0.6);
+    double rightIntakeSlider=rightSpeed.getDouble(SpeedConstants.intakeSpeed);
 
     if (!getRightPiston()) {
       rightmotor.set(0);
@@ -129,7 +130,7 @@ public class Intake extends SubsystemBase {
   public void setCenterMotor(double speed, boolean forward) {
     // sets speed of center motor (-1.0 to 1.0) and disables motor if past prox sensor
     // reduction factor is in constants
-    double centerIntakeSlider=centerSpeed.getDouble(0.6);
+    double centerIntakeSlider=centerSpeed.getDouble(SpeedConstants.intakeSpeed);
 
     if (forward) {
       centerDirectionConstant = -1;

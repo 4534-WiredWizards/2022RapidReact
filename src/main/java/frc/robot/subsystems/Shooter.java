@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.CANDevices;
 import frc.robot.Constants.HoodConstants;
+import frc.robot.Constants.SpeedConstants;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
@@ -38,7 +39,7 @@ public class Shooter extends SubsystemBase {
   public static final double directionConstant = -1;
 
   private ShuffleboardTab Tab=Shuffleboard.getTab("Shooter");
-  private NetworkTableEntry shooterSpeed=Tab.add("ShooterSpeed", 0.5)
+  private NetworkTableEntry shooterSpeed=Tab.add("ShooterSpeed", SpeedConstants.shooterSpeed)
         .withWidget(BuiltInWidgets.kNumberSlider)
         .withProperties(Map.of("min", 0, "max", 1))
         .getEntry();
@@ -92,7 +93,8 @@ public class Shooter extends SubsystemBase {
     currentPosition = HoodConstants.farPosition;
   }
 
-  public void updateHood() {
+  public void updateShooter() {
+    SmartDashboard.putNumber("ShooterSpeed", currentSpeed);
     SmartDashboard.putNumber("HoodPosition", currentPosition);
   }
 
@@ -105,7 +107,7 @@ public class Shooter extends SubsystemBase {
     // sets the speed of the shooter so both mtors(=1.0 to 1.0)
     // reduction factor is in constants
     // the shooter shoots the balls when direction constant is -1
-    double max = shooterSpeed.getDouble(0.5);
+    double max = shooterSpeed.getDouble(SpeedConstants.shooterSpeed);
     System.out.println("Max: " + max);
     
     if (getHoodPosition() == HoodConstants.lowPosition) {

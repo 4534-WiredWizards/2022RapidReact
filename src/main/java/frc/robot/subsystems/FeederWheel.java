@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.CANDevices;
+import frc.robot.Constants.SpeedConstants;
 
 public class FeederWheel extends SubsystemBase {
   /** Creates a new FeederWheel. */
@@ -24,7 +25,7 @@ public class FeederWheel extends SubsystemBase {
   
   private CANSparkMax feedMotor;
   private ShuffleboardTab Tab=Shuffleboard.getTab("FeederWheel");
-  private NetworkTableEntry feederSpeed=Tab.add("FeederSpeed", 0.5)
+  private NetworkTableEntry feederSpeed=Tab.add("FeederSpeed", SpeedConstants.feederWheelSpeed)
         .withWidget(BuiltInWidgets.kNumberSlider)
         .withProperties(Map.of("min", 0, "max", 1))
         .getEntry();
@@ -48,7 +49,7 @@ public class FeederWheel extends SubsystemBase {
     // when forward is true, the wheels pull the ball into the shooter
     // when forward is false, the wheels, move the balls away from the shooter
 
-    double slideSpeed = feederSpeed.getDouble(0.5);
+    double slideSpeed = feederSpeed.getDouble(SpeedConstants.feederWheelSpeed);
     //if direction is -1, feeder wheels run forward
     //if direction is 1, feeder wheels run backward
     if (!ignoreProx) {
