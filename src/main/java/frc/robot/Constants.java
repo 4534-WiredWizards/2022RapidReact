@@ -96,6 +96,8 @@ public class Constants {
         public static final int rightY = 1;
         public static final int rightX = 0;
         public static final int rotate = 3;
+        public static final int se = 11;
+        public static final int st = 12; 
 
 
     }

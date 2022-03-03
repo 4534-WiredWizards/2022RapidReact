@@ -35,6 +35,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import frc.robot.commands.ActuateIntake;
 import frc.robot.commands.HoodAdjust;
+import frc.robot.commands.ResetGyro;
 import frc.robot.commands.RunFeeder;
 import frc.robot.commands.RunIntake;
 import frc.robot.commands.RunShooter;
@@ -118,6 +119,8 @@ public class RobotContainer {
     }
 
     public void configureButtonBindings() {
+
+        new JoystickButton(m_fancyJoystick, fancyJoystick.l1).whenPressed(new ResetGyro());
 
         new JoystickButton(m_joystick, InputDevices.btn_a).whileHeld(new RunIntake(t_intake, false));
         new JoystickButton(m_joystick, InputDevices.btn_y).whileHeld(new RunIntake(t_intake, true));
