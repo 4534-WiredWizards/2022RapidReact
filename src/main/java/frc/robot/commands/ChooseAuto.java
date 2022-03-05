@@ -11,6 +11,7 @@ import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.FeederWheel;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Limelight;
 
 public class ChooseAuto extends CommandBase {
   //private final Command simpleDrive = new simpleDrive();
@@ -18,9 +19,10 @@ public class ChooseAuto extends CommandBase {
   private final DriveSubsystem drive = new DriveSubsystem();
   private final Intake intake = new Intake();
   private final FeederWheel feeder = new FeederWheel();
+  private final Limelight limelight = new Limelight();
 
-  private final Command TwoBallSimple = new TwoBallSimple(drive, shooter, intake, feeder);
-  private final Command ThreeBallSimple = new ThreeBallSimple(drive, shooter, intake, feeder);
+  private final Command TwoBallSimple = new TwoBallSimple(drive, shooter, intake, feeder,limelight);
+  private final Command ThreeBallSimple = new ThreeBallSimple(drive, shooter, intake, feeder, limelight);
   public SendableChooser<Command> autoChooser = new SendableChooser<Command>();
 
   public ChooseAuto() {

@@ -7,12 +7,12 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveSubsystem;
 
-public class ResetGyro extends CommandBase {
+public class resetGyro extends CommandBase {
   /** Creates a new ResetGyro. */
 
   private DriveSubsystem m_driveSubsystem;
   
-  public ResetGyro(DriveSubsystem driveSubsystem) {
+  public resetGyro(DriveSubsystem driveSubsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_driveSubsystem = driveSubsystem;
     addRequirements(m_driveSubsystem);

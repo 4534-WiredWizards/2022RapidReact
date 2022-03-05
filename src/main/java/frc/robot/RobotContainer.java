@@ -29,6 +29,7 @@ import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Pneumatics;
 import frc.robot.subsystems.ClimbMotor;
 import frc.robot.subsystems.ClimbPiston;
+import frc.robot.subsystems.Limelight;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -36,18 +37,12 @@ import edu.wpi.first.math.kinematics.SwerveModuleState;
 import frc.robot.commands.ActuateIntake;
 import frc.robot.commands.ChooseAuto;
 import frc.robot.commands.HoodAdjust;
-import frc.robot.commands.Limelight;
-import frc.robot.commands.ResetGyro;
+import frc.robot.commands.resetGyro;
 import frc.robot.commands.RunFeeder;
 import frc.robot.commands.RunIntake;
 import frc.robot.commands.RunShooter;
-import frc.robot.commands.ThreeBallSimple;
-import frc.robot.commands.TwoBallSimple;
 import frc.robot.commands.ControlArmMotor;
 import frc.robot.commands.ControlArmPiston;
-import frc.robot.commands.DisconnectGyro;
-import frc.robot.Constants.fancyJoystick;
-import frc.robot.Constants.InputDevices;
 
 public class RobotContainer {
 
@@ -124,7 +119,7 @@ public class RobotContainer {
 
     public void configureButtonBindings() {
 
-        new JoystickButton(m_fancyJoystick, fancyJoystick.l1).whenPressed(new ResetGyro(drive));
+        new JoystickButton(m_fancyJoystick, fancyJoystick.l1).whenPressed(new resetGyro(drive));
         //new JoystickButton(m_fancyJoystick, fancyJoystick.r1).whenPressed(new DisconnectGyro(drive));
 
         new JoystickButton(m_joystick, InputDevices.btn_a).whileHeld(new RunIntake(t_intake, false));
