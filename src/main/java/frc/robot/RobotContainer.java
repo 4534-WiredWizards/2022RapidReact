@@ -36,6 +36,7 @@ import edu.wpi.first.math.kinematics.SwerveModuleState;
 import frc.robot.commands.ActuateIntake;
 import frc.robot.commands.ChooseAuto;
 import frc.robot.commands.HoodAdjust;
+import frc.robot.commands.Limelight;
 import frc.robot.commands.ResetGyro;
 import frc.robot.commands.RunFeeder;
 import frc.robot.commands.RunIntake;
@@ -69,6 +70,7 @@ public class RobotContainer {
     public Pneumatics t_pneumatics = new Pneumatics();
     public ClimbMotor t_climbMotor = new ClimbMotor();
     public ClimbPiston t_ClimbPiston = new ClimbPiston();
+    public Limelight t_limelight = new Limelight();
     
     public RobotContainer() {
         //callibrates joysticks
@@ -133,7 +135,7 @@ public class RobotContainer {
         new JoystickButton(m_joystick, InputDevices.btn_leftBumper).whileHeld(new RunFeeder(t_feeder, false));
         new JoystickButton(m_joystick, InputDevices.btn_rightBumper).whileHeld(new RunFeeder(t_feeder, true));
 
-        new JoystickButton(m_joystick, InputDevices.btn_x).whileHeld(new RunShooter(t_shooter, false));
+        new JoystickButton(m_joystick, InputDevices.btn_x).whileHeld(new RunShooter(t_shooter, t_limelight, false));
         
         new POVButton(m_joystick, 0).whenPressed(new HoodAdjust(t_shooter, HoodConstants.high));  //POV up
         new POVButton(m_joystick, 90).whenPressed(new HoodAdjust(t_shooter, HoodConstants.far));  //POV right
@@ -146,8 +148,8 @@ public class RobotContainer {
         new JoystickButton(m_fancyJoystick, fancyJoystick.r2).whileHeld(new ControlArmMotor(t_climbMotor));
         new JoystickButton(m_fancyJoystick, fancyJoystick.square).whileHeld(new ControlArmMotor(t_climbMotor));
 
-        new JoystickButton(m_fancyJoystick, InputDevices.btn_rightBumper).whenPressed(new ControlArmPiston(t_ClimbPiston));
-        new JoystickButton(m_fancyJoystick, InputDevices.btn_leftBumper).whenPressed(new ControlArmPiston(t_ClimbPiston));
+        new JoystickButton(m_fancyJoystick, fancyJoystick.se).whenPressed(new ControlArmPiston(t_ClimbPiston));
+        new JoystickButton(m_fancyJoystick, fancyJoystick.st).whenPressed(new ControlArmPiston(t_ClimbPiston));
 
 
         /*
@@ -194,7 +196,7 @@ public class RobotContainer {
 
         SmartDashboard.putNumber("Initialized", 1);
         drive.resetPose(AutoTrajectories.testTrajectory.getInitialPose());
-        return new ChooseAuto().autoChooser.getSelected(); //ThreeBallSimple(drive, t_shooter, t_intake, t_feeder); //FollowTrajectory(drive, AutoTrajectories.testTrajectory);
+        return new ChooseAuto().autoChooser.getSelected(); //ThreeBallSimple(drive, t_shooter, t_intake, t_feeder, t_limelight); //FollowTrajectory(drive, AutoTrajectories.testTrajectory);
         //return new simpleDrive();  
 
     }

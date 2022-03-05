@@ -25,7 +25,7 @@ import frc.robot.commands.RunLeftIntake;
 public class ThreeBallSimple extends SequentialCommandGroup {
 
   /** Creates a new ThreeballSimple. */
-  public ThreeBallSimple(DriveSubsystem drive,Shooter shooter,Intake intake,FeederWheel feeder) {
+  public ThreeBallSimple(DriveSubsystem drive,Shooter shooter,Intake intake,FeederWheel feeder, Limelight limelight) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
       double shootingAngle = AutoConstants.positionOneShootingAngle;
@@ -40,7 +40,7 @@ public class ThreeBallSimple extends SequentialCommandGroup {
       ),
       new HoodAdjust(shooter, HoodConstants.high), 
     new ParallelCommandGroup(
-      new RunShooter(shooter).withTimeout(1.5),
+      new RunShooter(shooter, limelight).withTimeout(1.5),
       new WaitCommand(1),
       new RunFeeder(feeder, true)
     ),
@@ -61,7 +61,7 @@ public class ThreeBallSimple extends SequentialCommandGroup {
       new FollowTrajectory(drive, AutoTrajectories.point_3),
       new HoodAdjust(shooter, HoodConstants.far),
       new ParallelCommandGroup(
-      new RunShooter(shooter).withTimeout(1.5),
+      new RunShooter(shooter, limelight).withTimeout(1.5),
       new WaitCommand(1),
       new RunFeeder(feeder, true)
     )

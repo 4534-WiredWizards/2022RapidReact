@@ -22,14 +22,14 @@ import frc.robot.commands.RunLeftIntake;
 
 public class TwoBallSimple extends SequentialCommandGroup{
   /** Creates a new TwoBallSimple. */
-  public TwoBallSimple(DriveSubsystem drive,Shooter shooter,Intake intake,FeederWheel feeder) {
+  public TwoBallSimple(DriveSubsystem drive,Shooter shooter,Intake intake,FeederWheel feeder, Limelight limelight) {
     // Use addRequirements() here to declare subsystem dependencies.
     double shootingAngle = AutoConstants.positionOneShootingAngle;
     addCommands(
       new QuickTurn(drive,Math.toRadians(shootingAngle)),
       new HoodAdjust(shooter, HoodConstants.high), 
       new ParallelCommandGroup(
-        new RunShooter(shooter).withTimeout(1.5),
+        new RunShooter(shooter, limelight).withTimeout(1.5),
         new WaitCommand(1),
         new RunFeeder(feeder, true)
       ),
@@ -42,7 +42,7 @@ public class TwoBallSimple extends SequentialCommandGroup{
       new FollowTrajectory(drive, AutoTrajectories.point_3),
       new HoodAdjust(shooter, HoodConstants.far),
       new ParallelCommandGroup(
-        new RunShooter(shooter).withTimeout(1.5),
+        new RunShooter(shooter, limelight).withTimeout(1.5),
         new WaitCommand(1),
         new RunFeeder(feeder, true)
       )
