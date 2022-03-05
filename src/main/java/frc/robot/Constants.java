@@ -22,26 +22,26 @@ public class Constants {
         public static final int rearRightRotationMotorId = 41;
         public static final int rearRightDriveMotorId = 40;
 
-        public static final int rightClimberMotorId = 19;
-        public static final int leftClimberMotorId = 29;
+        public static final int rightClimberMotorId = 29;
+        public static final int leftClimberMotorId = 19;
 
         public static final int frontLeftRotationEncoderId = 12;
         public static final int frontRightRotationEncoderId = 22;
         public static final int rearLeftRotationEncoderId = 32;
         public static final int rearRightRotationEncoderId = 42;
 
-        public static final double frontLeftAngleOffset = Units.degreesToRadians(201.4); //307.1  //26.60    //26.71
-        public static final double frontRightAngleOffset = Units.degreesToRadians(116.3); //202.0 //111.18   //111.44
-        public static final double rearLeftAngleOffset = Units.degreesToRadians(291.6); //202.6  //108.98    //109.60
-        public static final double rearRightAngleOffset = Units.degreesToRadians(36.4); //294.0 //37.00     //37.00
+        public static final double frontLeftAngleOffset = Units.degreesToRadians(20.21); //307.1  //26.60    //26.71
+        public static final double frontRightAngleOffset = Units.degreesToRadians(287.23); //202.0 //111.18   //111.44
+        public static final double rearLeftAngleOffset = Units.degreesToRadians(108.81); //202.6  //108.98    //109.60
+        public static final double rearRightAngleOffset = Units.degreesToRadians(215.07); //294.0 //37.00     //37.00
     
         public static final int feederWheelMotorId = 35;
         public static final int rightFlywheelMotorId = 25;
         public static final int leftFlywheelMotorId = 15;
 
         public static final int kickerMotorId = 10;
-        public static final int leftIntakeMotorId = 16; 
-        public static final int rightIntakeMotorId = 26;
+        public static final int leftIntakeMotorId = 26; 
+        public static final int rightIntakeMotorId = 16;
         public static final int centerIntakeMotorId = 36;
         public static final int conveyorMotorId = 9;
 
@@ -188,12 +188,15 @@ public class Constants {
         public static final double low = 1;
         public static final double high = 2;
         public static final double far = 3;
+        public static final double veryfar = 4;
         public static final double lowPosition = 0.5;
         public static final double highPosition = 0.35;
         public static final double farPosition = 0.85;
+        public static final double veryfarPosition = 0.9;
         public static final double lowShooterSpeed = 0.35;
         public static final double highShooterSpeed = 0.65;
         public static final double farShooterSpeed = 0.9;
+        public static final double veryfarShooterSpeed = 0.95;
     }
 
     public static final class VisionConstants {

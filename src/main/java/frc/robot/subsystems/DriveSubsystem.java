@@ -85,7 +85,7 @@ public class DriveSubsystem extends SubsystemBase {
 
     //private final PigeonIMU imu = new PigeonIMU(CANDevices.imuId);
   
-    public AHRS ahrs = new AHRS(edu.wpi.first.wpilibj.I2C.Port.kOnboard);
+    public AHRS ahrs = new AHRS(edu.wpi.first.wpilibj.I2C.Port.kMXP);
 
     /**
      * odometry for the robot, measured in meters for linear motion and radians for rotational motion

@@ -34,7 +34,6 @@ public class ControlArmMotor extends CommandBase {
         m_climbMotor.setLeftClimbMotor(leftClimbSpeed, isForward);
     }
 
-
     if (frc.robot.RobotContainer.m_fancyJoystick.getRawButton(fancyJoystick.square)) {
         isForward = false;
         m_climbMotor.setLeftClimbMotor(leftClimbSpeed, isForward);

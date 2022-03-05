@@ -44,6 +44,12 @@ public class Shooter extends SubsystemBase {
         .withProperties(Map.of("min", 0, "max", 1))
         .getEntry();
 
+  private NetworkTableEntry hoodPosition=Tab.add("HoodPosition", 0.5)
+        .withWidget(BuiltInWidgets.kNumberSlider)
+        .withProperties(Map.of("min", 0, "max", 1))
+        .getEntry();
+  
+
   public Shooter() {
     // initalizes left and right motor of flywheel
     // flywheel motor ids are in constants
@@ -93,6 +99,17 @@ public class Shooter extends SubsystemBase {
     currentPosition = HoodConstants.farPosition;
   }
 
+  public void setVeryFarPosition() {
+    setHood(HoodConstants.veryfarPosition);
+    currentPosition = HoodConstants.veryfarPosition;
+  }
+
+  public void setHoodPosition(double position) {
+    double pos = hoodPosition.getDouble(0.5);
+    setHood(pos);
+    currentPosition = pos;
+  }
+
   public void updateShooter() {
     SmartDashboard.putNumber("ShooterSpeed", currentSpeed);
     SmartDashboard.putNumber("HoodPosition", currentPosition);
@@ -110,6 +127,7 @@ public class Shooter extends SubsystemBase {
     double max = shooterSpeed.getDouble(SpeedConstants.shooterSpeed);
     System.out.println("Max: " + max);
     
+    /*
     if (getHoodPosition() == HoodConstants.lowPosition) {
       rightMotor.set(TalonFXControlMode.PercentOutput, speed*directionConstant*HoodConstants.lowShooterSpeed);
       currentSpeed = HoodConstants.lowShooterSpeed;
@@ -122,7 +140,11 @@ public class Shooter extends SubsystemBase {
       rightMotor.set(TalonFXControlMode.PercentOutput, speed*directionConstant*HoodConstants.farShooterSpeed);
       currentSpeed = HoodConstants.farShooterSpeed;
     }
-    else {
+    else if (getHoodPosition() == HoodConstants.veryfarPosition) {
+      rightMotor.set(TalonFXControlMode.PercentOutput, speed*directionConstant*HoodConstants.veryfarShooterSpeed);
+      currentSpeed = HoodConstants.veryfarShooterSpeed;
+    }
+    else */{
       if (speed > max) {
         rightMotor.set(TalonFXControlMode.PercentOutput, directionConstant*max*CANDevices.reductionFactor);
         currentSpeed = max;

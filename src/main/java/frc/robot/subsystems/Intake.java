@@ -144,7 +144,7 @@ public class Intake extends SubsystemBase {
     }
     else {
       if (speed>centerIntakeSlider){
-        centermotor.set(centerDirectionConstant*centerIntakeSlider*CANDevices.reductionFactor); 
+        centermotor.set(centerDirectionConstant*centerIntakeSlider*CANDevices.reductionFactor);
       }
       else {
         centermotor.set(centerDirectionConstant*speed*CANDevices.reductionFactor);
