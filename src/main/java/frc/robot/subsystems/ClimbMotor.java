@@ -24,6 +24,7 @@ import frc.robot.Constants.SpeedConstants;
 public class ClimbMotor extends SubsystemBase {
   /** Creates a new LeftArm. */
   private CANSparkMax leftMotor;
+  private CANSparkMax rightMotor;
   //private Solenoid leftPowerSolenoid;
   // private Solenoid leftDirectionSolenoid;
   private double directionConstant;
@@ -45,8 +46,12 @@ public class ClimbMotor extends SubsystemBase {
 
 
   public ClimbMotor() {
-    leftMotor = new CANSparkMax(CANDevices.rightClimberMotorId, MotorType.kBrushless);
+    leftMotor = new CANSparkMax(CANDevices.leftClimberMotorId, MotorType.kBrushless);
     leftMotor.setIdleMode(IdleMode.kBrake);
+    //rightMotor = new CANSparkMax(CANDevices.rightClimberMotorId, MotorType.kBrushless);
+    //rightMotor.follow(leftMotor);
+    //rightMotor.setInverted(true);
+
 
     climbEncoder = leftMotor.getEncoder();
   }

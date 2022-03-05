@@ -34,12 +34,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import frc.robot.commands.ActuateIntake;
+import frc.robot.commands.ChooseAuto;
 import frc.robot.commands.HoodAdjust;
 import frc.robot.commands.ResetGyro;
 import frc.robot.commands.RunFeeder;
 import frc.robot.commands.RunIntake;
 import frc.robot.commands.RunShooter;
 import frc.robot.commands.ThreeBallSimple;
+import frc.robot.commands.TwoBallSimple;
 import frc.robot.commands.ControlArmMotor;
 import frc.robot.commands.ControlArmPiston;
 import frc.robot.commands.DisconnectGyro;
@@ -192,8 +194,8 @@ public class RobotContainer {
 
         SmartDashboard.putNumber("Initialized", 1);
         drive.resetPose(AutoTrajectories.testTrajectory.getInitialPose());
-        return new ThreeBallSimple(drive, t_shooter, t_intake, t_feeder); //FollowTrajectory(drive, AutoTrajectories.testTrajectory);
-        //return new simpleDrive(); //ChooseAuto().autoChooser.getSelected(); 
+        return new ChooseAuto().autoChooser.getSelected(); //ThreeBallSimple(drive, t_shooter, t_intake, t_feeder); //FollowTrajectory(drive, AutoTrajectories.testTrajectory);
+        //return new simpleDrive();  
 
     }
 
