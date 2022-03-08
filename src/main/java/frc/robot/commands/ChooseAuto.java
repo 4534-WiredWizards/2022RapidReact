@@ -28,6 +28,6 @@ public class ChooseAuto extends CommandBase {
   public ChooseAuto() {
       autoChooser.setDefaultOption("ThreeBallSimple", ThreeBallSimple);
       autoChooser.addOption("TwoBallSimple", TwoBallSimple);
-      SmartDashboard.putData(autoChooser);
+      SmartDashboard.putData("Auto Routines", autoChooser);
   }
 }

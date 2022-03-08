@@ -210,7 +210,7 @@ public class Constants {
 
         public static final double maxVelMetersPerSec = 4.5;
         public static final double maxAccelMetersPerSecondSq = 1.95;
-        public static final double positionOneShootingAngle = 32;
+        public static final double positionOneShootingAngle = 90;
 
         public static final int leftIntake = 0;
         public static final int centerIntake = 1;

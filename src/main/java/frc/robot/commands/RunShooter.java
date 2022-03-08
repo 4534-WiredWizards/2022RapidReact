@@ -60,7 +60,7 @@ public class RunShooter extends CommandBase {
   @Override
   public boolean isFinished() {
     // if x is no longer being pressed, return true
-    if ((!frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_x)) || m_isAuto ){
+    if ((!frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_x)) && !m_isAuto){
       return true;
     }
     return false;

@@ -36,14 +36,14 @@ public class ThreeBallSimple extends SequentialCommandGroup {
       //drive.resetPose(AutoTrajectories.testTrajectory.getInitialPose()),
       new ParallelCommandGroup(
         //new drive.drive(0,0,0.5,true),
-        new QuickTurn(drive,Math.toRadians(shootingAngle))
+        new QuickTurn(drive,Math.toRadians(shootingAngle)).withTimeout(1),
+        new RunShooter(shooter, limelight, true).withTimeout(1),
+        new HoodAdjust(shooter, HoodConstants.high)
         //new RunShooter(shooter,true).withTimeout(0.5)
       ),
-      new HoodAdjust(shooter, HoodConstants.high), 
     new ParallelCommandGroup(
-      new RunShooter(shooter, limelight).withTimeout(1.5),
-      new WaitCommand(1),
-      new RunFeeder(feeder, true)
+      new RunShooter(shooter, limelight, true).withTimeout(1.5),
+      new RunFeeder(feeder, true, true).withTimeout(0.5)
     ),
      //new ShootBall(shooter,feeder).withTimeout(1),
       new ActuateIntake(intake, AutoConstants.leftIntake),
@@ -59,12 +59,15 @@ public class ThreeBallSimple extends SequentialCommandGroup {
       ),
 
       new ActuateIntake(intake, AutoConstants.rightIntake), 
-      new FollowTrajectory(drive, AutoTrajectories.point_3),
-      new HoodAdjust(shooter, HoodConstants.far),
       new ParallelCommandGroup(
-      new RunShooter(shooter, limelight).withTimeout(1.5),
-      new WaitCommand(1),
-      new RunFeeder(feeder, true)
+        new FollowTrajectory(drive, AutoTrajectories.point_3),
+        new HoodAdjust(shooter, HoodConstants.far),
+        new RunShooter(shooter, limelight, true).withTimeout(1)
+      ),
+
+      new ParallelCommandGroup(
+      new RunShooter(shooter, limelight, true).withTimeout(1),
+      new RunFeeder(feeder, true, true).withTimeout(1)
     )
       //new ShootBall(shooter, feeder).withTimeout(1)
       );

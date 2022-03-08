@@ -12,12 +12,24 @@ public class RunFeeder extends CommandBase {
   /** Creates a new RunShooter. */
   private final FeederWheel m_feeder;
   private final boolean m_runForward;
+  private boolean m_isAuto = false;
   private double feederSpeed = 1.0;
 
   public RunFeeder(FeederWheel feeder, boolean runFoward) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_feeder = feeder;
     m_runForward = runFoward;
+    addRequirements(m_feeder);
+
+    // adds feeder wheel speed as a slider to shuffleboard
+    
+  }
+
+  public RunFeeder(FeederWheel feeder, boolean runFoward, boolean isAuto) {
+    // Use addRequirements() here to declare subsystem dependencies.
+    m_feeder = feeder;
+    m_runForward = runFoward;
+    m_isAuto = isAuto;
     addRequirements(m_feeder);
 
     // adds feeder wheel speed as a slider to shuffleboard
@@ -61,7 +73,7 @@ public class RunFeeder extends CommandBase {
   @Override
   public boolean isFinished() {
     // if left and right bumper are not held, return true
-    if (!frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_leftBumper) && !frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_rightBumper)) {
+    if (!frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_leftBumper) && !frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_rightBumper) && !m_isAuto) {
       return true;
     }
     return false;

@@ -3,6 +3,7 @@ package frc.robot.commands.drivetrain;
 import edu.wpi.first.math.controller.PIDController;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants.AutoConstants;
 import frc.robot.subsystems.DriveSubsystem;
 
 public class QuickTurn extends CommandBase {
@@ -14,6 +15,7 @@ public class QuickTurn extends CommandBase {
     private final DriveSubsystem drive;
 
     private final double desiredAngle;
+    private double currentAngle;
 
     private final PIDController controller = new PIDController(
         2.5, 0, 0.25
@@ -39,7 +41,24 @@ public class QuickTurn extends CommandBase {
             drive.getCommandedDriveValues()[1], 
             rotationOut, 
             drive.getIsFieldRelative());
+        
+        currentAngle = drive.getGyro();
 
+    }
+
+    @Override
+    public void end(boolean interrupted) {
+        System.out.println("Quickturn end");
+    }
+
+    @Override
+    public boolean isFinished() {
+        if (currentAngle == AutoConstants.positionOneShootingAngle) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
    

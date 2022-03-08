@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.autonomous.AutoTrajectories;
+import frc.robot.commands.ChooseAuto;
 
 public class Robot extends TimedRobot {
     
@@ -23,6 +24,7 @@ public class Robot extends TimedRobot {
         new AutoTrajectories();
         CameraServer.startAutomaticCapture();
         robotContainer.t_pneumatics.setCompressor(true);
+        //new ChooseAuto();
 
     }
 

@@ -41,6 +41,7 @@ import frc.robot.commands.resetGyro;
 import frc.robot.commands.RunFeeder;
 import frc.robot.commands.RunIntake;
 import frc.robot.commands.RunShooter;
+import frc.robot.commands.ThreeBallSimple;
 import frc.robot.commands.ControlArmMotor;
 import frc.robot.commands.ControlArmPiston;
 
@@ -189,7 +190,12 @@ public class RobotContainer {
 
         SmartDashboard.putNumber("Initialized", 1);
         drive.resetPose(AutoTrajectories.testTrajectory.getInitialPose());
-        return new ChooseAuto().autoChooser.getSelected(); //ThreeBallSimple(drive, t_shooter, t_intake, t_feeder, t_limelight); //FollowTrajectory(drive, AutoTrajectories.testTrajectory);
+        // String autoString = new ChooseAuto().autoChooser.getSelected();
+        // switch (autoString) {
+        //     case "ThreeBallSimple":
+        //         return new ThreeBallSimple(drive, t_shooter, t_intake, t_feeder, t_limelight);
+        // }
+        return new ThreeBallSimple(drive, t_shooter, t_intake, t_feeder, t_limelight);//ChooseAuto().autoChooser.getSelected();  //FollowTrajectory(drive, AutoTrajectories.testTrajectory);
         //return new simpleDrive();  
 
     }
