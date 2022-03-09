@@ -28,7 +28,7 @@ public class Shooter extends SubsystemBase {
   /** Creates a new Shooter. */
   private final TalonFX leftMotor;
   private final TalonFX rightMotor;
-  private double currentSpeed = 0;
+  private double currentSpeed = SpeedConstants.shooterSpeed;
   private final double HOODADJUSTRATE=0.01;
   private double currentPosition = 0.5;
   
@@ -125,9 +125,7 @@ public class Shooter extends SubsystemBase {
     // reduction factor is in constants
     // the shooter shoots the balls when direction constant is -1
     double max = shooterSpeed.getDouble(SpeedConstants.shooterSpeed);
-    System.out.println("Max: " + max);
     
-    /*
     if (getHoodPosition() == HoodConstants.lowPosition) {
       rightMotor.set(TalonFXControlMode.PercentOutput, speed*directionConstant*HoodConstants.lowShooterSpeed);
       currentSpeed = HoodConstants.lowShooterSpeed;
@@ -144,7 +142,7 @@ public class Shooter extends SubsystemBase {
       rightMotor.set(TalonFXControlMode.PercentOutput, speed*directionConstant*HoodConstants.veryfarShooterSpeed);
       currentSpeed = HoodConstants.veryfarShooterSpeed;
     }
-    else */{
+    else {
       if (speed > max) {
         rightMotor.set(TalonFXControlMode.PercentOutput, directionConstant*max*CANDevices.reductionFactor);
         currentSpeed = max;

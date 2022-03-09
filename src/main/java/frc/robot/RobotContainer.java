@@ -44,6 +44,7 @@ import frc.robot.commands.RunShooter;
 import frc.robot.commands.ThreeBallSimple;
 import frc.robot.commands.ControlArmMotor;
 import frc.robot.commands.ControlArmPiston;
+import frc.robot.commands.DriveBack;
 
 public class RobotContainer {
 
@@ -134,9 +135,9 @@ public class RobotContainer {
         new JoystickButton(m_joystick, InputDevices.btn_x).whileHeld(new RunShooter(t_shooter, t_limelight, false));
         
         new POVButton(m_joystick, 0).whenPressed(new HoodAdjust(t_shooter, HoodConstants.high));  //POV up
-        //new POVButton(m_joystick, 90).whenPressed(new HoodAdjust(t_shooter, HoodConstants.far));  //POV right
-        //new POVButton(m_joystick, 180).whenPressed(new HoodAdjust(t_shooter, HoodConstants.low)); //POV down
-        //new POVButton(m_joystick, 270).whenPressed(new HoodAdjust(t_shooter, HoodConstants.veryfar)); //POV left
+        new POVButton(m_joystick, 90).whenPressed(new HoodAdjust(t_shooter, HoodConstants.far));  //POV right
+        new POVButton(m_joystick, 180).whenPressed(new HoodAdjust(t_shooter, HoodConstants.low)); //POV down
+        new POVButton(m_joystick, 270).whenPressed(new HoodAdjust(t_shooter, HoodConstants.veryfar)); //POV left
 
         //CLIMB
         new JoystickButton(m_fancyJoystick, fancyJoystick.r2).whileHeld(new ControlArmMotor(t_climbMotor));
@@ -190,12 +191,8 @@ public class RobotContainer {
 
         SmartDashboard.putNumber("Initialized", 1);
         drive.resetPose(AutoTrajectories.testTrajectory.getInitialPose());
-        // String autoString = new ChooseAuto().autoChooser.getSelected();
-        // switch (autoString) {
-        //     case "ThreeBallSimple":
-        //         return new ThreeBallSimple(drive, t_shooter, t_intake, t_feeder, t_limelight);
-        // }
-        return new ThreeBallSimple(drive, t_shooter, t_intake, t_feeder, t_limelight);//ChooseAuto().autoChooser.getSelected();  //FollowTrajectory(drive, AutoTrajectories.testTrajectory);
+        return new DriveBack(drive, t_shooter, t_limelight, t_feeder); //ChooseAuto().autoChooser.getSelected();
+        //return new ThreeBallSimple(drive, t_shooter, t_intake, t_feeder, t_limelight);
         //return new simpleDrive();  
 
     }

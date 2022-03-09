@@ -22,8 +22,8 @@ public class RunShooter extends CommandBase {
     m_limelight = limelight;
     addRequirements(m_shooter);
     addRequirements(m_limelight);
-
   }
+  
   public RunShooter(Shooter shooter, Limelight limelight, boolean isAuto) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_shooter = shooter;

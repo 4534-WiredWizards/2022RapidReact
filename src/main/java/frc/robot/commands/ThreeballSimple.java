@@ -63,8 +63,8 @@ public class ThreeBallSimple extends SequentialCommandGroup {
         new FollowTrajectory(drive, AutoTrajectories.point_3),
         new HoodAdjust(shooter, HoodConstants.far),
         new RunShooter(shooter, limelight, true).withTimeout(1)
+        // new QuickTurn(drive, Math.toRadians(20))
       ),
-
       new ParallelCommandGroup(
       new RunShooter(shooter, limelight, true).withTimeout(1),
       new RunFeeder(feeder, true, true).withTimeout(1)

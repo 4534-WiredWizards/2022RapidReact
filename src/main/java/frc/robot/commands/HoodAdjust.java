@@ -25,7 +25,7 @@ public class HoodAdjust extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    /*if (position == HoodConstants.low){
+    if (position == HoodConstants.low){
       m_shooter.setLowPosition();
     }
     else if (position == HoodConstants.high) {
@@ -36,10 +36,8 @@ public class HoodAdjust extends CommandBase {
     }
     else if (position == HoodConstants.veryfar) {
       m_shooter.setVeryFarPosition();
-    }*/
-    m_shooter.setHoodPosition(0.5);
-
     }
+  }
   
 
   // Called every time the scheduler runs while the command is scheduled.

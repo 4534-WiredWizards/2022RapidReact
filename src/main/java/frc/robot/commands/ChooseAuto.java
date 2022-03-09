@@ -21,13 +21,21 @@ public class ChooseAuto extends CommandBase {
   private final FeederWheel feeder = new FeederWheel();
   private final Limelight limelight = new Limelight();
 
-  private final Command TwoBallSimple = new TwoBallSimple(drive, shooter, intake, feeder,limelight);
-  private final Command ThreeBallSimple = new ThreeBallSimple(drive, shooter, intake, feeder, limelight);
-  public SendableChooser<Command> autoChooser = new SendableChooser<Command>();
-
+  private final Command TwoBallSimple;
+  private final Command ThreeBallSimple;
+  private final Command DriveBack;
+  public SendableChooser<Command> autoChooser;
   public ChooseAuto() {
-      autoChooser.setDefaultOption("ThreeBallSimple", ThreeBallSimple);
+    TwoBallSimple = new TwoBallSimple(drive, shooter, intake, feeder,limelight);
+    ThreeBallSimple = new ThreeBallSimple(drive, shooter, intake, feeder, limelight);
+    DriveBack = new DriveBack(drive, shooter, limelight, feeder);
+    autoChooser = new SendableChooser<Command>();
+  }
+
+  public void showChoosers() {
+    autoChooser.setDefaultOption("ThreeBallSimple", ThreeBallSimple);
       autoChooser.addOption("TwoBallSimple", TwoBallSimple);
+      autoChooser.addOption("DriveBack", DriveBack);
       SmartDashboard.putData("Auto Routines", autoChooser);
   }
 }

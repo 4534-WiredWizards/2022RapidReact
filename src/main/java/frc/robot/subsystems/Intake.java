@@ -133,10 +133,10 @@ public class Intake extends SubsystemBase {
     double centerIntakeSlider=centerSpeed.getDouble(SpeedConstants.intakeSpeed);
 
     if (forward) {
-      centerDirectionConstant = -1;
+      centerDirectionConstant = 1;
     }
     else {
-      centerDirectionConstant = 1;
+      centerDirectionConstant = -1;
     }
 
     if (!getCenterPiston()) {

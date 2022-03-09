@@ -39,11 +39,9 @@ public class Constants {
         public static final int rightFlywheelMotorId = 25;
         public static final int leftFlywheelMotorId = 15;
 
-        public static final int kickerMotorId = 10;
         public static final int leftIntakeMotorId = 26; 
         public static final int rightIntakeMotorId = 16;
         public static final int centerIntakeMotorId = 36;
-        public static final int conveyorMotorId = 9;
 
         public static final int imuId = 18;
 
@@ -103,7 +101,7 @@ public class Constants {
     }
 
     public static final class SpeedConstants {
-        public static final double shooterSpeed = 0.5;
+        public static final double shooterSpeed = 0.65;
         public static final double feederWheelSpeed = 0.5; 
         public static final double intakeSpeed = 0.5;
         public static final double climbUpSpeed = 0.5;
@@ -125,8 +123,8 @@ public class Constants {
 
     public static final class DriveConstants {
 
-        public static final double trackWidth = Units.inchesToMeters(22); //23.5 //17.25
-        public static final double wheelBase = Units.inchesToMeters(22); //23.5 //28.5
+        public static final double trackWidth = Units.inchesToMeters(23.5); //22 //17.25
+        public static final double wheelBase = Units.inchesToMeters(23.5); //22 //28.5
 
         public static final SwerveDriveKinematics kinematics = 
             new SwerveDriveKinematics(
@@ -146,7 +144,7 @@ public class Constants {
 
         public static final SimpleMotorFeedforward driveFF = new SimpleMotorFeedforward(0.254, 0.137);
 
-        public static final double maxDriveSpeed = 12; //12.0;
+        public static final double maxDriveSpeed = 10; //12.0;
         public static final double teleopTurnRateDegPerSec = 120; //360.0;  was at 90 but we lowered because it was very bumpy
                                                                  // 45 worked but was too slow :(    //Rate the robot will spin with full rotation command
         
@@ -190,12 +188,12 @@ public class Constants {
         public static final double far = 3;
         public static final double veryfar = 4;
         public static final double lowPosition = 0.5;
-        public static final double highPosition = 0.35;
-        public static final double farPosition = 0.85;
+        public static final double highPosition = 0.1;
+        public static final double farPosition = 0.7;
         public static final double veryfarPosition = 0.9;
         public static final double lowShooterSpeed = 0.35;
         public static final double highShooterSpeed = 0.65;
-        public static final double farShooterSpeed = 0.9;
+        public static final double farShooterSpeed = 0.7;
         public static final double veryfarShooterSpeed = 0.95;
     }
 
@@ -211,6 +209,7 @@ public class Constants {
         public static final double maxVelMetersPerSec = 4.5;
         public static final double maxAccelMetersPerSecondSq = 1.95;
         public static final double positionOneShootingAngle = 90;
+        public static final double positionTwoShootingAngle = 90;
 
         public static final int leftIntake = 0;
         public static final int centerIntake = 1;
