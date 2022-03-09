@@ -21,7 +21,7 @@ import frc.robot.Constants.SpeedConstants;
 public class FeederWheel extends SubsystemBase {
   /** Creates a new FeederWheel. */
 
-  private final DigitalInput proxSensor = new DigitalInput(0);
+  private final DigitalInput proxSensor = new DigitalInput(5);
   
   private CANSparkMax feedMotor;
   private ShuffleboardTab Tab=Shuffleboard.getTab("FeederWheel");
