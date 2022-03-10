@@ -30,10 +30,10 @@ public class Constants {
         public static final int rearLeftRotationEncoderId = 32;
         public static final int rearRightRotationEncoderId = 42;
 
-        public static final double frontLeftAngleOffset = Units.degreesToRadians(20.21); //307.1  //26.60    //26.71
-        public static final double frontRightAngleOffset = Units.degreesToRadians(287.23); //202.0 //111.18   //111.44
-        public static final double rearLeftAngleOffset = Units.degreesToRadians(108.81); //202.6  //108.98    //109.60
-        public static final double rearRightAngleOffset = Units.degreesToRadians(215.07); //294.0 //37.00     //37.00
+        public static final double frontLeftAngleOffset = Units.degreesToRadians(289.86); //307.1  //26.60    //26.71
+        public static final double frontRightAngleOffset = Units.degreesToRadians(18.28); //202.0 //111.18   //111.44
+        public static final double rearLeftAngleOffset = Units.degreesToRadians(205.66); //202.6  //108.98    //109.60
+        public static final double rearRightAngleOffset = Units.degreesToRadians(0); //294.0 //37.00     //37.00
     
         public static final int feederWheelMotorId = 35;
         public static final int rightFlywheelMotorId = 25;

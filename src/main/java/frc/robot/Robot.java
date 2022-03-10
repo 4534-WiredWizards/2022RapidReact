@@ -69,6 +69,7 @@ public class Robot extends TimedRobot {
         robotContainer.drive.updateSmartDashboard();
         robotContainer.t_pneumatics.updatePressurSensor();
         robotContainer.t_shooter.updateShooter();
+        robotContainer.t_feeder.updateSmartDashboard();
     }
 
     @Override

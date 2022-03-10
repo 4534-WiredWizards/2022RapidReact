@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.CANDevices;
 import frc.robot.Constants.SpeedConstants;
@@ -95,6 +96,10 @@ public class FeederWheel extends SubsystemBase {
         feedMotor.set(0);
       }
     }
+  }
+
+  public void updateSmartDashboard() {
+    SmartDashboard.putBoolean("ProxSensor", proxSensor.get());
   }
 }
 
