@@ -14,6 +14,10 @@ import frc.robot.subsystems.Shooter;
 import frc.robot.commands.TwoBallSimple;
 import frc.robot.commands.ThreeBallSimple;
 import frc.robot.commands.DriveBack;
+import frc.robot.commands.CenterDriveBack;
+import frc.robot.commands.LeftDriveBack;
+import frc.robot.commands.RightDriveBack;
+
 
 public class Robot extends TimedRobot {
     
@@ -26,6 +30,9 @@ public class Robot extends TimedRobot {
   private Command TwoBallSimple;
   private Command ThreeBallSimple;
   private Command DriveBack;
+  private Command CenterDriveBack;
+  private Command LeftDriveBack;
+  private Command RightDriveBack;
   public SendableChooser<Command> autoChooser;
   
     @Override
@@ -35,6 +42,10 @@ public class Robot extends TimedRobot {
         TwoBallSimple = new TwoBallSimple(robotContainer.drive, robotContainer.t_shooter, robotContainer.t_intake, robotContainer.t_feeder, robotContainer.t_limelight);
         ThreeBallSimple = new ThreeBallSimple(robotContainer.drive, robotContainer.t_shooter, robotContainer.t_intake, robotContainer.t_feeder, robotContainer.t_limelight);
         DriveBack = new DriveBack(robotContainer.drive, robotContainer.t_shooter, robotContainer.t_limelight, robotContainer.t_feeder);
+        CenterDriveBack = new CenterDriveBack(robotContainer.drive, robotContainer.t_shooter, robotContainer.t_intake,robotContainer.t_feeder, robotContainer.t_limelight);
+        LeftDriveBack = new LeftDriveBack(robotContainer.drive, robotContainer.t_shooter, robotContainer.t_intake, robotContainer.t_feeder, robotContainer.t_limelight);
+        RightDriveBack = new RightDriveBack(robotContainer.drive, robotContainer.t_shooter, robotContainer.t_intake, robotContainer.t_feeder, robotContainer.t_limelight);
+
         autoChooser = new SendableChooser<Command>();
         NetworkTableInstance.getDefault().setUpdateRate(.01);
         //Added to speed up auto running
@@ -44,6 +55,9 @@ public class Robot extends TimedRobot {
         autoChooser.setDefaultOption("ThreeBallSimple", ThreeBallSimple);
         autoChooser.addOption("TwoBallSimple", TwoBallSimple);
         autoChooser.addOption("DriveBack", DriveBack);
+        autoChooser.addOption("CenterDriveBack", CenterDriveBack);
+        autoChooser.addOption("LeftDriveBack", LeftDriveBack);
+        autoChooser.addOption("RightDriveBack", RightDriveBack);
         SmartDashboard.putData("Auto Routines", autoChooser);
 
     }
@@ -60,7 +74,7 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousInit() {
         
-        autonomousCommand = robotContainer.getAutonomousCommand();
+        autonomousCommand = autoChooser.getSelected();
 
         if (autonomousCommand != null) autonomousCommand.schedule();
 

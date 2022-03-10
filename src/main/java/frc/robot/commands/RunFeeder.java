@@ -53,11 +53,12 @@ public class RunFeeder extends CommandBase {
       } else {
         m_feeder.setFeederMotor(feederSpeed, false, true);
       }
-    } else {
+    } 
+    else {
       if(m_runForward) {
-        m_feeder.setFeederMotor(feederSpeed, true, false);
+        m_feeder.setFeederMotor(feederSpeed, true, m_isAuto);
       } else {
-        m_feeder.setFeederMotor(feederSpeed, false, false);
+        m_feeder.setFeederMotor(feederSpeed, false, m_isAuto);
       }
     }
   }

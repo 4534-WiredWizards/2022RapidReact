@@ -16,6 +16,7 @@ public class QuickTurn extends CommandBase {
 
     private final double desiredAngle;
     private double currentAngle;
+    private double oldAngle;
 
     private final PIDController controller = new PIDController(
         2.5, 0, 0.25
@@ -26,6 +27,8 @@ public class QuickTurn extends CommandBase {
         drive = subsystem;
 
         desiredAngle = desiredAngleRad;
+
+        oldAngle = drive.getGyro();
 
     }
 
@@ -53,7 +56,7 @@ public class QuickTurn extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        if (currentAngle == AutoConstants.positionOneShootingAngle) {
+        if (currentAngle == oldAngle + desiredAngle) {
             return true;
         }
         else {
