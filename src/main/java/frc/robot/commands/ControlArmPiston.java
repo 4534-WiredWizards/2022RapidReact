@@ -24,11 +24,12 @@ public class ControlArmPiston extends CommandBase {
   public void initialize() {
     if (frc.robot.RobotContainer.m_fancyJoystick.getRawButton(fancyJoystick.se)) {
       m_climbPiston.setDeployPiston(!m_climbPiston.getDeployPiston());
-      m_climbPiston.setRetractPiston(false);
-    } else if (frc.robot.RobotContainer.m_fancyJoystick.getRawButton(fancyJoystick.st)) {
-      m_climbPiston.setRetractPiston(!m_climbPiston.getRetractPiston());
-      m_climbPiston.setDeployPiston(false);
     }
+    // m_climbPiston.setRetractPiston(false);
+    // } else if (frc.robot.RobotContainer.m_fancyJoystick.getRawButton(fancyJoystick.st)) {
+    //   m_climbPiston.setRetractPiston(!m_climbPiston.getRetractPiston());
+    //   m_climbPiston.setDeployPiston(false);
+    // }
   }
 
   // Called every time the scheduler runs while the command is scheduled.

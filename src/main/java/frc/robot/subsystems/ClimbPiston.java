@@ -14,11 +14,11 @@ public class ClimbPiston extends SubsystemBase {
   /** Creates a new RightArm. */
   //private CANSparkMax rightMotor;
   private Solenoid deploySolenoid;
-  private Solenoid retractSolenoid;
+  //private Solenoid retractSolenoid;
 
   public ClimbPiston() {
     deploySolenoid = new Solenoid(PneumaticChannels.PCMId, PneumaticsModuleType.REVPH, PneumaticChannels.deploySolenoidChannel);
-    retractSolenoid = new Solenoid(PneumaticChannels.PCMId, PneumaticsModuleType.REVPH, PneumaticChannels.retractSolenoidChannel);
+    //retractSolenoid = new Solenoid(PneumaticChannels.PCMId, PneumaticsModuleType.REVPH, PneumaticChannels.retractSolenoidChannel);
   }
 
   @Override
@@ -30,15 +30,15 @@ public class ClimbPiston extends SubsystemBase {
     deploySolenoid.set(state);
   }
 
-  public void setRetractPiston(boolean state) {
-    retractSolenoid.set(state);
-  }
+  // public void setRetractPiston(boolean state) {
+  //   retractSolenoid.set(state);
+  // }
 
   public boolean getDeployPiston() {
     return deploySolenoid.get();
   }
 
-  public boolean getRetractPiston()  {
-    return retractSolenoid.get();
-  }
+  // public boolean getRetractPiston()  {
+  //   return retractSolenoid.get();
+  // }
 }

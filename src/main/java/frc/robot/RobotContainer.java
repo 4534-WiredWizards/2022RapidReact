@@ -144,7 +144,7 @@ public class RobotContainer {
         new JoystickButton(m_fancyJoystick, fancyJoystick.square).whileHeld(new ControlArmMotor(t_climbMotor));
 
         new JoystickButton(m_fancyJoystick, fancyJoystick.se).whenPressed(new ControlArmPiston(t_ClimbPiston));
-        new JoystickButton(m_fancyJoystick, fancyJoystick.st).whenPressed(new ControlArmPiston(t_ClimbPiston));
+        //new JoystickButton(m_fancyJoystick, fancyJoystick.st).whenPressed(new ControlArmPiston(t_ClimbPiston));
 
 
         /*

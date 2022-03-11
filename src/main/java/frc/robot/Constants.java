@@ -116,7 +116,7 @@ public class Constants {
         public static final int rightIntakeSolenoidChannel = 1;
         public static final int centerIntakeSolenoidChannel = 2;
 
-        public static final int deploySolenoidChannel = 7;
+        public static final int deploySolenoidChannel = 3;
         public static final int retractSolenoidChannel = 8;
 
     }
