@@ -36,7 +36,7 @@ public class Shooter extends SubsystemBase {
   Servo Hood = new Servo(7);
 
 
-  public static final double directionConstant = -1;
+  private double directionConstant;
 
   private ShuffleboardTab Tab=Shuffleboard.getTab("Shooter");
   private NetworkTableEntry shooterSpeed=Tab.add("ShooterSpeed", SpeedConstants.shooterSpeed)
@@ -120,10 +120,17 @@ public class Shooter extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  public void setShooterMotor(double speed) {
+  public void setShooterMotor(double speed, boolean isForward) {
     // sets the speed of the shooter so both mtors(=1.0 to 1.0)
     // reduction factor is in constants
     // the shooter shoots the balls when direction constant is -1
+    if (isForward) {
+      directionConstant = -1;
+    }
+    else {
+      directionConstant = 1;
+    }
+
     double max = shooterSpeed.getDouble(SpeedConstants.shooterSpeed);
     
     if (getHoodPosition() == HoodConstants.lowPosition) {

@@ -47,6 +47,4 @@ public class ControlArmPiston extends CommandBase {
   public boolean isFinished() {
     return true;
   }
-
-
 }

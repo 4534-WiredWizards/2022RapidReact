@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import frc.robot.autonomous.AutoTrajectories;
 import frc.robot.commands.drivetrain.FollowTrajectory;
+import frc.robot.commands.drivetrain.QuickTurn;
 import frc.robot.Constants.HoodConstants;
 
 import frc.robot.subsystems.DriveSubsystem;
@@ -27,12 +28,12 @@ public class DriveBack extends SequentialCommandGroup  {
     // Use addRequirements() here to declare subsystem dependencies.
     addCommands(
       new ParallelCommandGroup(
-        new RunShooter(shooter, limelight, true).withTimeout(1),
-        new HoodAdjust(shooter, HoodConstants.high)
+        new RunShooter(shooter, limelight, true, true).withTimeout(3),
+        new HoodAdjust(shooter, HoodConstants.low)
       ),
       new ParallelCommandGroup(
-        new RunShooter(shooter, limelight, true).withTimeout(1),
-        new RunFeeder(feeder, true, true).withTimeout(1)
+        new RunShooter(shooter, limelight, true, true).withTimeout(3),
+        new RunFeeder(feeder, true, true).withTimeout(3)
       ),
       new FollowTrajectory(drive, AutoTrajectories.point_k)
     );

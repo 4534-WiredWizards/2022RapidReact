@@ -30,10 +30,10 @@ public class Constants {
         public static final int rearLeftRotationEncoderId = 32;
         public static final int rearRightRotationEncoderId = 42;
 
-        public static final double frontLeftAngleOffset = Units.degreesToRadians(289.86); //307.1  //26.60    //26.71
-        public static final double frontRightAngleOffset = Units.degreesToRadians(18.28); //202.0 //111.18   //111.44
-        public static final double rearLeftAngleOffset = Units.degreesToRadians(205.66); //202.6  //108.98    //109.60
-        public static final double rearRightAngleOffset = Units.degreesToRadians(0); //294.0 //37.00     //37.00
+        public static final double frontLeftAngleOffset = Units.degreesToRadians(200.21); //307.1  //26.60    //26.71
+        public static final double frontRightAngleOffset = Units.degreesToRadians(148.1); //202.0 //111.18   //111.44
+        public static final double rearLeftAngleOffset = Units.degreesToRadians(289.6); //202.6  //108.98    //109.60
+        public static final double rearRightAngleOffset = Units.degreesToRadians(19.78); //294.0 //37.00     //37.00
     
         public static final int feederWheelMotorId = 35;
         public static final int rightFlywheelMotorId = 25;
@@ -71,6 +71,8 @@ public class Constants {
         public static final int btn_rightBumper = 6;
         public static final int btn_leftTrigger = 2;
         public static final int btn_rightTrigger = 3;
+        public static final int btn_select = 7;
+        public static final int btn_start = 8;
     }
 
     public static final class fancyJoystick {
@@ -102,9 +104,9 @@ public class Constants {
 
     public static final class SpeedConstants {
         public static final double shooterSpeed = 0.65;
-        public static final double feederWheelSpeed = 0.5; 
+        public static final double feederWheelSpeed = 0.3; 
         public static final double intakeSpeed = 0.5;
-        public static final double climbUpSpeed = 0.5;
+        public static final double climbUpSpeed = 1;
         public static final double climbDownSpeed = 0.5;
     }
 
@@ -116,7 +118,7 @@ public class Constants {
         public static final int rightIntakeSolenoidChannel = 1;
         public static final int centerIntakeSolenoidChannel = 2;
 
-        public static final int deploySolenoidChannel = 3;
+        public static final int deploySolenoidChannel = 15;
         public static final int retractSolenoidChannel = 8;
 
     }

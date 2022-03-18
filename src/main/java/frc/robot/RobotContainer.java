@@ -41,6 +41,7 @@ import frc.robot.commands.resetGyro;
 import frc.robot.commands.RunFeeder;
 import frc.robot.commands.RunIntake;
 import frc.robot.commands.RunShooter;
+import frc.robot.commands.ShootBall;
 import frc.robot.commands.ThreeBallSimple;
 import frc.robot.commands.ControlArmMotor;
 import frc.robot.commands.ControlArmPiston;
@@ -132,7 +133,9 @@ public class RobotContainer {
         new JoystickButton(m_joystick, InputDevices.btn_leftBumper).whileHeld(new RunFeeder(t_feeder, false));
         new JoystickButton(m_joystick, InputDevices.btn_rightBumper).whileHeld(new RunFeeder(t_feeder, true));
 
-        new JoystickButton(m_joystick, InputDevices.btn_x).whileHeld(new RunShooter(t_shooter, t_limelight, false));
+        new JoystickButton(m_joystick, InputDevices.btn_x).whileHeld(new RunShooter(t_shooter, t_limelight, true, false));
+
+        new JoystickButton(m_joystick, InputDevices.btn_select).whenPressed(new ShootBall(t_shooter, t_limelight, t_feeder));
         
         new POVButton(m_joystick, 0).whenPressed(new HoodAdjust(t_shooter, HoodConstants.high));  //POV up
         new POVButton(m_joystick, 90).whenPressed(new HoodAdjust(t_shooter, HoodConstants.far));  //POV right

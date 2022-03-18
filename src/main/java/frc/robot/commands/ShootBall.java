@@ -6,53 +6,38 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.Constants.HoodConstants;
 import frc.robot.subsystems.FeederWheel;
 import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Limelight;
 
-public class ShootBall extends CommandBase {
+public class ShootBall extends SequentialCommandGroup {
   /** Creates a new ShootBall. */
-  private double shooterSpeed = 1.0;
-  private double feederSpeed = 1.0;
   private final Shooter m_shooter;
   private final FeederWheel m_feeder;
-  public ShootBall(Shooter shooter,FeederWheel feeder) {
+  private final Limelight m_limelight;
+
+  public ShootBall(Shooter shooter,Limelight limelilght, FeederWheel feeder) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_shooter = shooter;
     m_feeder = feeder;
+    m_limelight = limelilght;
     addRequirements(m_shooter);
     addRequirements(m_feeder);
+    addRequirements(m_limelight);
 
-  }
+    addCommands(
+      new ParallelCommandGroup (
+        new RunFeeder(m_feeder, false, true).withTimeout(0.5),
+        new RunShooter(m_shooter, m_limelight, false, true).withTimeout(0.5)
+      ),
+      new RunShooter(m_shooter, m_limelight, true, true).withTimeout(1),
+      new ParallelCommandGroup(
+        new RunShooter(m_shooter, m_limelight, true, true).withTimeout(3),
+        new RunFeeder(m_feeder, true, true).withTimeout(3)
+      )
+    );
 
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {}
-
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
-    m_shooter.setShooterMotor(shooterSpeed);
-    m_feeder.setFeederMotor(feederSpeed, true, true);
-
-    if (m_shooter.getShooterMotor() < 0.1) {
-
-    }
-
-  }
-
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {
-    m_shooter.setShooterMotor(0);
-    System.out.println("ShootBall end");
-    m_feeder.setFeederMotor(0, true, true);
-  }
-
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    
-    //FIX ME : add prox switch to stop
-    return false;
   }
 }

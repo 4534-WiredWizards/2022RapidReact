@@ -14,6 +14,7 @@ public class RunShooter extends CommandBase {
   private final Shooter m_shooter;
   private final Limelight m_limelight;
   private boolean m_isAuto;
+  private boolean m_isForward;
   private double shooterSpeed = 1.0;
 
   public RunShooter(Shooter shooter, Limelight limelight) {
@@ -32,6 +33,16 @@ public class RunShooter extends CommandBase {
     addRequirements(m_shooter);
 
   }
+
+  public RunShooter(Shooter shooter, Limelight limelight, boolean isForward, boolean isAuto) {
+    // Use addRequirements() here to declare subsystem dependencies.
+    m_shooter = shooter;
+    m_limelight = limelight;
+    m_isForward = isForward;
+    m_isAuto = isAuto;
+    addRequirements(m_shooter);
+
+  }
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
@@ -43,15 +54,19 @@ public class RunShooter extends CommandBase {
   @Override
   public void execute() {
     // grabs speed from shuffleboard with 0.5 as default
-
-    m_shooter.setShooterMotor(shooterSpeed);
+    if (m_isForward) {
+    m_shooter.setShooterMotor(shooterSpeed, true);
+    }
+    else {
+      m_shooter.setShooterMotor(shooterSpeed,false);
+    }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     // if finished or interrupted, set speed to 0
-    m_shooter.setShooterMotor(0);
+    m_shooter.setShooterMotor(0, true);
     m_limelight.setPipeline(0);
     m_limelight.setLEDMode(0);
   }
