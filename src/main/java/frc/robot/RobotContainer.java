@@ -45,6 +45,7 @@ import frc.robot.commands.ShootBall;
 import frc.robot.commands.ThreeBallSimple;
 import frc.robot.commands.ControlArmMotor;
 import frc.robot.commands.ControlArmPiston;
+import frc.robot.commands.DisconnectGyro;
 import frc.robot.commands.DriveBack;
 
 public class RobotContainer {
@@ -123,7 +124,7 @@ public class RobotContainer {
     public void configureButtonBindings() {
 
         new JoystickButton(m_fancyJoystick, fancyJoystick.l1).whenPressed(new resetGyro(drive));
-        //new JoystickButton(m_fancyJoystick, fancyJoystick.r1).whenPressed(new DisconnectGyro(drive));
+        new JoystickButton(m_fancyJoystick, fancyJoystick.r1).whenPressed(new DisconnectGyro(drive));
 
         new JoystickButton(m_joystick, InputDevices.btn_a).whileHeld(new RunIntake(t_intake, false));
         new JoystickButton(m_joystick, InputDevices.btn_y).whileHeld(new RunIntake(t_intake, true));

@@ -33,7 +33,7 @@ public class Shooter extends SubsystemBase {
   private double currentPosition = 0.5;
   
 
-  Servo Hood = new Servo(7);
+  Servo Hood = new Servo(6);
 
 
   private double directionConstant;
@@ -87,11 +87,13 @@ public class Shooter extends SubsystemBase {
   public void setLowPosition() {
     setHood(HoodConstants.lowPosition);
     currentPosition = HoodConstants.lowPosition;
+    System.out.println("Set Low Position");
   }
 
   public void setHighPosition() {
     setHood(HoodConstants.highPosition);
     currentPosition = HoodConstants.highPosition;
+    System.out.println("Set High Position");
   }
 
   public void setFarPosition() {

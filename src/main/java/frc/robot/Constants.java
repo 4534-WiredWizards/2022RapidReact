@@ -104,7 +104,7 @@ public class Constants {
 
     public static final class SpeedConstants {
         public static final double shooterSpeed = 0.65;
-        public static final double feederWheelSpeed = 0.3; 
+        public static final double feederWheelSpeed = 0.6; 
         public static final double intakeSpeed = 0.5;
         public static final double climbUpSpeed = 1;
         public static final double climbDownSpeed = 0.5;

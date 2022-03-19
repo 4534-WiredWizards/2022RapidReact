@@ -35,6 +35,7 @@ public class HoodAdjust extends CommandBase {
       m_shooter.setFarPosition();
     }
     else if (position == HoodConstants.veryfar) {
+      //m_shooter.setHoodPosition(0.5);
       m_shooter.setVeryFarPosition();
     }
   }

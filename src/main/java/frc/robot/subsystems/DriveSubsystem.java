@@ -148,7 +148,7 @@ public class DriveSubsystem extends SubsystemBase {
          * speeds is set to field relative or default (robot relative) based on parameter
          */
         ChassisSpeeds speeds =
-            isFieldRelative
+            isCommandedFieldRelative
                 ? ChassisSpeeds.fromFieldRelativeSpeeds(
                     forward, strafe, rotation, getHeading())
                 : new ChassisSpeeds(forward, strafe, rotation);
@@ -263,6 +263,10 @@ public class DriveSubsystem extends SubsystemBase {
 
         return isCommandedFieldRelative;
 
+    }
+
+    public void setFieldRelative() {
+        isCommandedFieldRelative = !isCommandedFieldRelative;
     }
 
     public double getGyro() {
