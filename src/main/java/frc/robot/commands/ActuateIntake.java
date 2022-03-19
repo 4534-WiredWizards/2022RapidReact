@@ -29,6 +29,11 @@ public class ActuateIntake extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+  }
+
+  // Called every time the scheduler runs while the command is scheduled.
+  @Override
+  public void execute() {
     if (frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_y)) {
       if(frc.robot.RobotContainer.m_joystick.getRawAxis(InputDevices.btn_leftTrigger) > 0.1 || m_autoIntake == AutoConstants.leftIntake) {
         m_intake.setLeftPiston(true);
@@ -48,11 +53,7 @@ public class ActuateIntake extends CommandBase {
         m_intake.setLeftPiston(false);
         m_intake.setRightPiston(false);
     }
-  }
 
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
     if (m_runForward) {
       if (m_intake.getLeftPiston()) {
         m_intake.setLeftMotor(leftIntakeSpeed, true); //-1
@@ -81,6 +82,9 @@ public class ActuateIntake extends CommandBase {
     m_intake.setLeftMotor(0, true);
     m_intake.setRightMotor(0, true);
     m_intake.setCenterMotor(0, true);
+    m_intake.setLeftPiston(false);
+    m_intake.setRightPiston(false);
+    m_intake.setCenterPiston(false);
   }
 
   // Returns true when the command should end.

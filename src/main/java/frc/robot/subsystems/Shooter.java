@@ -55,6 +55,8 @@ public class Shooter extends SubsystemBase {
     // flywheel motor ids are in constants
     leftMotor = new TalonFX(CANDevices.leftFlywheelMotorId);
     rightMotor = new TalonFX(CANDevices.rightFlywheelMotorId);
+    
+    
 
     // makes left motor dependent on right motor but reversed
     leftMotor.follow(rightMotor);
@@ -115,6 +117,7 @@ public class Shooter extends SubsystemBase {
   public void updateShooter() {
     SmartDashboard.putNumber("ShooterSpeed", currentSpeed);
     SmartDashboard.putNumber("HoodPosition", currentPosition);
+    SmartDashboard.putNumber("Shooter RPM",0-rightMotor.getSensorCollection().getIntegratedSensorVelocity());
   }
 
   @Override
