@@ -10,9 +10,9 @@ import frc.robot.subsystems.DriveSubsystem;
 public class DisconnectGyro extends CommandBase {
   /** Creates a new DisconnectGyro. */
 
-  private DriveSubsystem drive;
+  private DriveSubsystem m_drive;
 
-  public DisconnectGyro(DriveSubsystem m_drive) {
+  public DisconnectGyro(DriveSubsystem drive) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_drive = drive;
   }
@@ -20,7 +20,7 @@ public class DisconnectGyro extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    drive.setFieldRelative();
+    m_drive.setFieldRelative();
   }
 
   // Called every time the scheduler runs while the command is scheduled.

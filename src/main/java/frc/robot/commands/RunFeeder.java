@@ -74,7 +74,7 @@ public class RunFeeder extends CommandBase {
   @Override
   public boolean isFinished() {
     // if left and right bumper are not held, return true
-    if (!frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_leftBumper) && !frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_rightBumper) && !m_isAuto) {
+    if (!frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_leftBumper) && !frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_rightBumper) && !m_isAuto && !frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_y)) {
       return true;
     }
     return false;

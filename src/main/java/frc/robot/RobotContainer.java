@@ -126,12 +126,14 @@ public class RobotContainer {
         new JoystickButton(m_fancyJoystick, fancyJoystick.l1).whenPressed(new resetGyro(drive));
         new JoystickButton(m_fancyJoystick, fancyJoystick.r1).whenPressed(new DisconnectGyro(drive));
 
-        new JoystickButton(m_joystick, InputDevices.btn_a).whileHeld(new RunIntake(t_intake, false));
-        new JoystickButton(m_joystick, InputDevices.btn_y).whileHeld(new RunIntake(t_intake, true));
+        //new JoystickButton(m_joystick, InputDevices.btn_a).whileHeld(new RunIntake(t_intake, false));
+        //new JoystickButton(m_joystick, InputDevices.btn_y).whileHeld(new RunIntake(t_intake, true));
 
-        new JoystickButton(m_joystick, InputDevices.btn_b).whenPressed(new ActuateIntake(t_intake, -1));
+        new JoystickButton(m_joystick, InputDevices.btn_y).whileHeld(new ActuateIntake(t_intake, -1, true));
+        new JoystickButton(m_joystick, InputDevices.btn_a).whileHeld(new ActuateIntake(t_intake, -1, false));
 
         new JoystickButton(m_joystick, InputDevices.btn_leftBumper).whileHeld(new RunFeeder(t_feeder, false));
+        new JoystickButton(m_joystick, InputDevices.btn_y).whileHeld(new RunFeeder(t_feeder, true));
         new JoystickButton(m_joystick, InputDevices.btn_rightBumper).whileHeld(new RunFeeder(t_feeder, true));
 
         new JoystickButton(m_joystick, InputDevices.btn_x).whileHeld(new RunShooter(t_shooter, t_limelight, true, false));

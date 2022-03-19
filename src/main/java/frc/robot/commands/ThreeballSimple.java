@@ -46,19 +46,19 @@ public class ThreeBallSimple extends SequentialCommandGroup {
       new RunFeeder(feeder, true, true).withTimeout(0.5)
     ),
      //new ShootBall(shooter,feeder).withTimeout(1),
-      new ActuateIntake(intake, AutoConstants.leftIntake),
+      new ActuateIntake(intake, AutoConstants.leftIntake, true),
      new ParallelCommandGroup(
         new FollowTrajectory(drive, AutoTrajectories.point_S),
         new RunLeftIntake(intake).withTimeout(1.5)
       ),
-      new ActuateIntake(intake, AutoConstants.leftIntake), 
-      new ActuateIntake(intake, AutoConstants.rightIntake),
+      new ActuateIntake(intake, AutoConstants.leftIntake, true), 
+      new ActuateIntake(intake, AutoConstants.rightIntake, true),
       new ParallelCommandGroup(
         new FollowTrajectory(drive, AutoTrajectories.point_X),
         new RunRightIntake(intake).withTimeout(1.5)
       ),
 
-      new ActuateIntake(intake, AutoConstants.rightIntake), 
+      new ActuateIntake(intake, AutoConstants.rightIntake, true), 
       new ParallelCommandGroup(
         new FollowTrajectory(drive, AutoTrajectories.point_3),
         new HoodAdjust(shooter, HoodConstants.far),

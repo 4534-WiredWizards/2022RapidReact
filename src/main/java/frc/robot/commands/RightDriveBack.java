@@ -33,12 +33,12 @@ public class RightDriveBack extends SequentialCommandGroup {
         new RunFeeder(feeder, true, true).withTimeout(1)
       ),
       new QuickTurn(drive, Math.toRadians(-90)),
-      new ActuateIntake(intake, AutoConstants.rightIntake),
+      new ActuateIntake(intake, AutoConstants.rightIntake, true),
       new ParallelCommandGroup(
         new RunRightIntake(intake).withTimeout(2),
         new FollowTrajectory(drive, AutoTrajectories.point_k)
         ),
-      new ActuateIntake(intake, AutoConstants.rightIntake),
+      new ActuateIntake(intake, AutoConstants.rightIntake, true),
       new ParallelCommandGroup(
         new QuickTurn(drive, Math.toRadians(90)),
         new RunShooter(shooter, limelight, true).withTimeout(1),
