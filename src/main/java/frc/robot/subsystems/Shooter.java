@@ -138,23 +138,23 @@ public class Shooter extends SubsystemBase {
 
     double max = shooterSpeed.getDouble(SpeedConstants.shooterSpeed);
     
-    if (getHoodPosition() == HoodConstants.lowPosition) {
-      rightMotor.set(TalonFXControlMode.PercentOutput, speed*directionConstant*HoodConstants.lowShooterSpeed);
-      currentSpeed = HoodConstants.lowShooterSpeed;
-    }
-    else if (getHoodPosition() == HoodConstants.highPosition) {
-      rightMotor.set(TalonFXControlMode.PercentOutput, speed*directionConstant*HoodConstants.highShooterSpeed);
-      currentSpeed = HoodConstants.highShooterSpeed;
-    }
-    else if (getHoodPosition() == HoodConstants.farPosition) {
-      rightMotor.set(TalonFXControlMode.PercentOutput, speed*directionConstant*HoodConstants.farShooterSpeed);
-      currentSpeed = HoodConstants.farShooterSpeed;
-    }
-    else if (getHoodPosition() == HoodConstants.veryfarPosition) {
-      rightMotor.set(TalonFXControlMode.PercentOutput, speed*directionConstant*HoodConstants.veryfarShooterSpeed);
-      currentSpeed = HoodConstants.veryfarShooterSpeed;
-    }
-    else {
+    // if (getHoodPosition() == HoodConstants.lowPosition) {
+    //   rightMotor.set(TalonFXControlMode.PercentOutput, speed*directionConstant*HoodConstants.lowShooterSpeed);
+    //   currentSpeed = HoodConstants.lowShooterSpeed;
+    // }
+    // else if (getHoodPosition() == HoodConstants.highPosition) {
+    //   rightMotor.set(TalonFXControlMode.PercentOutput, speed*directionConstant*HoodConstants.highShooterSpeed);
+    //   currentSpeed = HoodConstants.highShooterSpeed;
+    // }
+    // else if (getHoodPosition() == HoodConstants.farPosition) {
+    //   rightMotor.set(TalonFXControlMode.PercentOutput, speed*directionConstant*HoodConstants.farShooterSpeed);
+    //   currentSpeed = HoodConstants.farShooterSpeed;
+    // }
+    // else if (getHoodPosition() == HoodConstants.veryfarPosition) {
+    //   rightMotor.set(TalonFXControlMode.PercentOutput, speed*directionConstant*HoodConstants.veryfarShooterSpeed);
+    //   currentSpeed = HoodConstants.veryfarShooterSpeed;
+    // }
+    // else {
       if (speed > max) {
         rightMotor.set(TalonFXControlMode.PercentOutput, directionConstant*max*CANDevices.reductionFactor);
         currentSpeed = max;
@@ -162,7 +162,7 @@ public class Shooter extends SubsystemBase {
         rightMotor.set(TalonFXControlMode.PercentOutput, directionConstant*speed*CANDevices.reductionFactor);
         currentSpeed = speed;
       }
-    }
+   // }
     }
    
 
