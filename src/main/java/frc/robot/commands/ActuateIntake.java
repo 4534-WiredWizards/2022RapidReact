@@ -34,7 +34,7 @@ public class ActuateIntake extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_y)) {
+    if (frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_y) || (frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_a))) {
       if(frc.robot.RobotContainer.m_joystick.getRawAxis(InputDevices.btn_leftTrigger) > 0.1 || m_autoIntake == AutoConstants.leftIntake) {
         m_intake.setLeftPiston(true);
         m_intake.setCenterPiston(false);
@@ -90,6 +90,6 @@ public class ActuateIntake extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return !frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_y);
+    return !frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_y) && !frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_a);
   }
 }
