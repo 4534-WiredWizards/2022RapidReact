@@ -35,18 +35,17 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import frc.robot.commands.ActuateIntake;
-import frc.robot.commands.ChooseAuto;
+import frc.robot.commands.CenterDriveBack;
+import frc.robot.commands.DriveBack;
+
 import frc.robot.commands.HoodAdjust;
 import frc.robot.commands.resetGyro;
 import frc.robot.commands.RunFeeder;
-import frc.robot.commands.RunIntake;
 import frc.robot.commands.RunShooter;
 import frc.robot.commands.ShootBall;
-import frc.robot.commands.ThreeBallSimple;
 import frc.robot.commands.ControlArmMotor;
 import frc.robot.commands.ControlArmPiston;
 import frc.robot.commands.DisconnectGyro;
-import frc.robot.commands.DriveBack;
 
 public class RobotContainer {
 
@@ -129,8 +128,8 @@ public class RobotContainer {
         //new JoystickButton(m_joystick, InputDevices.btn_a).whileHeld(new RunIntake(t_intake, false));
         //new JoystickButton(m_joystick, InputDevices.btn_y).whileHeld(new RunIntake(t_intake, true));
 
-        new JoystickButton(m_joystick, InputDevices.btn_y).whileHeld(new ActuateIntake(t_intake, -1, true));
-        new JoystickButton(m_joystick, InputDevices.btn_a).whileHeld(new ActuateIntake(t_intake, -1, false));
+        new JoystickButton(m_joystick, InputDevices.btn_y).whileHeld(new ActuateIntake(t_intake, true));
+        new JoystickButton(m_joystick, InputDevices.btn_a).whileHeld(new ActuateIntake(t_intake, false));
 
         new JoystickButton(m_joystick, InputDevices.btn_leftBumper).whileHeld(new RunFeeder(t_feeder, false));
         new JoystickButton(m_joystick, InputDevices.btn_y).whileHeld(new RunFeeder(t_feeder, true));
@@ -197,9 +196,8 @@ public class RobotContainer {
 
         SmartDashboard.putNumber("Initialized", 1);
         drive.resetPose(AutoTrajectories.testTrajectory.getInitialPose());
-        return new DriveBack(drive, t_shooter, t_limelight, t_feeder); //ChooseAuto().autoChooser.getSelected(); 
-        //return new ThreeBallSimple(drive, t_shooter, t_intake, t_feeder, t_limelight);
-        //return new simpleDrive();  
+        return new CenterDriveBack(drive, t_shooter, t_intake, t_feeder, t_limelight); 
+        //return new DriveBack(drive, t_shooter, t_limelight, t_feeder);
 
     }
 

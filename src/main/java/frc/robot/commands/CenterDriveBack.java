@@ -18,54 +18,38 @@ import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.Shooter;
 
 public class CenterDriveBack extends SequentialCommandGroup {
-  /** Creates a new RightDriveBack. */
-  public CenterDriveBack(DriveSubsystem drive,Shooter shooter,Intake intake,FeederWheel feeder, Limelight limelight) {
+  /** Creates a new CenterDriveBack. */
+  public CenterDriveBack(DriveSubsystem drive, Shooter shooter, Intake intake, FeederWheel feeder, Limelight limelight) {
     // Use addRequirements() here to declare subsystem dependencies.
+    System.out.println("Please work ----------------------------------");
     addCommands(
       new ParallelCommandGroup(
-        new QuickTurn(drive, Math.toRadians(40)),
-        new RunShooter(shooter, limelight, true).withTimeout(1),
+        new RunShooter(shooter, limelight, true, true).withTimeout(1.5),
         new HoodAdjust(shooter, HoodConstants.high)
       ),
       new ParallelCommandGroup(
-        new RunShooter(shooter, limelight, true).withTimeout(1),
-        new RunFeeder(feeder, true, true).withTimeout(1)
+        new RunShooter(shooter, limelight, true, true).withTimeout(2),
+        new RunFeeder(feeder, true, true).withTimeout(2)
       ),
-      new QuickTurn(drive, Math.toRadians(-90)),
-      new ActuateIntake(intake, AutoConstants.rightIntake, true),
+      //new QuickTurn(drive, Math.toRadians(-90)).withTimeout(3),
+      new AutoActuateIntake(intake, AutoConstants.leftIntake),
       new ParallelCommandGroup(
-        new RunRightIntake(intake).withTimeout(2),
-        new FollowTrajectory(drive, AutoTrajectories.point_k)
+        new AutoRunIntake(intake, AutoConstants.leftIntake).withTimeout(1.5),
+        new FollowTrajectory(drive, AutoTrajectories.backUp).withTimeout(1.5)
         ),
-      new ActuateIntake(intake, AutoConstants.rightIntake, true),
+      //new FollowTrajectory(drive, AutoTrajectories.littleLeft).withTimeout(1),
       new ParallelCommandGroup(
-        new QuickTurn(drive, Math.toRadians(90)),
-        new RunShooter(shooter, limelight, true).withTimeout(1),
+        //new QuickTurn(drive, Math.toRadians(90)).withTimeout(2),
+        new AutoActuateIntake(intake, AutoConstants.leftIntake),
+        //new FollowTrajectory(drive, AutoTrajectories.backUp).withTimeout(1),
+        new RunShooter(shooter, limelight, true, true).withTimeout(2),
         new HoodAdjust(shooter, HoodConstants.far)
         ),
       new ParallelCommandGroup(
-        new RunShooter(shooter, limelight, true).withTimeout(1),
+        new RunShooter(shooter, limelight, true, true).withTimeout(1),
         new RunFeeder(feeder, true, true).withTimeout(1)
       )
         );
 
-  }
-
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {}
-
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {}
-
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {}
-
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return false;
   }
 }

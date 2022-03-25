@@ -28,14 +28,14 @@ public class DriveBack extends SequentialCommandGroup  {
     // Use addRequirements() here to declare subsystem dependencies.
     addCommands(
       new ParallelCommandGroup(
-        new RunShooter(shooter, limelight, true, true).withTimeout(3),
-        new HoodAdjust(shooter, HoodConstants.low)
+        new RunShooter(shooter, limelight, true, true).withTimeout(1),
+        new HoodAdjust(shooter, HoodConstants.high)
       ),
       new ParallelCommandGroup(
         new RunShooter(shooter, limelight, true, true).withTimeout(3),
         new RunFeeder(feeder, true, true).withTimeout(3)
       ),
-      new FollowTrajectory(drive, AutoTrajectories.point_k)
+      new FollowTrajectory(drive, AutoTrajectories.backUp)
     );
     
   }

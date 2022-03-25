@@ -35,8 +35,8 @@ public class HoodAdjust extends CommandBase {
       m_shooter.setFarPosition();
     }
     else if (position == HoodConstants.veryfar) {
-      //m_shooter.setHoodPosition(0.5);
-      m_shooter.setVeryFarPosition();
+      m_shooter.setHoodPosition(0.5);
+      //m_shooter.setVeryFarPosition();
     }
   }
   
@@ -57,7 +57,6 @@ public class HoodAdjust extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    System.out.println("HoodAdjust end");
   }
 
   // Returns true when the command should end.

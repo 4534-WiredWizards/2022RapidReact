@@ -12,16 +12,14 @@ import frc.robot.subsystems.Intake;
 public class ActuateIntake extends CommandBase {
   /** Creates a new ActuateIntake. */
   private final Intake m_intake;
-  private final int m_autoIntake;
   private final boolean m_runForward;
   private double leftIntakeSpeed=1.0;
   private double rightIntakeSpeed=1.0;
   private double centerIntakeSpeed=1.0;
 
-  public ActuateIntake(Intake intake, int autoIntake, boolean isForward) {
+  public ActuateIntake(Intake intake, boolean isForward) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_intake = intake;
-    m_autoIntake = autoIntake;
     m_runForward = isForward;
     addRequirements(m_intake);
   }
@@ -35,11 +33,11 @@ public class ActuateIntake extends CommandBase {
   @Override
   public void execute() {
     if (frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_y) || frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_a)) {
-      if(frc.robot.RobotContainer.m_joystick.getRawAxis(InputDevices.btn_leftTrigger) > 0.1 || m_autoIntake == AutoConstants.leftIntake) {
+      if(frc.robot.RobotContainer.m_joystick.getRawAxis(InputDevices.btn_leftTrigger) > 0.1) {
         m_intake.setLeftPiston(true);
         m_intake.setCenterPiston(false);
         m_intake.setRightPiston(false);
-      } else if(frc.robot.RobotContainer.m_joystick.getRawAxis(InputDevices.btn_rightTrigger) > 0.1 || m_autoIntake == AutoConstants.rightIntake) {
+      } else if(frc.robot.RobotContainer.m_joystick.getRawAxis(InputDevices.btn_rightTrigger) > 0.1) {
         m_intake.setRightPiston(true);
         m_intake.setLeftPiston(false);
         m_intake.setCenterPiston(false);
@@ -82,6 +80,7 @@ public class ActuateIntake extends CommandBase {
     m_intake.setLeftMotor(0, true);
     m_intake.setRightMotor(0, true);
     m_intake.setCenterMotor(0, true);
+    
     m_intake.setLeftPiston(false);
     m_intake.setRightPiston(false);
     m_intake.setCenterPiston(false);

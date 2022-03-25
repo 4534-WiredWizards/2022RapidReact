@@ -98,7 +98,7 @@ public class FollowTrajectory extends SwerveControllerCommand {
     }
 
     public void graph() {
-        State desiredState = AutoTrajectories.testTrajectory.sample(timer.get());
+        State desiredState = AutoTrajectories.backUp.sample(timer.get());
         SmartDashboard.putNumber("Desired x", Units.metersToInches(desiredState.poseMeters.getX()));
         SmartDashboard.putNumber("Desired y", Units.metersToInches(desiredState.poseMeters.getY()));
 
@@ -107,4 +107,14 @@ public class FollowTrajectory extends SwerveControllerCommand {
         SmartDashboard.putNumber("Actual y", Units.metersToInches(Currentposition.getY()));
     }
 
+    @Override
+    public boolean isFinished() {
+        State desiredState = AutoTrajectories.testTrajectory.sample(timer.get());
+        Pose2d Currentposition = drive.getPose();
+        if (Math.abs(desiredState.poseMeters.getX()) <= Math.abs(Currentposition.getX()) && Math.abs(desiredState.poseMeters.getY()) <= Math.abs(Currentposition.getY())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

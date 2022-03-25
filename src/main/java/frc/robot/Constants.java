@@ -104,7 +104,7 @@ public class Constants {
 
     public static final class SpeedConstants {
         public static final double shooterSpeed = 0.65;
-        public static final double feederWheelSpeed = 0.6; 
+        public static final double feederWheelSpeed = 0.4; 
         public static final double intakeSpeed = 0.5;
         public static final double climbUpSpeed = 1;
         public static final double climbDownSpeed = 0.5;
@@ -141,8 +141,8 @@ public class Constants {
 
         public static final double wheelDiameterMeters = 0.050686 * 2;
 
-        public static final double rotationMotorMaxSpeedRadPerSec = .5; //1.0;
-        public static final double rotationMotorMaxAccelRadPerSecSq = 0.5; //1.0
+        public static final double rotationMotorMaxSpeedRadPerSec = 1.0;
+        public static final double rotationMotorMaxAccelRadPerSecSq = 1.0;
 
         public static final SimpleMotorFeedforward driveFF = new SimpleMotorFeedforward(0.254, 0.137);
 
@@ -208,8 +208,8 @@ public class Constants {
 
     public static final class AutoConstants {
 
-        public static final double maxVelMetersPerSec = 4.5;
-        public static final double maxAccelMetersPerSecondSq = 1.95;
+        public static final double maxVelMetersPerSec = 2; //4.5
+        public static final double maxAccelMetersPerSecondSq = 1; //1.95
         public static final double positionOneShootingAngle = 90;
         public static final double positionTwoShootingAngle = 90;
 

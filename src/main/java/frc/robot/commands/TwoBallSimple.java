@@ -19,7 +19,7 @@ import frc.robot.subsystems.FeederWheel;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Limelight;
-import frc.robot.commands.RunLeftIntake;
+
 
 public class TwoBallSimple extends SequentialCommandGroup{
   /** Creates a new TwoBallSimple. */
@@ -34,12 +34,12 @@ public class TwoBallSimple extends SequentialCommandGroup{
         new WaitCommand(1),
         new RunFeeder(feeder, true)
       ),
-      new ActuateIntake(intake, AutoConstants.leftIntake, true),
+      new AutoActuateIntake(intake, AutoConstants.leftIntake),
       new ParallelCommandGroup(
         new FollowTrajectory(drive, AutoTrajectories.point_S),
-        new RunLeftIntake(intake).withTimeout(1.5)
+        new AutoRunIntake(intake, AutoConstants.leftIntake).withTimeout(1.5)
       ),
-      new ActuateIntake(intake, AutoConstants.leftIntake, true),
+      new AutoActuateIntake(intake, AutoConstants.leftIntake),
       new FollowTrajectory(drive, AutoTrajectories.point_3),
       new HoodAdjust(shooter, HoodConstants.far),
       new ParallelCommandGroup(

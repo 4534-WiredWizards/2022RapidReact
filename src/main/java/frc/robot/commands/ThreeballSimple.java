@@ -18,7 +18,6 @@ import frc.robot.subsystems.FeederWheel;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Limelight;
-import frc.robot.commands.RunLeftIntake;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -46,19 +45,19 @@ public class ThreeBallSimple extends SequentialCommandGroup {
       new RunFeeder(feeder, true, true).withTimeout(0.5)
     ),
      //new ShootBall(shooter,feeder).withTimeout(1),
-      new ActuateIntake(intake, AutoConstants.leftIntake, true),
+      new AutoActuateIntake(intake, AutoConstants.leftIntake),
      new ParallelCommandGroup(
         new FollowTrajectory(drive, AutoTrajectories.point_S),
-        new RunLeftIntake(intake).withTimeout(1.5)
+        new AutoRunIntake(intake, AutoConstants.leftIntake).withTimeout(1.5)
       ),
-      new ActuateIntake(intake, AutoConstants.leftIntake, true), 
-      new ActuateIntake(intake, AutoConstants.rightIntake, true),
+      new AutoActuateIntake(intake, AutoConstants.leftIntake), 
+      new AutoActuateIntake(intake, AutoConstants.rightIntake),
       new ParallelCommandGroup(
         new FollowTrajectory(drive, AutoTrajectories.point_X),
-        new RunRightIntake(intake).withTimeout(1.5)
+        new AutoRunIntake(intake, AutoConstants.rightIntake).withTimeout(1.5)
       ),
 
-      new ActuateIntake(intake, AutoConstants.rightIntake, true), 
+      new AutoActuateIntake(intake, AutoConstants.rightIntake), 
       new ParallelCommandGroup(
         new FollowTrajectory(drive, AutoTrajectories.point_3),
         new HoodAdjust(shooter, HoodConstants.far),
