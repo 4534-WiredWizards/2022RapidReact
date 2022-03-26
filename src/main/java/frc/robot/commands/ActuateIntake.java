@@ -89,6 +89,6 @@ public class ActuateIntake extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return !frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_y);
+    return !frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_y) && !frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_a);
   }
 }

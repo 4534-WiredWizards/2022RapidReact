@@ -57,6 +57,12 @@ public class Intake extends SubsystemBase {
     leftmotor = new CANSparkMax(CANDevices.leftIntakeMotorId, MotorType.kBrushless);
     rightmotor = new CANSparkMax(CANDevices.rightIntakeMotorId, MotorType.kBrushless);
     centermotor = new CANSparkMax(CANDevices.centerIntakeMotorId, MotorType.kBrushless);
+    leftmotor.setSmartCurrentLimit(20, 20);
+    leftmotor.burnFlash();
+    rightmotor.setSmartCurrentLimit(20, 20);
+    rightmotor.burnFlash();
+    centermotor.setSmartCurrentLimit(20, 20);
+    centermotor.burnFlash();
 
     leftPiston = new Solenoid(PneumaticChannels.PCMId, PneumaticsModuleType.REVPH, PneumaticChannels.leftIntakeSolenoidChannel);
     rightPiston = new Solenoid(PneumaticChannels.PCMId, PneumaticsModuleType.REVPH, PneumaticChannels.rightIntakeSolenoidChannel);
