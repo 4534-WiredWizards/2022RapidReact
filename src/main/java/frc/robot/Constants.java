@@ -39,6 +39,8 @@ public class Constants {
         public static final int rightFlywheelMotorId = 25;
         public static final int leftFlywheelMotorId = 15;
 
+        public static final int hoodMotorId = 45;
+
         public static final int leftIntakeMotorId = 26; 
         public static final int rightIntakeMotorId = 16;
         public static final int centerIntakeMotorId = 36;
@@ -104,7 +106,7 @@ public class Constants {
 
     public static final class SpeedConstants {
         public static final double shooterSpeed = 0.65;
-        public static final double feederWheelSpeed = 0.4; 
+        public static final double feederWheelSpeed = 0.5; 
         public static final double intakeSpeed = 0.5;
         public static final double climbUpSpeed = 1;
         public static final double climbDownSpeed = 0.5;
@@ -141,7 +143,7 @@ public class Constants {
 
         public static final double wheelDiameterMeters = 0.050686 * 2;
 
-        public static final double rotationMotorMaxSpeedRadPerSec = 1.0;
+        public static final double rotationMotorMaxSpeedRadPerSec = 1.5; //1.0
         public static final double rotationMotorMaxAccelRadPerSecSq = 1.0;
 
         public static final SimpleMotorFeedforward driveFF = new SimpleMotorFeedforward(0.254, 0.137);
@@ -189,14 +191,14 @@ public class Constants {
         public static final double high = 2;
         public static final double far = 3;
         public static final double veryfar = 4;
-        public static final double lowPosition = 0.5;
-        public static final double highPosition = 0.1; 
-        public static final double farPosition = 0.7; 
-        public static final double veryfarPosition = 1.0;
-        public static final double lowShooterSpeed = 0.35;
-        public static final double highShooterSpeed = 0.65;
-        public static final double farShooterSpeed = 0.7;
-        public static final double veryfarShooterSpeed = 0.75;
+        public static final double lowPosition = 0.7;
+        public static final double highPosition = 0.15; 
+        public static final double farPosition = 0.95; 
+        public static final double veryfarPosition = 0.96;
+        public static final double lowShooterSpeed = 0.4;
+        public static final double highShooterSpeed = 0.7;
+        public static final double farShooterSpeed = 0.75;
+        public static final double veryfarShooterSpeed = 0.8;
     }
 
     public static final class VisionConstants {

@@ -144,6 +144,9 @@ public class RobotContainer {
         new POVButton(m_joystick, 180).whenPressed(new HoodAdjust(t_shooter, HoodConstants.low)); //POV down
         new POVButton(m_joystick, 270).whenPressed(new HoodAdjust(t_shooter, HoodConstants.veryfar)); //POV left
 
+        //new POVButton(m_joystick, 0).whileHeld(new HoodAdjust(t_shooter, HoodConstants.high));
+        //new POVButton(m_joystick, 180).whileHeld(new HoodAdjust(t_shooter, HoodConstants.low));  
+        
         //CLIMB
         new JoystickButton(m_fancyJoystick, fancyJoystick.r2).whileHeld(new ControlArmMotor(t_climbMotor));
         new JoystickButton(m_fancyJoystick, fancyJoystick.square).whileHeld(new ControlArmMotor(t_climbMotor));

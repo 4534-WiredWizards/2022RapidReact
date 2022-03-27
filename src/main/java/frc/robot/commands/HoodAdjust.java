@@ -12,8 +12,9 @@ public class HoodAdjust extends CommandBase {
 
   double hoodOutput = 0.0;
   Shooter m_shooter;
-  boolean m_isUp = true;
+  boolean goingUp;
   double position;
+  double location;
   
   /** Creates a new HoodAdjust. */
   public HoodAdjust(Shooter shooter, double pos) {
@@ -26,17 +27,26 @@ public class HoodAdjust extends CommandBase {
   @Override
   public void initialize() {
     if (position == HoodConstants.low){
-      m_shooter.setLowPosition();
+      location = HoodConstants.lowPosition;
     }
     else if (position == HoodConstants.high) {
-      m_shooter.setHighPosition();
+      location = HoodConstants.highPosition;
     }
     else if (position == HoodConstants.far) {
-      m_shooter.setFarPosition();
+      location = HoodConstants.farPosition;
     }
     else if (position == HoodConstants.veryfar) {
-      m_shooter.setHoodPosition(0.5);
-      //m_shooter.setVeryFarPosition();
+      //m_shooter.setHoodPosition(0.5);
+      location = HoodConstants.veryfarPosition;
+      //location = m_shooter.getSliderPosition();
+    }
+
+    m_shooter.setCurrentPosition(location);
+
+    if (m_shooter.getHood() > location*100) {
+      goingUp = false;
+    } else {
+      goingUp = true;
     }
   }
   
@@ -44,24 +54,50 @@ public class HoodAdjust extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    /*
-    if (position == HoodConstants.high) {
+    // if (position == HoodConstants.high) {
+    //   m_shooter.raiseHood();
+    // }
+    // else if (position == HoodConstants.low) {
+    //   m_shooter.lowerHood();
+    // }
+
+
+    if (goingUp) {
       m_shooter.raiseHood();
     }
-    else if (position == HoodConstants.low) {
+    else {
       m_shooter.lowerHood();
-    }
-    */
+    } 
+    
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    m_shooter.setHoodSpeed(0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return true;
+    if (goingUp) {
+      if(m_shooter.getHood() >= location*100) {
+        return true;
+      }
+    } 
+    else{
+      if (m_shooter.getHood() <= location*100) {
+        return true;
+      }
+    }
+    return false;
+
+
+    // if (frc.robot.RobotContainer.m_joystick.getPOV() != 0 && frc.robot.RobotContainer.m_joystick.getPOV() != 180) {
+    //   return true;
+    // }
+    // else {
+    //   return false;
+    // }
   }
 }
