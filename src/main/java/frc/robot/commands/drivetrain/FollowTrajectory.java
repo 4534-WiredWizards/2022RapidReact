@@ -24,6 +24,8 @@ public class FollowTrajectory extends SwerveControllerCommand {
     private final Trajectory trajectory;
     private Timer timer = new Timer();
     private DriveSubsystem drive;
+    private boolean stopLocal = true;
+ 
 
     /*NetworkTableInstance inst = NetworkTableInstance.getDefault();
     NetworkTable table = inst.getTable("datatable");
@@ -42,7 +44,7 @@ public class FollowTrajectory extends SwerveControllerCommand {
             )
         );
 
-    public FollowTrajectory(DriveSubsystem drive, Trajectory trajectory) {
+    public FollowTrajectory(DriveSubsystem drive, Trajectory trajectory, boolean stop) {
 
         /**
          * Super constructor for SwerveControllerCommand
@@ -66,7 +68,8 @@ public class FollowTrajectory extends SwerveControllerCommand {
             drive::setModuleStates, 
             drive
         );
-
+        
+        stopLocal = stop;
         this.drive = drive;
 
         // set the rotation controller to wrap around from -PI to PI
@@ -107,6 +110,12 @@ public class FollowTrajectory extends SwerveControllerCommand {
         SmartDashboard.putNumber("Actual y", Units.metersToInches(Currentposition.getY()));
     }
 
+
+    @Override public void end(boolean isInterrupted){
+        if (stopLocal == true){
+            drive.drive(0, 0, 0, false);
+        }
+    }
     // @Override
     // public boolean isFinished() {
     //     State desiredState = AutoTrajectories.testTrajectory.sample(timer.get());

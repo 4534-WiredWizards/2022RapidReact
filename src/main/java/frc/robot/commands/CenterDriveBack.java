@@ -36,7 +36,7 @@ public class CenterDriveBack extends SequentialCommandGroup {
       new AutoActuateIntake(intake, AutoConstants.leftIntake).withTimeout(1.5),
       new ParallelRaceGroup(
         new AutoRunIntake(intake, AutoConstants.leftIntake),
-        new FollowTrajectory(drive, AutoTrajectories.backUp)
+        new FollowTrajectory(drive, AutoTrajectories.backUp, true)
         ),
       //new FollowTrajectory(drive, AutoTrajectories.littleLeft),
         //new QuickTurn(drive, Math.toRadians(90)).withTimeout(2),
