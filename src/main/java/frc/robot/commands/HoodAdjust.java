@@ -61,13 +61,23 @@ public class HoodAdjust extends CommandBase {
     //   m_shooter.lowerHood();
     // }
 
-
+    if (Math.abs(m_shooter.getHood() - location*100) < 5) {
     if (goingUp) {
-      m_shooter.raiseHood();
+      m_shooter.raiseHoodSlower();
     }
     else {
-      m_shooter.lowerHood();
+      m_shooter.lowerHoodSlower();
     } 
+  }
+    else {
+      if (goingUp) {
+        m_shooter.raiseHood();
+      }
+      else {
+        m_shooter.lowerHood();
+      }
+    }
+
     
   }
 

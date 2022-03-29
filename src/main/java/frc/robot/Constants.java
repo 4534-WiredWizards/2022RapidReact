@@ -187,6 +187,8 @@ public class Constants {
     }
 
     public static final class HoodConstants {
+        public static final double normalHoodSpeed = 0.1;
+        public static final double slowHoodSpeed = 0.05;
         public static final double low = 1;
         public static final double high = 2;
         public static final double far = 3;

@@ -106,7 +106,7 @@ public class Shooter extends SubsystemBase {
   //   setHood(currentPosition);
   //   Hood.set(0.1);
   //   }
-    setHoodSpeed(-0.1);
+    setHoodSpeed(-HoodConstants.normalHoodSpeed);
   }
   
   public void lowerHood(){
@@ -115,8 +115,16 @@ public class Shooter extends SubsystemBase {
     // setHood(currentPosition);
     // Hood.set(-0.1);
     // }
-      setHoodSpeed(0.1);
+      setHoodSpeed(HoodConstants.normalHoodSpeed);
     }
+
+  public void raiseHoodSlower() {
+    setHoodSpeed(-HoodConstants.slowHoodSpeed);
+  }
+
+  public void lowerHoodSlower() {
+    setHoodSpeed(HoodConstants.slowHoodSpeed);
+  }
 
   // public void setLowPosition() {
   //   setHood(HoodConstants.lowPosition);
