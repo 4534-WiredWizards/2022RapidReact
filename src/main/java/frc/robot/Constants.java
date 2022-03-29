@@ -143,13 +143,13 @@ public class Constants {
 
         public static final double wheelDiameterMeters = 0.050686 * 2;
 
-        public static final double rotationMotorMaxSpeedRadPerSec = 1.5; //1.0
+        public static final double rotationMotorMaxSpeedRadPerSec = 1.0;
         public static final double rotationMotorMaxAccelRadPerSecSq = 1.0;
 
         public static final SimpleMotorFeedforward driveFF = new SimpleMotorFeedforward(0.254, 0.137);
 
         public static final double maxDriveSpeed = 10; //12.0;
-        public static final double teleopTurnRateDegPerSec = 120; //360.0;  was at 90 but we lowered because it was very bumpy
+        public static final double teleopTurnRateDegPerSec = 240; //120 //360.0;  was at 90 but we lowered because it was very bumpy
                                                                  // 45 worked but was too slow :(    //Rate the robot will spin with full rotation command
         
         //speedScaleSlope is the m section of y=mx+b, speedScaleOffset is b

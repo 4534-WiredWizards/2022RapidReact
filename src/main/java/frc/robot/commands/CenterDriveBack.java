@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.HoodConstants;
@@ -23,8 +24,8 @@ public class CenterDriveBack extends SequentialCommandGroup {
     // Use addRequirements() here to declare subsystem dependencies.
     System.out.println("Please work ----------------------------------");
     addCommands(
-      new ParallelCommandGroup(
-        new RunShooter(shooter, limelight, true, true).withTimeout(1.5),
+      new ParallelRaceGroup(
+        new RunShooter(shooter, limelight, true, true),
         new HoodAdjust(shooter, HoodConstants.high)
       ),
       new ParallelCommandGroup(
@@ -32,15 +33,15 @@ public class CenterDriveBack extends SequentialCommandGroup {
         new RunFeeder(feeder, true, true).withTimeout(2)
       ),
       //new QuickTurn(drive, Math.toRadians(-90)).withTimeout(3),
-      new AutoActuateIntake(intake, AutoConstants.leftIntake),
-      new ParallelCommandGroup(
-        new AutoRunIntake(intake, AutoConstants.leftIntake).withTimeout(1.5),
-        new FollowTrajectory(drive, AutoTrajectories.backUp).withTimeout(1.5)
+      new AutoActuateIntake(intake, AutoConstants.leftIntake).withTimeout(1.5),
+      new ParallelRaceGroup(
+        new AutoRunIntake(intake, AutoConstants.leftIntake),
+        new FollowTrajectory(drive, AutoTrajectories.backUp)
         ),
       //new FollowTrajectory(drive, AutoTrajectories.littleLeft).withTimeout(1),
-      new ParallelCommandGroup(
         //new QuickTurn(drive, Math.toRadians(90)).withTimeout(2),
         new AutoActuateIntake(intake, AutoConstants.leftIntake),
+        new ParallelRaceGroup(
         //new FollowTrajectory(drive, AutoTrajectories.backUp).withTimeout(1),
         new RunShooter(shooter, limelight, true, true).withTimeout(2),
         new HoodAdjust(shooter, HoodConstants.far)

@@ -5,6 +5,8 @@ import java.util.function.DoubleSupplier;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.DriveConstants;
+import frc.robot.Constants.InputDevices;
+import frc.robot.Constants.fancyJoystick;
 import frc.robot.subsystems.DriveSubsystem;
 
 public class OperatorControl extends CommandBase {
@@ -27,6 +29,7 @@ public class OperatorControl extends CommandBase {
     private final DoubleSupplier speedAdjust;
     
     private final boolean isFieldRelative;
+    private double rotationConstant = 1;
 
     public OperatorControl(
         DriveSubsystem subsystem, 
@@ -58,6 +61,13 @@ public class OperatorControl extends CommandBase {
          * Since joysticks give output from -1 to 1, we multiply the outputs by the max speed
          * Otherwise, our max speed would be 1 meter per second and 1 radian per second
          */
+        if (frc.robot.RobotContainer.m_fancyJoystick.getRawButton(fancyJoystick.l3)) {
+            rotationConstant = 0.3;
+         }
+         else {
+            rotationConstant = 1;
+         }
+
         double speedScale = speedAdjust.getAsDouble()*DriveConstants.speedScaleSlope+DriveConstants.speedScaleOffset;
 
         double fwdX = forwardX.getAsDouble();
@@ -70,7 +80,7 @@ public class OperatorControl extends CommandBase {
 
         double rot = rotation.getAsDouble();
         rot = Math.copySign(rot * rot, rot);
-        rot = deadbandInputs(rot) * Units.degreesToRadians(DriveConstants.teleopTurnRateDegPerSec);
+        rot = deadbandInputs(rot) * Units.degreesToRadians(DriveConstants.teleopTurnRateDegPerSec*rotationConstant);
 
 
         drive.drive(

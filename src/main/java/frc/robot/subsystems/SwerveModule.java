@@ -68,7 +68,7 @@ public class SwerveModule extends SubsystemBase {
         driveMotor.setIdleMode(IdleMode.kBrake);
         //Used to be kBrake
 
-        rotationMotor.setIdleMode(IdleMode.kCoast);
+        rotationMotor.setIdleMode(IdleMode.kBrake);
         //Used to be kCoast
 
         rotationController = rotationMotor.getPIDController();
@@ -96,7 +96,7 @@ public class SwerveModule extends SubsystemBase {
         canCoder.configAbsoluteSensorRange(AbsoluteSensorRange.Unsigned_0_to_360);
 
         driveMotor.setClosedLoopRampRate(0.15);
-        rotationMotor.setClosedLoopRampRate(0.15);
+        rotationMotor.setClosedLoopRampRate(0.08);
 
     }
 
