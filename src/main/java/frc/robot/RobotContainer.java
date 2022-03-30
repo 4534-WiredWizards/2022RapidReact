@@ -39,6 +39,7 @@ import frc.robot.commands.CenterDriveBack;
 import frc.robot.commands.DriveBack;
 
 import frc.robot.commands.HoodAdjust;
+import frc.robot.commands.LimitHood;
 import frc.robot.commands.resetGyro;
 import frc.robot.commands.RunFeeder;
 import frc.robot.commands.RunShooter;
@@ -137,8 +138,9 @@ public class RobotContainer {
 
         new JoystickButton(m_joystick, InputDevices.btn_x).whileHeld(new RunShooter(t_shooter, t_limelight, true, false));
 
-        new JoystickButton(m_joystick, InputDevices.btn_select).whenPressed(new ShootBall(t_shooter, t_limelight, t_feeder));
-        
+        new JoystickButton(m_joystick, InputDevices.btn_select).whenPressed(new LimitHood(t_shooter));
+        new JoystickButton(m_joystick, InputDevices.btn_start).whenPressed(new ShootBall(t_shooter, t_limelight, t_feeder));
+
         new POVButton(m_joystick, 0).whenPressed(new HoodAdjust(t_shooter, HoodConstants.high));  //POV up
         new POVButton(m_joystick, 90).whenPressed(new HoodAdjust(t_shooter, HoodConstants.far));  //POV right
         new POVButton(m_joystick, 180).whenPressed(new HoodAdjust(t_shooter, HoodConstants.low)); //POV down

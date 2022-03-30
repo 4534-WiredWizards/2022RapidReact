@@ -100,6 +100,10 @@ public class Shooter extends SubsystemBase {
     return -1 * hoodEncoder.getPosition();
   }
 
+  public void setHood(double hoodPos) {
+    hoodEncoder.setPosition(hoodPos);
+  }
+
   public void raiseHood(){
   // if (currentPosition < 1-HOODADJUSTRATE) {
   //   currentPosition += HOODADJUSTRATE;
@@ -125,6 +129,7 @@ public class Shooter extends SubsystemBase {
   public void lowerHoodSlower() {
     setHoodSpeed(HoodConstants.slowHoodSpeed);
   }
+
 
   // public void setLowPosition() {
   //   setHood(HoodConstants.lowPosition);

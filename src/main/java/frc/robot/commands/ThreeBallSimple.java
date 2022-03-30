@@ -28,47 +28,10 @@ public class ThreeBallSimple extends SequentialCommandGroup {
   public ThreeBallSimple(DriveSubsystem drive,Shooter shooter,Intake intake,FeederWheel feeder, Limelight limelight) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-      double shootingAngle = AutoConstants.positionOneShootingAngle;
+      
     addCommands(
 
-      //FIX ME : this line does not work in a sequence 
-      //drive.resetPose(AutoTrajectories.testTrajectory.getInitialPose()),
-      new ParallelCommandGroup(
-        //new drive.drive(0,0,0.5,true),
-        new QuickTurn(drive,Math.toRadians(shootingAngle)).withTimeout(1),
-        new RunShooter(shooter, limelight, true).withTimeout(1),
-        new HoodAdjust(shooter, HoodConstants.high)
-        //new RunShooter(shooter,true).withTimeout(0.5)
-      ),
-    new ParallelCommandGroup(
-      new RunShooter(shooter, limelight, true).withTimeout(1.5),
-      new RunFeeder(feeder, true, true).withTimeout(0.5)
-    ),
-     //new ShootBall(shooter,feeder).withTimeout(1),
-      new AutoActuateIntake(intake, AutoConstants.leftIntake),
-     new ParallelCommandGroup(
-        new FollowTrajectory(drive, AutoTrajectories.point_S, false),
-        new AutoRunIntake(intake, AutoConstants.leftIntake).withTimeout(1.5)
-      ),
-      new AutoActuateIntake(intake, AutoConstants.leftIntake), 
-      new AutoActuateIntake(intake, AutoConstants.rightIntake),
-      new ParallelCommandGroup(
-        new FollowTrajectory(drive, AutoTrajectories.point_X, false),
-        new AutoRunIntake(intake, AutoConstants.rightIntake).withTimeout(1.5)
-      ),
-
-      new AutoActuateIntake(intake, AutoConstants.rightIntake), 
-      new ParallelCommandGroup(
-        new FollowTrajectory(drive, AutoTrajectories.point_3, true),
-        new HoodAdjust(shooter, HoodConstants.far),
-        new RunShooter(shooter, limelight, true).withTimeout(1)
-        // new QuickTurn(drive, Math.toRadians(20))
-      ),
-      new ParallelCommandGroup(
-      new RunShooter(shooter, limelight, true).withTimeout(1),
-      new RunFeeder(feeder, true, true).withTimeout(1)
-    )
-      //new ShootBall(shooter, feeder).withTimeout(1)
+      
       );
   }
 }

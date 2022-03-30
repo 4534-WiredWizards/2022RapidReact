@@ -116,14 +116,4 @@ public class FollowTrajectory extends SwerveControllerCommand {
             drive.drive(0, 0, 0, false);
         }
     }
-    // @Override
-    // public boolean isFinished() {
-    //     State desiredState = AutoTrajectories.testTrajectory.sample(timer.get());
-    //     Pose2d Currentposition = drive.getPose();
-    //     if (Math.abs(desiredState.poseMeters.getX()) <= Math.abs(Currentposition.getX()) && Math.abs(desiredState.poseMeters.getY()) <= Math.abs(Currentposition.getY())) {
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // }
 }
