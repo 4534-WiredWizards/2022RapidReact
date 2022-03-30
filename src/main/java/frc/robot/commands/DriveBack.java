@@ -35,7 +35,7 @@ public class DriveBack extends SequentialCommandGroup  {
         new RunShooter(shooter, limelight, true, true).withTimeout(3),
         new RunFeeder(feeder, true, true).withTimeout(3)
       ),
-      new FollowTrajectory(drive, AutoTrajectories.backUp)
+      new FollowTrajectory(drive, AutoTrajectories.backUp, true)
     );
     
   }

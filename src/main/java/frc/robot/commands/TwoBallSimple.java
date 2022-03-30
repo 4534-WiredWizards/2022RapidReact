@@ -36,11 +36,11 @@ public class TwoBallSimple extends SequentialCommandGroup{
       ),
       new AutoActuateIntake(intake, AutoConstants.leftIntake),
       new ParallelCommandGroup(
-        new FollowTrajectory(drive, AutoTrajectories.point_S),
+        new FollowTrajectory(drive, AutoTrajectories.point_S, false),
         new AutoRunIntake(intake, AutoConstants.leftIntake).withTimeout(1.5)
       ),
       new AutoActuateIntake(intake, AutoConstants.leftIntake),
-      new FollowTrajectory(drive, AutoTrajectories.point_3),
+      new FollowTrajectory(drive, AutoTrajectories.point_3, true),
       new HoodAdjust(shooter, HoodConstants.far),
       new ParallelCommandGroup(
         new RunShooter(shooter, limelight).withTimeout(1.5),

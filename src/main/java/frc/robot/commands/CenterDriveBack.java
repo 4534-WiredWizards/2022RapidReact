@@ -28,15 +28,18 @@ public class CenterDriveBack extends SequentialCommandGroup {
         new RunShooter(shooter, limelight, true, true),
         new HoodAdjust(shooter, HoodConstants.high)
       ),
-      new ParallelCommandGroup(
-        new RunShooter(shooter, limelight, true, true).withTimeout(2),
-        new RunFeeder(feeder, true, true).withTimeout(2)
-      ),
+      // new ParallelCommandGroup(
+      //   new RunShooter(shooter, limelight, true, true).withTimeout(2),
+      //   new RunFeeder(feeder, true, true).withTimeout(2)
+      // ),
+
+      new ShootBall (shooter, limelight, feeder).withTimeout(3),
       //new QuickTurn(drive, Math.toRadians(-90)).withTimeout(3),
       new AutoActuateIntake(intake, AutoConstants.leftIntake).withTimeout(1.5),
       new ParallelRaceGroup(
         new AutoRunIntake(intake, AutoConstants.leftIntake),
-        new FollowTrajectory(drive, AutoTrajectories.backUp, true)
+        new FollowTrajectory(drive, AutoTrajectories.backUp, true),
+        new RunFeeder(feeder, true, true)
         ),
       //new FollowTrajectory(drive, AutoTrajectories.littleLeft),
         //new QuickTurn(drive, Math.toRadians(90)).withTimeout(2),
@@ -48,7 +51,10 @@ public class CenterDriveBack extends SequentialCommandGroup {
         ),
       new ParallelCommandGroup(
         new RunShooter(shooter, limelight, true, true).withTimeout(3),
-        new RunFeeder(feeder, true, true).withTimeout(3)
+        new RunFeeder(feeder, true, true).withTimeout(3),
+
+        new ShootBall(shooter, limelight, feeder),
+        new HoodAdjust(shooter, HoodConstants.far)
       )
         );
 

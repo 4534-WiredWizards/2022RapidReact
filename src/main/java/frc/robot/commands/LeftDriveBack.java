@@ -36,7 +36,7 @@ public class LeftDriveBack extends SequentialCommandGroup {
       new AutoActuateIntake(intake, AutoConstants.rightIntake),
       new ParallelCommandGroup(
         new AutoRunIntake(intake, AutoConstants.rightIntake).withTimeout(2),
-        new FollowTrajectory(drive, AutoTrajectories.backUp)
+        new FollowTrajectory(drive, AutoTrajectories.backUp, true)
         ),
       new AutoActuateIntake(intake, AutoConstants.rightIntake),
       new ParallelCommandGroup(
