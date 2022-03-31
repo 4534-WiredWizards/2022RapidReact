@@ -11,7 +11,6 @@ import frc.robot.subsystems.Shooter;
 public class LimitHood extends CommandBase {
   /** Creates a new LimitHood. */
   Shooter m_shooter; 
-  DigitalInput hoodSensor = new DigitalInput(8);
   public LimitHood(Shooter shooter) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_shooter = shooter;
@@ -34,12 +33,13 @@ public class LimitHood extends CommandBase {
   public void end(boolean interrupted) {
     m_shooter.setHoodSpeed(0);
     m_shooter.setHood(0);
+    m_shooter.setCurrentPosition(0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (!hoodSensor.get()) {
+    if (!m_shooter.getHoodSensor()) {
       return true;
     }
     return false;

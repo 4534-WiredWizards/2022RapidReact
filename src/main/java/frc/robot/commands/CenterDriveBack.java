@@ -24,25 +24,17 @@ public class CenterDriveBack extends SequentialCommandGroup {
     // Use addRequirements() here to declare subsystem dependencies.
     System.out.println("Please work ----------------------------------");
     addCommands(
-      // new QuickTurn(drive, Math.toRadians(90)),
+      //new QuickTurn(drive, Math.toRadians(90))
       new AutoActuateIntake(intake, AutoConstants.leftIntake).withTimeout(1.5),
       new ParallelRaceGroup(
         new AutoRunIntake(intake, AutoConstants.leftIntake),
         new FollowTrajectory(drive, AutoTrajectories.backUp, true),
         new RunFeeder(feeder, true, true)
         ),
-      //new FollowTrajectory(drive, AutoTrajectories.littleLeft),
-        //new QuickTurn(drive, Math.toRadians(90)).withTimeout(2),
-        //new AutoActuateIntake(intake, AutoConstants.leftIntake),
-        //new FollowTrajectory(drive, AutoTrajectories.backUp),
-        // new ParallelRaceGroup(
-        // new RunShooter(shooter, limelight, true, true).withTimeout(2),
-        // new HoodAdjust(shooter, HoodConstants.far)
-        // ),
         new AutoActuateIntake(intake, AutoConstants.leftIntake).withTimeout(1.5),
         new HoodAdjust(shooter, HoodConstants.far),
         new ShootBall(shooter, limelight, feeder)
-        );
+         );
 
   }
 }

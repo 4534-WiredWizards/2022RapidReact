@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
@@ -30,8 +31,26 @@ public class ThreeBallSimple extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
       
     addCommands(
+      new AutoActuateIntake(intake, AutoConstants.leftIntake).withTimeout(1.5),
+      new ParallelRaceGroup(
+        new AutoRunIntake(intake, AutoConstants.leftIntake),
+        new FollowTrajectory(drive, AutoTrajectories.backUp, true),
+        new RunFeeder(feeder, true, true)
+        ),
+        new AutoActuateIntake(intake, AutoConstants.leftIntake).withTimeout(1.5),
+        new HoodAdjust(shooter, HoodConstants.far),
+        new ShootBall(shooter, limelight, feeder),
+        new AutoActuateIntake(intake, AutoConstants.leftIntake).withTimeout(1.5),
+        new ParallelRaceGroup(
+        new AutoRunIntake(intake, AutoConstants.leftIntake),
+        new FollowTrajectory(drive, AutoTrajectories.point_S, true),
+        new RunFeeder(feeder, true, true)
+        ),
+        new AutoActuateIntake(intake, AutoConstants.leftIntake).withTimeout(1.5),
+        new ShootBall(shooter, limelight, feeder)
+        );
 
-      
-      );
+
+
   }
 }

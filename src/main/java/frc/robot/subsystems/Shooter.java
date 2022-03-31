@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
@@ -33,7 +34,7 @@ public class Shooter extends SubsystemBase {
   private final double HOODADJUSTRATE=0.01;
   private double currentPos;
   private double currentPosition = 0;
-  
+  DigitalInput hoodSensor = new DigitalInput(8);
 
   private CANSparkMax Hood;
   private RelativeEncoder hoodEncoder;
@@ -162,6 +163,7 @@ public class Shooter extends SubsystemBase {
     SmartDashboard.putNumber("HoodPosition", getCurrentPosition());
     SmartDashboard.putNumber("HoodRotations", getHood());
     SmartDashboard.putNumber("Shooter RPM",0-rightMotor.getSensorCollection().getIntegratedSensorVelocity());
+    SmartDashboard.putBoolean("HoodSensor", hoodSensor.get());
   }
 
   @Override
@@ -215,5 +217,9 @@ public class Shooter extends SubsystemBase {
 
   public void setCurrentPosition(double position) {
     currentPosition = position;
+  }
+
+  public boolean getHoodSensor() {
+    return hoodSensor.get();
   }
 }
