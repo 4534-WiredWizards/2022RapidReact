@@ -6,7 +6,9 @@ package frc.robot.subsystems;
 
 import java.util.Map;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
+import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 import edu.wpi.first.math.MathUtil;
@@ -18,9 +20,11 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 import frc.robot.Constants.CANDevices;
 import frc.robot.Constants.HoodConstants;
 import frc.robot.Constants.SpeedConstants;
+import frc.robot.Constants.VelocityClosedLoop;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
@@ -62,6 +66,30 @@ public class Shooter extends SubsystemBase {
 
     Hood = new CANSparkMax(CANDevices.hoodMotorId, MotorType.kBrushless);
     hoodEncoder = Hood.getEncoder();
+
+    rightMotor.configFactoryDefault();
+    rightMotor.configNeutralDeadband(0.0001);
+    rightMotor.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor, Constants.VelocityClosedLoop.kPIDLoopIdx, Constants.VelocityClosedLoop.kTimeoutMs);
+    rightMotor.configNominalOutputForward(0, Constants.VelocityClosedLoop.kTimeoutMs);
+		rightMotor.configNominalOutputReverse(0, Constants.VelocityClosedLoop.kTimeoutMs);
+		rightMotor.configPeakOutputForward(1, Constants.VelocityClosedLoop.kTimeoutMs);
+		rightMotor.configPeakOutputReverse(-1, Constants.VelocityClosedLoop.kTimeoutMs);
+    rightMotor.config_kF(Constants.VelocityClosedLoop.kPIDLoopIdx, Constants.VelocityClosedLoop.kGains_Velocit.kF, Constants.VelocityClosedLoop.kTimeoutMs);
+		rightMotor.config_kP(Constants.VelocityClosedLoop.kPIDLoopIdx, Constants.VelocityClosedLoop.kGains_Velocit.kP, Constants.VelocityClosedLoop.kTimeoutMs);
+		rightMotor.config_kI(Constants.VelocityClosedLoop.kPIDLoopIdx, Constants.VelocityClosedLoop.kGains_Velocit.kI, Constants.VelocityClosedLoop.kTimeoutMs);
+		rightMotor.config_kD(Constants.VelocityClosedLoop.kPIDLoopIdx, Constants.VelocityClosedLoop.kGains_Velocit.kD, Constants.VelocityClosedLoop.kTimeoutMs);
+
+    leftMotor.configFactoryDefault();
+    leftMotor.configNeutralDeadband(0.0001);
+    leftMotor.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor, Constants.VelocityClosedLoop.kPIDLoopIdx, Constants.VelocityClosedLoop.kTimeoutMs);
+    leftMotor.configNominalOutputForward(0, Constants.VelocityClosedLoop.kTimeoutMs);
+		leftMotor.configNominalOutputReverse(0, Constants.VelocityClosedLoop.kTimeoutMs);
+		leftMotor.configPeakOutputForward(1, Constants.VelocityClosedLoop.kTimeoutMs);
+		leftMotor.configPeakOutputReverse(-1, Constants.VelocityClosedLoop.kTimeoutMs);
+    leftMotor.config_kF(Constants.VelocityClosedLoop.kPIDLoopIdx, Constants.VelocityClosedLoop.kGains_Velocit.kF, Constants.VelocityClosedLoop.kTimeoutMs);
+		leftMotor.config_kP(Constants.VelocityClosedLoop.kPIDLoopIdx, Constants.VelocityClosedLoop.kGains_Velocit.kP, Constants.VelocityClosedLoop.kTimeoutMs);
+		leftMotor.config_kI(Constants.VelocityClosedLoop.kPIDLoopIdx, Constants.VelocityClosedLoop.kGains_Velocit.kI, Constants.VelocityClosedLoop.kTimeoutMs);
+		leftMotor.config_kD(Constants.VelocityClosedLoop.kPIDLoopIdx, Constants.VelocityClosedLoop.kGains_Velocit.kD, Constants.VelocityClosedLoop.kTimeoutMs);
     
     
 
@@ -185,19 +213,19 @@ public class Shooter extends SubsystemBase {
     double max = 0.4;
     
     if (getCurrentPosition() == HoodConstants.lowPosition) {
-      rightMotor.set(TalonFXControlMode.PercentOutput, speed*directionConstant*HoodConstants.lowShooterSpeed);
+      rightMotor.set(TalonFXControlMode.Velocity, speed*directionConstant*HoodConstants.lowShooterSpeed*VelocityClosedLoop.maxRPM);
       currentSpeed = HoodConstants.lowShooterSpeed;
     }
     else if (getCurrentPosition() == HoodConstants.highPosition) {
-      rightMotor.set(TalonFXControlMode.PercentOutput, speed*directionConstant*HoodConstants.highShooterSpeed);
+      rightMotor.set(TalonFXControlMode.Velocity, speed*directionConstant*HoodConstants.highShooterSpeed*VelocityClosedLoop.maxRPM);
       currentSpeed = HoodConstants.highShooterSpeed;
     }
     else if (getCurrentPosition() == HoodConstants.farPosition) {
-      rightMotor.set(TalonFXControlMode.PercentOutput, speed*directionConstant*HoodConstants.farShooterSpeed);
+      rightMotor.set(TalonFXControlMode.Velocity, speed*directionConstant*HoodConstants.farShooterSpeed*VelocityClosedLoop.maxRPM);
       currentSpeed = HoodConstants.farShooterSpeed;
     }
     else if (getCurrentPosition() == HoodConstants.veryfarPosition) {
-      rightMotor.set(TalonFXControlMode.PercentOutput, speed*directionConstant*HoodConstants.veryfarShooterSpeed);
+      rightMotor.set(TalonFXControlMode.Velocity, speed*directionConstant*HoodConstants.veryfarShooterSpeed*VelocityClosedLoop.maxRPM);
       currentSpeed = HoodConstants.veryfarShooterSpeed;
     }
     else {

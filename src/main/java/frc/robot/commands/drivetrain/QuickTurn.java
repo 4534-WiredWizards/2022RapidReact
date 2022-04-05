@@ -52,6 +52,7 @@ public class QuickTurn extends CommandBase {
     @Override
     public void end(boolean interrupted) {
         System.out.println("Quickturn end");
+        drive.drive(0, 0, 0, false);
     }
 
     @Override
