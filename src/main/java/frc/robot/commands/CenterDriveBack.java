@@ -24,19 +24,53 @@ public class CenterDriveBack extends SequentialCommandGroup {
     // Use addRequirements() here to declare subsystem dependencies.
     System.out.println("Please work ----------------------------------");
     addCommands(
-      //new QuickTurn(drive, Math.toRadians(90))
+      // new ParallelRaceGroup(
+      //   new RunShooter(shooter, limelight, true, true),
+      //   new HoodAdjust(shooter, HoodConstants.high)
+      // ),
+      // new ParallelCommandGroup(
+      //   new RunShooter(shooter, limelight, true, true).withTimeout(2),
+      //   new RunFeeder(feeder, true, true).withTimeout(2)
+      // ),
+
+      new ShootBall (shooter, limelight, feeder).withTimeout(3),
+      //new QuickTurn(drive, Math.toRadians(-90)).withTimeout(3),
       new AutoActuateIntake(intake, AutoConstants.leftIntake).withTimeout(1.5),
       new ParallelRaceGroup(
         new HoodAdjust(shooter, HoodConstants.far),
         new AutoRunIntake(intake, AutoConstants.leftIntake),
-        new FollowTrajectory(drive, AutoTrajectories.backUp, true),
+        new FollowTrajectory(drive, AutoTrajectories.backUp, false),
         new RunFeeder(feeder, true, true)
         ),
+<<<<<<< HEAD
       new ParallelRaceGroup(
         new HoodAdjust(shooter, HoodConstants.far),
         new AutoRunIntake(intake, AutoConstants.leftIntake).withTimeout(1)
       ),
       new ShootBall(shooter, limelight, feeder)
     );
+=======
+      //new FollowTrajectory(drive, AutoTrajectories.littleLeft),
+        //new QuickTurn(drive, Math.toRadians(90)).withTimeout(2),
+        //new AutoActuateIntake(intake, AutoConstants.leftIntake),
+        //new FollowTrajectory(drive, AutoTrajectories.backUp),
+        // new ParallelRaceGroup(
+        // new RunShooter(shooter, limelight, true, true).withTimeout(2),
+        // new HoodAdjust(shooter, HoodConstants.far)
+        // ),
+      // new ParallelCommandGroup(
+      //   new AutoActuateIntake(intake, AutoConstants.rightIntake),
+      //   new FollowTrajectory(drive, AutoTrajectories.littleLeft, true),
+      //   new RunFeeder(feeder, true, true)
+
+      // ),
+      new ParallelCommandGroup(
+        new ShootBall(shooter, limelight, feeder),
+        new HoodAdjust(shooter, HoodConstants.far)
+      
+      )
+        );
+
+>>>>>>> 5e2d80e14adb207443c0a7012c905a5f7e83a44d
   }
 }

@@ -104,6 +104,7 @@ public class ActuateIntake extends CommandBase {
     m_intake.setLeftPiston(false);
     m_intake.setRightPiston(false);
     m_intake.setCenterPiston(false);
+
   }
 
   // Returns true when the command should end.
