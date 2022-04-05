@@ -52,12 +52,30 @@ public class ActuateIntake extends CommandBase {
         m_intake.setRightPiston(false);
     }
 
+    if (frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_b)) {
+      if(frc.robot.RobotContainer.m_joystick.getRawAxis(InputDevices.btn_leftTrigger) > 0.1) {
+        m_intake.setLeftPiston(true);
+        m_intake.setCenterPiston(true);
+        m_intake.setRightPiston(false);
+      } else if(frc.robot.RobotContainer.m_joystick.getRawAxis(InputDevices.btn_rightTrigger) > 0.1) {
+        m_intake.setRightPiston(true);
+        m_intake.setLeftPiston(false);
+        m_intake.setCenterPiston(true);
+      }
+    } else {
+      m_intake.setCenterPiston(false);
+        m_intake.setLeftPiston(false);
+        m_intake.setRightPiston(false);
+    }
+
     if (m_runForward) {
       if (m_intake.getLeftPiston()) {
         m_intake.setLeftMotor(leftIntakeSpeed, true); //-1
-      } else if (m_intake.getRightPiston()) {
+      }
+      if (m_intake.getRightPiston()) {
         m_intake.setRightMotor(rightIntakeSpeed, true); //1 
-      } else {
+      }
+      if (m_intake.getCenterPiston()) {
         m_intake.setCenterMotor(centerIntakeSpeed, true); //-1
       }
     } 
@@ -66,9 +84,11 @@ public class ActuateIntake extends CommandBase {
       // runfoward is false so run intake in reverse
       if (m_intake.getLeftPiston()) {
         m_intake.setLeftMotor(leftIntakeSpeed, false);
-      } else if (m_intake.getRightPiston()) {
+      }
+      if (m_intake.getRightPiston()) {
         m_intake.setRightMotor(rightIntakeSpeed, false);
-      } else {
+      } 
+      if (m_intake.getCenterPiston()) {
         m_intake.setCenterMotor(centerIntakeSpeed, false);
       }
     }
@@ -89,6 +109,6 @@ public class ActuateIntake extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return !frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_y) && !frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_a);
+    return !frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_y) && !frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_a)&& !frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_b);
   }
 }

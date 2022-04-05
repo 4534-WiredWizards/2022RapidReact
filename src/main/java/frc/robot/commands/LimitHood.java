@@ -32,8 +32,6 @@ public class LimitHood extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     m_shooter.setHoodSpeed(0);
-    m_shooter.setHood(0);
-    m_shooter.setCurrentPosition(0);
   }
 
   // Returns true when the command should end.

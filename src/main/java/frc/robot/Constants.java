@@ -33,7 +33,7 @@ public class Constants {
         public static final double frontLeftAngleOffset = Units.degreesToRadians(200.21); //307.1  //26.60    //26.71
         public static final double frontRightAngleOffset = Units.degreesToRadians(148.1); //202.0 //111.18   //111.44
         public static final double rearLeftAngleOffset = Units.degreesToRadians(289.6); //202.6  //108.98    //109.60
-        public static final double rearRightAngleOffset = Units.degreesToRadians(19.78); //294.0 //37.00     //37.00
+        public static final double rearRightAngleOffset = Units.degreesToRadians(20.65); //19.78 //294.0 //37.00     //37.00
     
         public static final int feederWheelMotorId = 35;
         public static final int rightFlywheelMotorId = 25;
@@ -109,7 +109,7 @@ public class Constants {
         public static final double feederWheelSpeed = 0.5; 
         public static final double intakeSpeed = 0.5;
         public static final double climbUpSpeed = 1;
-        public static final double climbDownSpeed = 0.5;
+        public static final double climbDownSpeed = 0.75;
     }
 
     public static final class PneumaticChannels {
@@ -148,7 +148,7 @@ public class Constants {
 
         public static final SimpleMotorFeedforward driveFF = new SimpleMotorFeedforward(0.254, 0.137);
 
-        public static final double maxDriveSpeed = 10; //12.0;
+        public static final double maxDriveSpeed = 12.0;
         public static final double teleopTurnRateDegPerSec = 240; //120 //360.0;  was at 90 but we lowered because it was very bumpy
                                                                  // 45 worked but was too slow :(    //Rate the robot will spin with full rotation command
         
@@ -187,20 +187,20 @@ public class Constants {
     }
 
     public static final class HoodConstants {
-        public static final double normalHoodSpeed = 0.1;
+        public static final double normalHoodSpeed = 0.2;
         public static final double slowHoodSpeed = 0.05;
         public static final double low = 1;
         public static final double high = 2;
         public static final double far = 3;
         public static final double veryfar = 4;
         public static final double lowPosition = 0.7;
-        public static final double highPosition = 0.15; 
+        public static final double highPosition = 0.2; 
         public static final double farPosition = 0.95; 
-        public static final double veryfarPosition = 0.96;
+        public static final double veryfarPosition = 1.05;
         public static final double lowShooterSpeed = 0.4;
-        public static final double highShooterSpeed = 0.65;
+        public static final double highShooterSpeed = 0.61;
         public static final double farShooterSpeed = 0.75;
-        public static final double veryfarShooterSpeed = 0.8;
+        public static final double veryfarShooterSpeed = 0.77;
     }
 
     public static final class VisionConstants {

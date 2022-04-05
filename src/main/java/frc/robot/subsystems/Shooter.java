@@ -43,10 +43,10 @@ public class Shooter extends SubsystemBase {
   private double directionConstant;
 
   private ShuffleboardTab Tab=Shuffleboard.getTab("Shooter");
-  private NetworkTableEntry shooterSpeed=Tab.add("ShooterSpeed", SpeedConstants.shooterSpeed)
-        .withWidget(BuiltInWidgets.kNumberSlider)
-        .withProperties(Map.of("min", 0, "max", 1))
-        .getEntry();
+  // private NetworkTableEntry shooterSpeed=Tab.add("ShooterSpeed", SpeedConstants.shooterSpeed)
+  //       .withWidget(BuiltInWidgets.kNumberSlider)
+  //       .withProperties(Map.of("min", 0, "max", 1))
+  //       .getEntry();
 
   private NetworkTableEntry hoodPosition=Tab.add("HoodPosition", 0.5)
         .withWidget(BuiltInWidgets.kNumberSlider)
@@ -162,7 +162,7 @@ public class Shooter extends SubsystemBase {
     SmartDashboard.putNumber("ShooterSpeed", currentSpeed);
     SmartDashboard.putNumber("HoodPosition", getCurrentPosition());
     SmartDashboard.putNumber("HoodRotations", getHood());
-    SmartDashboard.putNumber("Shooter RPM",0-rightMotor.getSensorCollection().getIntegratedSensorVelocity());
+    SmartDashboard.putNumber("Shooter RPM",(0-rightMotor.getSensorCollection().getIntegratedSensorVelocity())/21777);
     SmartDashboard.putBoolean("HoodSensor", hoodSensor.get());
   }
 
@@ -182,7 +182,7 @@ public class Shooter extends SubsystemBase {
       directionConstant = 1;
     }
 
-    double max = shooterSpeed.getDouble(SpeedConstants.shooterSpeed);
+    double max = 0.4;
     
     if (getCurrentPosition() == HoodConstants.lowPosition) {
       rightMotor.set(TalonFXControlMode.PercentOutput, speed*directionConstant*HoodConstants.lowShooterSpeed);

@@ -130,6 +130,7 @@ public class RobotContainer {
         //new JoystickButton(m_joystick, InputDevices.btn_y).whileHeld(new RunIntake(t_intake, true));
 
         new JoystickButton(m_joystick, InputDevices.btn_y).whileHeld(new ActuateIntake(t_intake, true));
+        new JoystickButton(m_joystick, InputDevices.btn_b).whileHeld(new ActuateIntake(t_intake, true));
         new JoystickButton(m_joystick, InputDevices.btn_a).whileHeld(new ActuateIntake(t_intake, false));
 
         new JoystickButton(m_joystick, InputDevices.btn_leftBumper).whileHeld(new RunFeeder(t_feeder, false));
@@ -138,7 +139,7 @@ public class RobotContainer {
 
         new JoystickButton(m_joystick, InputDevices.btn_x).whileHeld(new RunShooter(t_shooter, t_limelight, true, false));
 
-        //new JoystickButton(m_joystick, InputDevices.btn_select).whenPressed(new LimitHood(t_shooter));
+        new JoystickButton(m_joystick, InputDevices.btn_start).whenPressed(new LimitHood(t_shooter));
         new JoystickButton(m_joystick, InputDevices.btn_select).whenPressed(new ShootBall(t_shooter, t_limelight, t_feeder));
 
         new POVButton(m_joystick, 0).whenPressed(new HoodAdjust(t_shooter, HoodConstants.high));  //POV up
