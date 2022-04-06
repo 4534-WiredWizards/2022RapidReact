@@ -52,21 +52,17 @@ public class ActuateIntake extends CommandBase {
         m_intake.setRightPiston(false);
     }
 
-    if (frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_b)) {
-      if(frc.robot.RobotContainer.m_joystick.getRawAxis(InputDevices.btn_leftTrigger) > 0.1) {
-        m_intake.setLeftPiston(true);
-        m_intake.setCenterPiston(true);
-        m_intake.setRightPiston(false);
-      } else if(frc.robot.RobotContainer.m_joystick.getRawAxis(InputDevices.btn_rightTrigger) > 0.1) {
-        m_intake.setRightPiston(true);
-        m_intake.setLeftPiston(false);
-        m_intake.setCenterPiston(true);
-      }
-    } else {
-      m_intake.setCenterPiston(false);
-        m_intake.setLeftPiston(false);
-        m_intake.setRightPiston(false);
-    }
+    // if (frc.robot.RobotContainer.m_joystick.getRawButton(InputDevices.btn_b)) {
+    //   if(frc.robot.RobotContainer.m_joystick.getRawAxis(InputDevices.btn_leftTrigger) > 0.1) {
+    //     m_intake.setLeftPiston(true);
+    //     m_intake.setCenterPiston(true);
+    //     m_intake.setRightPiston(false);
+    //   } else if(frc.robot.RobotContainer.m_joystick.getRawAxis(InputDevices.btn_rightTrigger) > 0.1) {
+    //     m_intake.setRightPiston(true);
+    //     m_intake.setLeftPiston(false);
+    //     m_intake.setCenterPiston(true);
+    //   }
+    // }
 
     if (m_runForward) {
       if (m_intake.getLeftPiston()) {

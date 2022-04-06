@@ -7,6 +7,7 @@ package frc.robot.subsystems;
 import java.util.Map;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
@@ -91,7 +92,8 @@ public class Shooter extends SubsystemBase {
 		leftMotor.config_kI(Constants.VelocityClosedLoop.kPIDLoopIdx, Constants.VelocityClosedLoop.kGains_Velocit.kI, Constants.VelocityClosedLoop.kTimeoutMs);
 		leftMotor.config_kD(Constants.VelocityClosedLoop.kPIDLoopIdx, Constants.VelocityClosedLoop.kGains_Velocit.kD, Constants.VelocityClosedLoop.kTimeoutMs);
     
-    
+    rightMotor.setNeutralMode(NeutralMode.Coast);
+    leftMotor.setNeutralMode(NeutralMode.Coast);
 
     // makes left motor dependent on right motor but reversed
     leftMotor.follow(rightMotor);
@@ -197,6 +199,10 @@ public class Shooter extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+  }
+
+  public void stopShooter() {
+    rightMotor.set(TalonFXControlMode.PercentOutput, 0);
   }
 
   public void setShooterMotor(double speed, boolean isForward) {

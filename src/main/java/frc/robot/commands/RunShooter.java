@@ -66,7 +66,7 @@ public class RunShooter extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     // if finished or interrupted, set speed to 0
-    m_shooter.setShooterMotor(0, true);
+    m_shooter.stopShooter();
     m_limelight.setPipeline(0);
     m_limelight.setLEDMode(0);
   }

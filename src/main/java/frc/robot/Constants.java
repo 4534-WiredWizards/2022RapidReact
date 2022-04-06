@@ -198,7 +198,7 @@ public class Constants {
         public static final double farPosition = 0.95; 
         public static final double veryfarPosition = 0.2; //1.05
         public static final double lowShooterSpeed = 0.4;
-        public static final double highShooterSpeed = 0.61;
+        public static final double highShooterSpeed = 0.55;
         public static final double farShooterSpeed = 0.75;
         public static final double veryfarShooterSpeed = 0.75;  //0.77
     }
@@ -254,7 +254,7 @@ public class Constants {
          * kF: 1023 represents output value to Talon at 100%, 20660 represents Velocity units at 100% output
          * 
          * 	                                    			  kP   	 kI    kD      kF          Iz    PeakOut */
-        public final static Gains kGains_Velocit  = new Gains( 0.1, 0.001, 5, 1023.0/20660.0,  300,  1.00);
+        public final static Gains kGains_Velocit  = new Gains( 0.1, 0.001, 5, 1023.0/21777.0,  300,  1.00);
 
         public final static double maxRPM = 21777;
     }

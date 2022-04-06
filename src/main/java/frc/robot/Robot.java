@@ -2,6 +2,7 @@ package frc.robot;
 
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera;
+import edu.wpi.first.cscore.VideoMode.PixelFormat;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -52,7 +53,8 @@ public class Robot extends TimedRobot {
         //Added to speed up auto running
         new AutoTrajectories();
         UsbCamera fisheye = CameraServer.startAutomaticCapture();
-        fisheye.setResolution(160, 120);
+        fisheye.setResolution(320, 240);
+        fisheye.setPixelFormat(PixelFormat.kMJPEG);
         robotContainer.t_pneumatics.setCompressor(true);
         autoChooser.setDefaultOption("ThreeBallSimple", ThreeBallSimple);
         autoChooser.addOption("TwoBallSimple", TwoBallSimple);
