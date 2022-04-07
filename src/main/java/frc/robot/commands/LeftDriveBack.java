@@ -27,7 +27,7 @@ public class LeftDriveBack extends SequentialCommandGroup {
        new ParallelRaceGroup(
         new HoodAdjust(shooter, HoodConstants.far),
         new AutoRunIntake(intake, AutoConstants.leftIntake),
-        new FollowTrajectory(drive, AutoTrajectories.backUp, true),
+        new FollowTrajectory(drive, AutoTrajectories.leftBackUp, true),
         new RunFeeder(feeder, true, true)
         ),
       new AutoRunIntake(AutoConstants.leftIntake).withTimeout(0.5),
