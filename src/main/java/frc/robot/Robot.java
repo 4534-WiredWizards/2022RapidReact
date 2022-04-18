@@ -76,6 +76,12 @@ public class Robot extends TimedRobot {
         robotContainer.t_feeder.updateSmartDashboard();
     }
 
+    /** This function is called once each time the robot enters Disabled mode. */
+    @Override
+    public void disabledInit() {
+
+    }
+
     @Override
     public void autonomousInit() {
         
@@ -90,7 +96,7 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopInit() {
 
-        if (autonomousCommand != null) autonomousCommand.cancel();
+        if (autonomousCommand != null) {autonomousCommand.cancel();}
 
     }
 

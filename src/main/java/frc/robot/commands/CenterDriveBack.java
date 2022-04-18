@@ -28,13 +28,18 @@ public class CenterDriveBack extends SequentialCommandGroup {
        new ParallelRaceGroup(
         new HoodAdjust(shooter, HoodConstants.far),
         new AutoRunIntake(intake, AutoConstants.leftIntake),
-        new FollowTrajectory(drive, AutoTrajectories.backUp, true),
-        new RunFeeder(feeder, true, true)
+        new FollowTrajectory(drive, AutoTrajectories.backUp, true)
+        //new RunFeeder(feeder, true, true)
         ),
+      new AutoRunIntake(intake, AutoConstants.leftIntake).withTimeout(2),
       new HoodAdjust(shooter, HoodConstants.far),
+      new AutoActuateIntake(intake, AutoConstants.leftIntake).withTimeout(1.5),
+      new RunShooter(shooter, limelight, true, true).withTimeout(1.5),
       new ParallelRaceGroup(
-        new ShootBall(shooter, limelight, feeder),
-        new AutoRunIntake(intake, AutoConstants.leftIntake)
+        //new ShootBall(shooter, limelight, feeder),
+        new RunShooter(shooter, limelight, true, true).withTimeout(6),
+        new RunFeeder(feeder, true, true).withTimeout(6)
+        //new AutoRunIntake(intake, AutoConstants.leftIntake)
       )
      );
   }

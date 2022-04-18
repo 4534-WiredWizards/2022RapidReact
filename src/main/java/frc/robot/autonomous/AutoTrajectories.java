@@ -200,7 +200,7 @@ public class AutoTrajectories {
                 //new Translation2d(Units.inchesToMeters(60), Units.inchesToMeters(60)),
                 //new Translation2d(Units.inchesToMeters(60), Units.inchesToMeters(0)),
             ),
-            new Pose2d(Units.inchesToMeters(-110), Units.inchesToMeters(5), new Rotation2d(Math.toRadians(0))),
+            new Pose2d(Units.inchesToMeters(-110), Units.inchesToMeters(4), new Rotation2d(Math.toRadians(0))),
             config
     );
 
@@ -215,7 +215,22 @@ public class AutoTrajectories {
                 //new Translation2d(Units.inchesToMeters(60), Units.inchesToMeters(60)),
                 //new Translation2d(Units.inchesToMeters(60), Units.inchesToMeters(0)),
             ),
-            new Pose2d(Units.inchesToMeters(10), Units.inchesToMeters(110), new Rotation2d(Math.toRadians(0))),
+            new Pose2d(Units.inchesToMeters(10), Units.inchesToMeters(110), new Rotation2d(Math.toRadians(90))),
+            config
+    );
+
+    public static Trajectory rightBackUp = 
+    TrajectoryGenerator.generateTrajectory(
+            new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), new Rotation2d(Math.toRadians(0))),
+            List.of(
+                //new Translation2d(Units.inchesToMeters(60), new Rotation2d(0)),
+                //new Translation2d(Units.inchesToMeters(10), new Rotation2d(-90)),
+                //new Translation2d(Units.inchesToMeters(10), new Rotation2d(0))
+                //new Translation2d(Units.inchesToMeters(0), Units.inchesToMeters(60))
+                //new Translation2d(Units.inchesToMeters(60), Units.inchesToMeters(60)),
+                //new Translation2d(Units.inchesToMeters(60), Units.inchesToMeters(0)),
+            ),
+            new Pose2d(Units.inchesToMeters(-10), Units.inchesToMeters(-110), new Rotation2d(Math.toRadians(-90))),
             config
     );
 

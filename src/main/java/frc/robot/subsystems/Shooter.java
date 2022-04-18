@@ -8,6 +8,8 @@ import java.util.Map;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.StatorCurrentLimitConfiguration;
+import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
@@ -94,6 +96,11 @@ public class Shooter extends SubsystemBase {
     
     rightMotor.setNeutralMode(NeutralMode.Coast);
     leftMotor.setNeutralMode(NeutralMode.Coast);
+
+    // rightMotor.configStatorCurrentLimit(new StatorCurrentLimitConfiguration(true, 60, 65, 1.0));
+    // rightMotor.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(true, 55, 60, 1.0));
+    // leftMotor.configStatorCurrentLimit(new StatorCurrentLimitConfiguration(true, 60, 65, 1.0));
+    // leftMotor.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(true, 55, 60, 1.0));
 
     // makes left motor dependent on right motor but reversed
     leftMotor.follow(rightMotor);

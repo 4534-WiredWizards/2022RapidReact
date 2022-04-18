@@ -112,6 +112,7 @@ public class FollowTrajectory extends SwerveControllerCommand {
 
 
     @Override public void end(boolean isInterrupted){
+        System.out.println("End FollowTrajectory/Interrupted: "+isInterrupted);
         if (stopLocal == true){
             drive.drive(0, 0, 0, false);
         }

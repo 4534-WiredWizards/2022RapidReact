@@ -32,10 +32,10 @@ public class ShootBall extends SequentialCommandGroup {
         new RunFeeder(m_feeder, false, true).withTimeout(0.5),
         new RunShooter(m_shooter, m_limelight, false, true).withTimeout(0.5)
       ),
-      new RunShooter(m_shooter, m_limelight, true, true).withTimeout(1),
+      new RunShooter(m_shooter, m_limelight, true, true).withTimeout(1.5),
       new ParallelCommandGroup(
-        new RunShooter(m_shooter, m_limelight, true, true).withTimeout(6),
-        new RunFeeder(m_feeder, true, true).withTimeout(6)
+        new RunShooter(m_shooter, m_limelight, true, true).withTimeout(5.5),
+        new RunFeeder(m_feeder, true, true).withTimeout(5.5)
       )
     );
 

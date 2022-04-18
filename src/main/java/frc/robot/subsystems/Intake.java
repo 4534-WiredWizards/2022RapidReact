@@ -57,7 +57,7 @@ public class Intake extends SubsystemBase {
     leftmotor = new CANSparkMax(CANDevices.leftIntakeMotorId, MotorType.kBrushless);
     rightmotor = new CANSparkMax(CANDevices.rightIntakeMotorId, MotorType.kBrushless);
     centermotor = new CANSparkMax(CANDevices.centerIntakeMotorId, MotorType.kBrushless);
-    leftmotor.setSmartCurrentLimit(20, 20);
+    leftmotor.setSmartCurrentLimit(35, 35);
     leftmotor.burnFlash();
     rightmotor.setSmartCurrentLimit(20, 20);
     rightmotor.burnFlash();

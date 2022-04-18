@@ -6,6 +6,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.HoodConstants;
@@ -30,7 +31,7 @@ public class LeftDriveBack extends SequentialCommandGroup {
         new FollowTrajectory(drive, AutoTrajectories.leftBackUp, true),
         new RunFeeder(feeder, true, true)
         ),
-      new AutoRunIntake(AutoConstants.leftIntake).withTimeout(0.5),
+      new AutoRunIntake(intake, AutoConstants.leftIntake).withTimeout(0.5),
       new AutoActuateIntake(intake, AutoConstants.leftIntake).withTimeout(1),
       new ParallelCommandGroup(
          new HoodAdjust(shooter, HoodConstants.far),
