@@ -37,8 +37,8 @@ public class HoodAdjust extends CommandBase {
     }
     else if (position == HoodConstants.veryfar) {
       //m_shooter.setHoodPosition(0.5);
-      location = HoodConstants.veryfarPosition;
-      //location = m_shooter.getSliderPosition();
+      //location = HoodConstants.veryfarPosition;
+      location = m_shooter.getSliderPosition();
     }
 
     m_shooter.setCurrentPosition(location);

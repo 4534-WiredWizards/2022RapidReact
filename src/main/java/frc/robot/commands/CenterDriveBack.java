@@ -26,7 +26,7 @@ public class CenterDriveBack extends SequentialCommandGroup {
     addCommands(
       new AutoActuateIntake(intake, AutoConstants.leftIntake).withTimeout(1.5),
        new ParallelRaceGroup(
-        new HoodAdjust(shooter, HoodConstants.far),
+        //new HoodAdjust(shooter, HoodConstants.far),
         new AutoRunIntake(intake, AutoConstants.leftIntake),
         new FollowTrajectory(drive, AutoTrajectories.backUp, true)
         //new RunFeeder(feeder, true, true)

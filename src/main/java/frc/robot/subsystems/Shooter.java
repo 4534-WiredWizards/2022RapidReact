@@ -50,10 +50,10 @@ public class Shooter extends SubsystemBase {
   private double directionConstant;
 
   private ShuffleboardTab Tab=Shuffleboard.getTab("Shooter");
-  // private NetworkTableEntry shooterSpeed=Tab.add("ShooterSpeed", SpeedConstants.shooterSpeed)
-  //       .withWidget(BuiltInWidgets.kNumberSlider)
-  //       .withProperties(Map.of("min", 0, "max", 1))
-  //       .getEntry();
+  private NetworkTableEntry shooterSpeed=Tab.add("ShooterSpeed", SpeedConstants.shooterSpeed)
+        .withWidget(BuiltInWidgets.kNumberSlider)
+        .withProperties(Map.of("min", 0, "max", 1))
+        .getEntry();
 
   private NetworkTableEntry hoodPosition=Tab.add("HoodPosition", 0.5)
         .withWidget(BuiltInWidgets.kNumberSlider)
@@ -216,14 +216,15 @@ public class Shooter extends SubsystemBase {
     // sets the speed of the shooter so both mtors(=1.0 to 1.0)
     // reduction factor is in constants
     // the shooter shoots the balls when direction constant is -1
+
+    double max = shooterSpeed.getDouble(SpeedConstants.shooterSpeed);
+
     if (isForward) {
       directionConstant = -1;
     }
     else {
       directionConstant = 1;
     }
-
-    double max = 0.4;
     
     if (getCurrentPosition() == HoodConstants.lowPosition) {
       rightMotor.set(TalonFXControlMode.Velocity, speed*directionConstant*HoodConstants.lowShooterSpeed*VelocityClosedLoop.maxRPM);

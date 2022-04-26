@@ -26,10 +26,10 @@ public class LeftDriveBack extends SequentialCommandGroup {
     addCommands(
       new AutoActuateIntake(intake, AutoConstants.leftIntake).withTimeout(1.5),
        new ParallelRaceGroup(
-        new HoodAdjust(shooter, HoodConstants.far),
+        //new HoodAdjust(shooter, HoodConstants.far),
         new AutoRunIntake(intake, AutoConstants.leftIntake),
-        new FollowTrajectory(drive, AutoTrajectories.leftBackUp, true),
-        new RunFeeder(feeder, true, true)
+        new FollowTrajectory(drive, AutoTrajectories.leftBackUp, true)
+        //new RunFeeder(feeder, true, true)
         ),
       new AutoRunIntake(intake, AutoConstants.leftIntake).withTimeout(0.5),
       new AutoActuateIntake(intake, AutoConstants.leftIntake).withTimeout(1),

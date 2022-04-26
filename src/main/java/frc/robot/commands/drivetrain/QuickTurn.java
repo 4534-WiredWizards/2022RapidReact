@@ -17,6 +17,7 @@ public class QuickTurn extends CommandBase {
     private final double desiredAngle;
     private double currentAngle;
     private double oldAngle;
+    private double tolerance = 1;
 
     private final PIDController controller = new PIDController(
         2.5, 0, 0.25
@@ -57,10 +58,14 @@ public class QuickTurn extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        if (currentAngle == oldAngle + desiredAngle) {
+        //all angles are in degrees
+        if (currentAngle <= oldAngle + Math.toDegrees(desiredAngle) + tolerance && currentAngle >= oldAngle + Math.toDegrees(desiredAngle) - tolerance) {
+            
+            System.out.println("Current Angle: " + currentAngle + "   Old Angle: " + oldAngle + "   Desired Angle: " + Math.toDegrees(desiredAngle));
             return true;
         }
         else {
+            System.out.println("Current Angle: " + currentAngle + "   Old Angle: " + oldAngle + "   Desired Angle: " + Math.toDegrees(desiredAngle));
             return false;
         }
     }

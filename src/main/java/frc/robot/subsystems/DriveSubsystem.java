@@ -270,7 +270,7 @@ public class DriveSubsystem extends SubsystemBase {
     }
 
     public double getGyro() {
-        return ahrs.getAngle();
+        return -ahrs.getAngle();
     }
 
     public void resetImu() {
@@ -284,7 +284,7 @@ public class DriveSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("Front Right Angle: ", frontRight.getCanCoderRawAngle());
     SmartDashboard.putNumber("Back Left Angle: ", rearLeft.getCanCoderRawAngle());
     SmartDashboard.putNumber("Back Right Angle: ", rearRight.getCanCoderRawAngle());
-    SmartDashboard.putNumber("Gyro Angle", ahrs.getAngle());
+    SmartDashboard.putNumber("Gyro Angle", -ahrs.getAngle());
 
     SmartDashboard.putNumber("Front Left Adjusted Angle: ", frontLeft.getCanCoderAngle().getDegrees());
     SmartDashboard.putNumber("Front Right Adjusted Angle: ", frontRight.getCanCoderAngle().getDegrees());
