@@ -1,8 +1,12 @@
 package frc.robot;
 
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.Map;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
@@ -34,6 +38,8 @@ import frc.robot.subsystems.Limelight;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.math.trajectory.Trajectory;
+import edu.wpi.first.math.trajectory.TrajectoryUtil;
 import frc.robot.commands.ActuateIntake;
 import frc.robot.commands.CenterDriveBack;
 import frc.robot.commands.DriveBack;
@@ -45,6 +51,7 @@ import frc.robot.commands.resetGyro;
 import frc.robot.commands.RunFeeder;
 import frc.robot.commands.RunShooter;
 import frc.robot.commands.ShootBall;
+import frc.robot.commands.TestPathWeaver;
 import frc.robot.commands.ControlArmMotor;
 import frc.robot.commands.ControlArmPiston;
 import frc.robot.commands.DisconnectGyro;
@@ -71,6 +78,8 @@ public class RobotContainer {
     public ClimbMotor t_climbMotor = new ClimbMotor();
     public ClimbPiston t_ClimbPiston = new ClimbPiston();
     public Limelight t_limelight = new Limelight();
+    String trajectoryJSON = "paths/Sam.wpilib.json";
+    Trajectory trajectory = new Trajectory();
     
     public RobotContainer() {
         //callibrates joysticks
@@ -204,10 +213,21 @@ public class RobotContainer {
 
         SmartDashboard.putNumber("Initialized", 1);
         drive.resetPose(AutoTrajectories.testTrajectory.getInitialPose());
-        return new LeftDriveBack(drive, t_shooter, t_intake, t_feeder, t_limelight); 
+        return new TestPathWeaver(drive, t_shooter, t_intake, t_feeder, t_limelight, trajectory);
+        //return new LeftDriveBack(drive, t_shooter, t_intake, t_feeder, t_limelight); 
         //return new DriveBack(drive, t_shooter, t_limelight, t_feeder);
 
     }
+
+    public void getTrajectories() {
+
+        try {
+            Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(trajectoryJSON);
+              trajectory = TrajectoryUtil.fromPathweaverJson(trajectoryPath);
+           } catch (IOException ex) {
+              DriverStation.reportError("Unable to open trajectory: " + trajectoryJSON, ex.getStackTrace());
+    }
+}
 
     // public Command getTestCommand() {
     //     return new ChooseMotor().motorChooser.getSelected();

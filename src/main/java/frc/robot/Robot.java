@@ -1,9 +1,16 @@
 package frc.robot;
 
+import java.io.IOException;
+import java.nio.file.Path;
+
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.cscore.VideoMode.PixelFormat;
+import edu.wpi.first.math.trajectory.Trajectory;
+import edu.wpi.first.math.trajectory.TrajectoryUtil;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -28,7 +35,8 @@ public class Robot extends TimedRobot {
     private Command autonomousCommand;
 
     //private ChooseAuto autoChooser = new ChooseAuto();
-
+  String trajectoryJSON = "paths/Sam.wpilib.json";
+  Trajectory trajectory = new Trajectory();
   private Command TwoBallSimple;
   private Command ThreeBallSimple;
   private Command DriveBack;
@@ -63,8 +71,14 @@ public class Robot extends TimedRobot {
         autoChooser.addOption("LeftDriveBack", LeftDriveBack);
         autoChooser.addOption("RightDriveBack", RightDriveBack);
         SmartDashboard.putData("Auto Routines", autoChooser);
+        robotContainer.getTrajectories();
+        
 
-    }
+        
+   }
+
+
+    
 
     @Override
     public void robotPeriodic() {   
