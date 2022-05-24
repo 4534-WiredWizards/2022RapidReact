@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.autonomous.AutoTrajectories;
 import frc.robot.commands.ChooseAuto;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.Shooter;
 import frc.robot.commands.TwoBallSimple;
 import frc.robot.commands.ThreeBallSimple;
@@ -72,7 +73,6 @@ public class Robot extends TimedRobot {
         autoChooser.addOption("RightDriveBack", RightDriveBack);
         SmartDashboard.putData("Auto Routines", autoChooser);
         robotContainer.getTrajectories();
-        
 
         
    }
@@ -88,6 +88,7 @@ public class Robot extends TimedRobot {
         robotContainer.t_pneumatics.updatePressurSensor();
         robotContainer.t_shooter.updateShooter();
         robotContainer.t_feeder.updateSmartDashboard();
+        robotContainer.t_limelight.updateLimelightInfo();
     }
 
     /** This function is called once each time the robot enters Disabled mode. */

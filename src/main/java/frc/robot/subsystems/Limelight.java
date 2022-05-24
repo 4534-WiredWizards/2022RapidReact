@@ -8,6 +8,7 @@ import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Limelight extends SubsystemBase {
@@ -21,7 +22,7 @@ public class Limelight extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  protected NetworkTable limelightTable = NetworkTableInstance.getDefault().getTable("Limelight");
+  protected NetworkTable limelightTable = NetworkTableInstance.getDefault().getTable("limelight");
 
   protected NetworkTableEntry tv = limelightTable.getEntry("tv");
   protected NetworkTableEntry tx = limelightTable.getEntry("tx");
@@ -84,5 +85,13 @@ public class Limelight extends SubsystemBase {
 
   public void setPipeline(int pipeline) {
     limelightTable.getEntry("pipeline").setNumber(pipeline);
+  }
+
+  public void updateLimelightInfo() {
+    SmartDashboard.putNumber("x", getX());
+    SmartDashboard.putNumber("y", getY());
+    SmartDashboard.putNumber("area", getArea());
+    SmartDashboard.putNumber("skew", getSkew());
+    SmartDashboard.putNumber("latency", getLatency());
   }
 }
