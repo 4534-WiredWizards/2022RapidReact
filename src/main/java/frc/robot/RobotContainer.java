@@ -41,6 +41,8 @@ import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.trajectory.TrajectoryUtil;
 import frc.robot.commands.ActuateIntake;
+import frc.robot.commands.AutoActuateIntake;
+import frc.robot.commands.AutoIntake;
 import frc.robot.commands.CenterDriveBack;
 import frc.robot.commands.DriveBack;
 
@@ -140,14 +142,14 @@ public class RobotContainer {
         //new JoystickButton(m_joystick, InputDevices.btn_y).whileHeld(new RunIntake(t_intake, true));
 
         new JoystickButton(m_joystick, InputDevices.btn_y).whileHeld(new ActuateIntake(t_intake, true));
-        new JoystickButton(m_joystick, InputDevices.btn_b).whileHeld(new ActuateIntake(t_intake, true));
+        //new JoystickButton(m_joystick, InputDevices.btn_b).whileHeld(new ActuateIntake(t_intake, true));
         new JoystickButton(m_joystick, InputDevices.btn_a).whileHeld(new ActuateIntake(t_intake, false));
 
         new JoystickButton(m_joystick, InputDevices.btn_leftBumper).whileHeld(new RunFeeder(t_feeder, false));
         new JoystickButton(m_joystick, InputDevices.btn_y).whileHeld(new RunFeeder(t_feeder, true));
-        new JoystickButton(m_joystick, InputDevices.btn_b).whileHeld(new RunFeeder(t_feeder, true));
+        //new JoystickButton(m_joystick, InputDevices.btn_b).whileHeld(new RunFeeder(t_feeder, true));
         new JoystickButton(m_joystick, InputDevices.btn_rightBumper).whileHeld(new RunFeeder(t_feeder, true));
-
+        new JoystickButton(m_joystick, InputDevices.btn_b).whileHeld(new AutoIntake(t_intake, drive));
         new JoystickButton(m_joystick, InputDevices.btn_x).whileHeld(new RunShooter(t_shooter, t_limelight, true, false));
 
         new JoystickButton(m_joystick, InputDevices.btn_start).whenPressed(new LimitHood(t_shooter));

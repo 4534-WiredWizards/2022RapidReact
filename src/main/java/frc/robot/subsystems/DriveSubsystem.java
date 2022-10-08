@@ -43,6 +43,7 @@ public class DriveSubsystem extends SubsystemBase {
      * external CANCoder can ID
      * measured CANCoder offset
      */
+    
 
     private final SwerveModule frontLeft = 
         new SwerveModule(
@@ -271,6 +272,14 @@ public class DriveSubsystem extends SubsystemBase {
 
     public double getGyro() {
         return -ahrs.getAngle();
+    }
+
+    public double relativeDriveDirection() {
+        double angle = Math.toDegrees(Math.atan2(commandedForward, -commandedStrafe));
+        if(angle < 0) {
+            return angle + 360;
+        }
+        return angle;
     }
 
     public void resetImu() {
