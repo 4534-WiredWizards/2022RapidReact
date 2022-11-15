@@ -209,14 +209,15 @@ public class AutoTrajectories {
     TrajectoryGenerator.generateTrajectory(
             new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), new Rotation2d(Math.toRadians(0))),
             List.of(
-                //new Translation2d(Units.inchesToMeters(60), new Rotation2d(0)),
-                //new Translation2d(Units.inchesToMeters(10), new Rotation2d(-90)),
-                //new Translation2d(Units.inchesToMeters(10), new Rotation2d(0))
-                //new Translation2d(Units.inchesToMeters(0), Units.inchesToMeters(60))
+                //new Translation2d(Units.inchesToMeters(5), Units.inchesToMeters(20))
                 //new Translation2d(Units.inchesToMeters(60), Units.inchesToMeters(60)),
                 //new Translation2d(Units.inchesToMeters(60), Units.inchesToMeters(0)),
             ),
+<<<<<<< HEAD
             new Pose2d(Units.inchesToMeters(5), Units.inchesToMeters(130), new Rotation2d(Math.toRadians(0))),
+=======
+            new Pose2d(Units.inchesToMeters(-10), Units.inchesToMeters(110), new Rotation2d(Math.toRadians(0))),
+>>>>>>> 58c4d04ed24a217da65a08bd98873e65d167dd46
             config
     );
 
