@@ -35,11 +35,7 @@ public class LeftDriveBack extends SequentialCommandGroup {
       new AutoActuateIntake(intake, AutoConstants.leftIntake).withTimeout(1),
       new ParallelCommandGroup(
          new HoodAdjust(shooter, HoodConstants.far)
-<<<<<<< HEAD
          //new QuickTurn(drive, Math.toRadians(-90))
-=======
-    
->>>>>>> 58c4d04ed24a217da65a08bd98873e65d167dd46
       ),
       new ShootBall(shooter, limelight, feeder)
         );

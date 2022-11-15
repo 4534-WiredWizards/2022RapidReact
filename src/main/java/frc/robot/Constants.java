@@ -192,7 +192,7 @@ public class Constants {
         public static final double low = 1;
         public static final double high = 2;
         public static final double far = 3;
-        public static final double veryfar = 4;1
+        public static final double veryfar = 4;
         public static final double lowPosition = 0.7;
         public static final double highPosition = 0.16; 
         public static final double farPosition = 0.95; 
