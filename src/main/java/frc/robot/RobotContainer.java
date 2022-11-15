@@ -49,6 +49,7 @@ import frc.robot.commands.DriveBack;
 import frc.robot.commands.HoodAdjust;
 import frc.robot.commands.LeftDriveBack;
 import frc.robot.commands.LimitHood;
+import frc.robot.commands.OneShotAuto;
 import frc.robot.commands.resetGyro;
 import frc.robot.commands.RunFeeder;
 import frc.robot.commands.RunShooter;
@@ -215,8 +216,9 @@ public class RobotContainer {
 
         SmartDashboard.putNumber("Initialized", 1);
         drive.resetPose(trajectory.getInitialPose());
-        return new TestPathWeaver(drive, t_shooter, t_intake, t_feeder, t_limelight, trajectory);
+        //return new TestPathWeaver(drive, t_shooter, t_intake, t_feeder, t_limelight, trajectory);
         //return new LeftDriveBack(drive, t_shooter, t_intake, t_feeder, t_limelight); 
+        return new OneShotAuto(drive, t_shooter, t_intake, t_feeder, t_limelight); 
         //return new DriveBack(drive, t_shooter, t_limelight, t_feeder);
 
     }

@@ -28,10 +28,11 @@ public class Pneumatics extends SubsystemBase {
 
   public void setCompressor(boolean set){
     if (set) {
-      compressor.enableAnalog(60, 120);;
+      compressor.enableAnalog(60, 105);
     }
     else {
       compressor.disable();
+      
     }
   }
 
