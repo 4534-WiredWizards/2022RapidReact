@@ -194,11 +194,11 @@ public class Constants {
         public static final double far = 3;
         public static final double veryfar = 4;
         public static final double lowPosition = 0.7;
-        public static final double highPosition = 0.15; 
+        public static final double highPosition = 0.16; 
         public static final double farPosition = 0.95; 
         public static final double veryfarPosition = 0.71; //1.05
-        public static final double lowShooterSpeed = 0.3;
-        public static final double highShooterSpeed = 0.59; //0.6
+        public static final double lowShooterSpeed = 0.31;
+        public static final double highShooterSpeed = 0.6; //0.6
         public static final double farShooterSpeed = 0.67;
         public static final double veryfarShooterSpeed = 0.6;  //0.77
     }

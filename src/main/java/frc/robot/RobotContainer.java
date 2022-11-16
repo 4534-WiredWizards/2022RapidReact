@@ -49,6 +49,7 @@ import frc.robot.commands.DriveBack;
 import frc.robot.commands.HoodAdjust;
 import frc.robot.commands.LeftDriveBack;
 import frc.robot.commands.LimitHood;
+import frc.robot.commands.OneShotAuto;
 import frc.robot.commands.resetGyro;
 import frc.robot.commands.RunFeeder;
 import frc.robot.commands.RunShooter;
@@ -80,7 +81,7 @@ public class RobotContainer {
     public ClimbMotor t_climbMotor = new ClimbMotor();
     public ClimbPiston t_ClimbPiston = new ClimbPiston();
     public Limelight t_limelight = new Limelight();
-    String trajectoryJSON = "paths/output/TheEmbarkenment.wpilib.json"; //formerly "BackUp" in place of "TheEmbarkenment"
+    String trajectoryJSON = "paths/output/NewPath.wpilib.json";
     Trajectory trajectory = new Trajectory();
     
     public RobotContainer() {
@@ -215,26 +216,24 @@ public class RobotContainer {
 
         SmartDashboard.putNumber("Initialized", 1);
         drive.resetPose(trajectory.getInitialPose());
-        return new TestPathWeaver(drive, t_shooter, t_intake, t_feeder, t_limelight, trajectory);
-        //return new LeftDriveBack(drive, t_shooter, t_intake, t_feeder, t_limelight); //this is the working auto routine
+        return new LeftDriveBack(drive, t_shooter, t_intake, t_feeder, t_limelight); 
+        //return new OneShotAuto(drive, t_shooter, t_intake, t_feeder, t_limelight); 
         //return new DriveBack(drive, t_shooter, t_limelight, t_feeder);
-        //return new getTrajectories();
 
     }
 
-    public void getTrajectories() {
+    public Command getTrajectories() {
 
         try {
             Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(trajectoryJSON);
               trajectory = TrajectoryUtil.fromPathweaverJson(trajectoryPath);
            } catch (IOException ex) {
               DriverStation.reportError("Unable to open trajectory: " + trajectoryJSON, ex.getStackTrace());
-    } 
-}
-
-    // public Command getTestCommand() {
-    //     return new ChooseMotor().motorChooser.getSelected();
-    // }
+              
+    }
+    return new FollowTrajectory(drive, trajectory, true);
 
 
+     
+   
 }
