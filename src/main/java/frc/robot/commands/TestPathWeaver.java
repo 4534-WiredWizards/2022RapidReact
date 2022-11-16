@@ -26,9 +26,7 @@ import frc.robot.subsystems.Shooter;
 public class TestPathWeaver extends SequentialCommandGroup {
 
   /** Creates a new TestPathWeaver. */
-  public TestPathWeaver(
-    DriveSubsystem drive,Shooter shooter,Intake intake,FeederWheel feeder, Limelight limelight, Trajectory traj
-  ) {
+  public TestPathWeaver(DriveSubsystem drive,Shooter shooter,Intake intake,FeederWheel feeder, Limelight limelight, Trajectory traj) {
 
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
