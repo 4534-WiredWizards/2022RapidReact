@@ -81,7 +81,7 @@ public class RobotContainer {
     public ClimbMotor t_climbMotor = new ClimbMotor();
     public ClimbPiston t_ClimbPiston = new ClimbPiston();
     public Limelight t_limelight = new Limelight();
-    String trajectoryJSON = "paths/output/TestSat.wpilib.json";
+    String trajectoryJSON = "paths/output/TestSat4.wpilib.json";
     Trajectory trajectory = new Trajectory();
     
     public RobotContainer() {
