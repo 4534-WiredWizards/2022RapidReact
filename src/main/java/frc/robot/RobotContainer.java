@@ -230,10 +230,11 @@ public class RobotContainer {
            } catch (IOException ex) {
               DriverStation.reportError("Unable to open trajectory: " + trajectoryJSON, ex.getStackTrace());
               
+        }
+        return new FollowTrajectory(drive, trajectory, true);
     }
-    return new FollowTrajectory(drive, trajectory, true);
 
 
      
     }   
-}
+
