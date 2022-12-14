@@ -231,6 +231,7 @@ public class RobotContainer {
               DriverStation.reportError("Unable to open trajectory: " + trajectoryJSON, ex.getStackTrace());
               
         }
+        drive.resetPose(trajectory.getInitialPose());
         return new FollowTrajectory(drive, trajectory, true);
     }
 
